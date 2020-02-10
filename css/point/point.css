@@ -1,0 +1,680 @@
+
+     @media screen and (min-width: 641px) and (max-width: 980px) { /*  641<X<980 平板尺寸 */
+      .switchproject
+      {
+        position: absolute;
+        top: 9%;
+        left: 18%;
+      }
+      #bar
+      {
+        display: none
+      }
+      #bar2
+      {
+        display: inline;
+        margin-left: 50px
+      }
+      .right_project
+      {
+        width: 500px;
+        height: 689px;
+      
+        border: black solid 3px;
+     
+        background-color: rgb(191, 191, 191);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .project_item
+      {
+        
+        width: 336px;
+        height: 50px;
+        border-bottom: black solid 3px;
+        
+       
+        float: left;
+        /* display:inline-block; */
+        overflow-y:hidden;
+        overflow-x:scroll; 
+        white-space:nowrap; 
+      }
+      .project_item::-webkit-scrollbar-track
+      {
+          border-radius: 12px;
+          background-color: #8DB1E3;
+      }
+  
+      .project_item::-webkit-scrollbar
+      {
+          width: 10px;
+          height: 10px;
+          background-color: #8DB1E3;
+      }
+  
+      .project_item::-webkit-scrollbar-thumb
+      {
+          border-radius: 10px;
+          background-color: #BFBFBF;
+      }
+      .project_text
+      {
+        height: 33px;
+        width: 81px;
+        background: #EAEFF5;
+        border: #404343 solid 2.5px;
+        border-radius: 12px;
+        display: inline-block;
+        margin-right: 4px;
+      }
+      .project_text_1
+      {
+        height: 33px;
+        width: 81px;
+        background: #EAEFF5;
+        border: #404343 solid 2.5px;
+        border-radius: 12px;
+        display: inline-block;
+        
+      }
+      .project_item_text
+      {
+      
+        display: inline-block;
+        white-space: nowrap;
+        
+      }
+      .project_item_itmes
+      {
+        width: 81px;
+        height: 100%;
+        display: inline-block;
+        text-align: center;
+      }
+      .project_id
+      {
+        
+        width: 80px;
+        height: 50px;
+        border-bottom: black solid 3px;
+        
+        margin-top: 22px;
+        float: left;
+      }
+      .project_edit
+      {
+        width: 78px;
+        height: 50px;
+        border-bottom: black solid 3px;
+        
+       
+        float: left;
+      }
+      .project_title
+      {
+        background-color: #8DB1E3 ;
+        width: 100%;
+        height: 96px;
+      }
+      .project_content
+      {
+        background-color:white;
+        width: 100%;
+        height: 330px;
+      }
+      .project_id_cont
+      {
+        border-right: black solid 3px;
+        width: 80px;
+        height: 100%;
+        border-bottom: black solid 3px;
+        float: left;
+        overflow: scroll
+        
+      }
+      .project_id_cont::-webkit-scrollbar {display:none}
+      .project_item_cont
+      {
+        
+        width: 336px;
+        height: 100%;
+        border-bottom: black solid 3px;
+        float: left;
+        overflow-x: scroll
+      }
+      .project_item_cont::-webkit-scrollbar {display:none}
+      .project_edit_cont
+      {
+        
+        width: 78px;
+        height: 100%;
+        border-bottom: black solid 3px;
+        float: left;
+        overflow-y: scroll;
+      }
+      .create_item
+      {
+        height: 100%;
+        width:336px;
+        /* float: left; */
+        display: inline-block;
+        white-space:nowrap; 
+        overflow-x: scroll;
+        overflow-y: hidden;
+        margin-top: 9px;
+      }
+      .create_item::-webkit-scrollbar {display:none}
+      .edit_img
+      {
+        margin-left: 1px;
+        margin-top: 1px;
+      }
+    .bluebar{
+      margin-top:125px; 
+      margin-left:320px; 
+    }
+      .btn_finsh{
+          font-size: 20px;
+          color:white; 
+          background:#0071C1;
+          font-weight: bolder;
+          border-radius:5px;
+          width:200px;
+          margin-left: 40px;
+      }
+        .title{
+              position: absolute;
+              left: 50%;
+              top: 0%;  
+              width: 250px;
+              height: 80px;
+              margin-left: -103px;
+              background: #8DB1E3;
+        }
+        .title_text{
+          margin-top: 20px;
+          font-weight: bolder;
+          font-size: 20px;
+          }
+          .settext{
+          font-size: 25px;
+          font-weight: bolder;
+          margin-left: 22px;
+          float: left;
+        }
+        .common{
+              position: relative;
+              left: 50%;
+              top: 25%;  
+              width: 250px;
+              height: 40px;
+              margin-left: -103px;
+              margin-bottom: 5px;
+              background: #E6EDF7;
+              text-align: center;
+              line-height: 40px;
+              
+        }
+        .top{
+          margin-top: 68px;
+          margin-bottom: -47px;
+          margin-left: 145px;
+        }
+        
+        #bot{
+          margin-top: 210px;
+          margin-left: 145px; 
+        }
+
+        .project{
+          position: relative;
+          left: 50%;
+          top: 22%;  
+          width: 250px;
+          height: 415px;
+          margin-left: -103px;
+          margin-bottom: 12px;
+          text-align: center;
+          /* background-color: sandybrown; */
+        }
+        .project_extend{
+          background-color: #8DB1E1; 
+          height: 40px; 
+          width: 250px;
+          text-align: center;
+          line-height: 40px;
+        }
+        .project_extend_label{
+          float: left; 
+          margin-left:20px; 
+          font-weight: bolder; 
+        }
+        .project_addicon{
+          float: left; 
+          margin-left:5px;
+        }
+        .project_checkbar{
+          float: left;
+          margin-left:18px;
+          margin-top: 13px;
+          transform: scale(2.7);
+      }
+      .only_checkbar{
+          width: 250px; 
+          height: 40px; 
+          /* background-color: #C6D8F0;  */
+          margin-top:5px;
+          text-align: center;
+          line-height: 40px;
+      }
+      
+      .only_checkbar_white{
+          width: 250px; 
+          height: 40px; 
+          background-color: white; 
+          margin-top:5px;
+          text-align: center;
+          line-height: 40px;
+      }
+
+
+      .only_checkbar_label{
+          font-weight: bolder;
+          float: left; 
+          margin-left:20px;
+      }
+      .project_common{
+          height:40px; 
+          width:250px; 
+          background-color:#E6EEF9;
+          margin-top:5px; 
+          text-align: center;
+          line-height: 40px;
+      }
+      .project_common_label{
+          float: left;
+          font-size: 20px;
+          margin-left: 90px;
+      }
+      
+
+        .common_text{
+          font-size: 20px;
+          margin-right: 74px;
+          float: right;
+        }
+        
+        .leftcol{
+          display: none;
+          width: 300px;
+          height: 250px;
+          position:absolute;  
+          left: 51%;
+          top: 45%;   
+          margin-top:-320px; 
+          margin-left:-50%; 
+          /* background-color:red;      */
+      }
+      
+      
+      }
+         
+           @media screen and (min-width: 981px) and (max-width: 1920px) { /*  981<X<1920 電腦尺寸 */
+            .switchproject
+            {
+              position: absolute;
+              top: 2%;
+              left: 26%;
+            }
+           #bar2
+           {
+             display: none
+           }
+            .bluebar{
+              margin-top:10px; 
+              margin-left:339px; 
+            }
+  
+  
+             .title_text{
+              margin-top: 20px;
+              font-weight: bolder;
+              font-size: 20px;
+             }
+            
+         
+            .title{
+                 position: relative;
+                 left: 50%;
+                 top: 33%;  
+                 width: 250px;
+                 height: 80px;
+                 margin-left: -103px;
+                 margin-top: -25%;
+                 background: #8DB1E3;
+                 text-align: center;
+                 line-height: 40px;
+                 
+            }
+  
+            .settext{
+              font-size: 25px;
+              font-weight: bolder;
+              margin-left: 22px;
+              float: left;
+            }
+  
+            .common{
+                 position: relative;
+                 left: 50%;
+                 top: 25%;  
+                 width: 250px;
+                 height: 40px;
+                 margin-left: -103px;
+                 margin-bottom: 5px;
+                 background: #E6EDF7;
+                 text-align: center;
+                 line-height: 40px;
+                 
+            }
+            .top{
+              margin-top: 68px;
+              margin-bottom: -47px;
+              margin-left: 145px;
+            }
+            
+            #bot{
+              margin-top: 65px;
+              margin-left: 145px;
+            }
+  
+            .project{
+              position: relative;
+              left: 50%;
+              top: 22%;  
+              width: 259px;
+              height: 370px;
+              margin-left: -103px;
+              margin-bottom: 12px;
+              text-align: center;
+              overflow-y:scroll;
+              /* background-color: sandybrown; */
+            }
+            .project::-webkit-scrollbar {display:none}
+            .project_extend{
+              background-color: #8DB1E1; 
+              height: 40px; 
+              width: 250px;
+              text-align: center;
+              line-height: 40px;
+            }
+            .project_extend_label{
+              float: left; 
+              margin-left:20px; 
+              font-weight: bolder; 
+            }
+            .project_addicon{
+              float: left; 
+              margin-left:5px;
+            }
+            .project_checkbar{
+              float: left;
+              margin-left:18px;
+              margin-top: 13px;
+              transform: scale(2.7);
+          }
+          .only_checkbar{
+              width: 250px; 
+              height: 40px; 
+              /* background-color: #C6D8F0;  */
+              margin-top:5px;
+              text-align: center;
+              line-height: 40px;
+          }
+          .only_checkbar_label{
+              font-weight: bolder;
+              float: left; 
+              margin-left:20px;
+          }
+          .project_common{
+              height:40px; 
+              width:250px; 
+              background-color:#E6EEF9;
+              margin-top:5px; 
+              text-align: center;
+              line-height: 40px;
+          }
+          .project_common_label{
+              float: left;
+              font-size: 20px;
+              margin-left: 90px;
+          }
+          
+  
+            .common_text{
+              font-size: 20px;
+              margin-right: 74px;
+              float: right;
+            }
+            
+            .leftcol{
+              width: 300px;
+              height: 250px;
+              position:absolute;  
+              left: 52%;
+              top: 50%;   
+              margin-top:-281px; 
+              margin-left:-50%; 
+              /* background-color:red;      */
+          }
+          /* 新CSS*/
+          .right_project
+          {
+            width: 500px;
+            height: 500px;      
+            border: black solid 3px;
+            background-color: rgb(191, 191, 191);
+            border-radius:0 10px 10px 10px;
+            overflow: hidden;
+          }
+          .project_item
+          {
+           
+            width: 336px;
+            height: 50px;
+            border-bottom: black solid 3px;
+            
+            /* margin-top: 22px; */
+            float: left;
+            /* display:inline-block; */
+            overflow-y:hidden;
+            overflow-x:scroll; 
+            white-space:nowrap; 
+          }
+          .project_item::-webkit-scrollbar-track
+          {
+              border-radius: 12px;
+              background-color: #8DB1E3;
+          }
+      
+          .project_item::-webkit-scrollbar
+          {
+              width: 10px;
+              height: 10px;
+              background-color: #8DB1E3;
+          }
+      
+          .project_item::-webkit-scrollbar-thumb
+          {
+              border-radius: 12px;
+              background-color: #BFBFBF;
+          }
+         
+          /* .project_item::-webkit-scrollbar {display:none} */
+          .project_text
+          {
+            height: 33px;
+            width: 81px;
+            background: #EAEFF5;
+            border: #404343 solid 2.5px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-right: 4px;
+          }
+          .project_text_1
+          {
+            height: 33px;
+            width: 81px;
+            background: #EAEFF5;
+            border: #404343 solid 2.5px;
+            border-radius: 12px;
+            display: inline-block;
+            
+          }
+          .project_item_text
+          {
+         
+            display: inline-block;
+            white-space: nowrap;
+            
+          }
+          .project_item_itmes
+          {
+            width: 81px;
+            height: 100%;
+            display: inline-block;
+            text-align: center;
+          }
+          .project_id
+          {
+           
+            width: 80px;
+            height: 50px;
+            border-bottom: black solid 3px;
+           
+            margin-top: 22px;
+            float: left;
+          }
+          .project_edit
+          {
+            width: 78px;
+            height: 50px;
+            border-bottom: black solid 3px;
+           
+            /* margin-top: 22px; */
+            float: left;
+          }
+          .project_title
+          {
+            background-color: #8DB1E3 ;
+            width: 100%;
+            height: 96px;
+          }
+          .project_content
+          {
+            background-color:white;
+            width: 100%;
+            height: 330px;
+          }
+          .project_id_cont
+          {
+            border-right: black solid 3px;
+            width: 80px;
+            height: 100%;
+            border-bottom: black solid 3px;
+            float: left;
+            overflow: scroll
+           
+          }
+          .project_id_cont::-webkit-scrollbar {display:none}
+          .project_item_cont
+          {
+            
+            width: 336px;
+            height: 100%;
+            border-bottom: black solid 3px;
+            float: left;
+            overflow-x: scroll
+          }
+          .project_item_cont::-webkit-scrollbar {display:none}
+          .project_edit_cont
+          {
+            
+            width: 78px;
+            height: 100%;
+            border-bottom: black solid 3px;
+            float: left;
+            overflow-y: scroll;
+          }
+          .project_edit_cont::-webkit-scrollbar-track
+          {
+              border-radius: 12px;
+              background-color: #F5F5F5;
+          }
+      
+          .project_edit_cont::-webkit-scrollbar
+          {
+              width: 10px;
+              background-color: #F5F5F5;
+          }
+      
+          .project_edit_cont::-webkit-scrollbar-thumb
+          {
+              border-radius: 12px;
+              background-color: #BFBFBF;
+          }
+          .create_item
+          {
+            height: 100%;
+            width:336px;
+            /* float: left; */
+            display: inline-block;
+            white-space:nowrap; 
+            overflow-x: scroll;
+            overflow-y: hidden;
+            margin-top: 9px;
+          }
+          .create_item::-webkit-scrollbar {display:none}
+          .edit_img
+          {
+            margin-left: 1px;
+            margin-top: 1px;
+          }
+          /* 結束*/
+          .btn_finsh{
+          font-size: 20px;
+          color:white; 
+          background:#0071C1;
+          font-weight: bolder;
+          border-radius:5px;
+          width:200px;
+          margin-left: 40px;
+         }
+  
+          }
+  
+         .box1{ 
+          width: 100%;
+          height: 100%;
+          background-color: #ffffff ;     
+          position:absolute;  
+         }
+         .tabsFA {
+        
+          margin-left: -6.75px !important;
+          margin-bottom: -4px;
+         }
+  
+         #projectVA{
+          display:block; 
+         }
+         #SCARA{
+          display:none; 
+         }
+         #SCARA3{
+          display:none; 
+         }
+         #SCARA5{
+          display:none; 
+         }

@@ -1,0 +1,433 @@
+@media screen and (min-width: 1024px) and (max-width: 1920px)  /*  981<X<1920 電腦尺寸 */ 
+  { 
+    .v-window__container
+    {
+      height:580px !important;
+    }
+    .det_tile
+  {
+    font-size: 24px;
+    color: white;
+  }
+  
+    .hamburger_det
+  {
+    display: none;
+    border-right: 1.7px solid black !important;
+    width: 20%;
+    border-bottom: 1.7px solid black !important;
+    border-left: 1.7px solid black !important;
+  
+    position: absolute;
+    margin-top: 0px;
+    z-index: 2;
+  }
+  .setting_det
+  {
+    display: none;
+    border-right: 1.7px solid black !important;
+    width: 20%;
+    border-bottom: 1.7px solid black !important;
+    border-left: 1.7px solid black !important;
+
+    position: absolute;
+    right: 0px;
+    margin-top: 0px;
+    z-index: 2;
+  }
+    .robot
+    {
+      width: 46%;
+      height: 70%;
+      position: absolute;
+      left: 6%;
+      z-index: -1;
+      background-color: white;
+    }
+    .b1
+    {
+     width: 100%;
+     height: 100%;
+    }
+    .b3
+    {
+      border: 1.7px solid black !important;
+      background-color:#91B0DE;
+      position: absolute;
+      bottom: 0.2%;
+      width: 100%;
+      height: 60px;
+    }
+    .b2
+    {
+       border: 1.7px solid black !important;
+       position: absolute;
+       bottom: 19%;
+    }
+    .b4
+    {
+      border: 1.7px solid black !important;
+      background-color:#91B0DE;
+      width: 100%;
+      height: 40px;
+    }
+    .reorder
+    {
+      border-right: 1.7px solid black !important;
+      height: 100%;
+      width: 6%;
+      float: left;
+      width:4%;
+      padding-left: 0.3%;
+    }
+    .space
+    {
+      border-right: 1.7px solid black !important;
+      height: 100%;
+
+      float: left;
+      width:4%;
+    }
+    .Disconnect
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+     
+      padding-left: 1%;
+      width: 16%;
+    }
+    .OFF
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+     
+      padding-left: 1%;
+      width:9%;
+    }
+    .Pause
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+      
+      padding-left: 1%;
+      width:11%;
+    }
+    .Auto{
+      width:10%;
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+      padding-right: 1%;
+      padding-left: 1%
+    }
+    .trans
+    {
+      width:15%;
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+     
+      padding-left: 1%
+    }
+    .speed
+    {
+      width: 23%;
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+      padding-left: 1%;
+      padding-top: 2px;
+    }
+    .slide
+    {
+      float: right; 
+      width: 50%;
+    }
+    .person
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+
+      padding-left: 0.5%;
+      width:4%;
+    }
+    .setting
+    {
+      width: 4%;
+      height: 100%;
+      float: left;
+      
+      padding-left: 0.5%
+    }
+    .b7
+    {
+      font-size: 19px;
+      color:white;
+      /* font-weight:bold; */
+      letter-spacing:0.7px;
+      
+      float: left;
+      margin-top: 3px;
+    }
+    .b7_1
+    {
+      font-size: 20px;
+      color:white;
+      /* font-weight:bold; */
+      letter-spacing:0.7px;
+      float: left;
+      margin-top: 3px;
+      
+    }
+    .b8
+    {
+      width: 5%;
+      height: 100%;
+      float: left;
+      text-align: center;
+      
+    }
+    .b8_1
+    {
+      margin-top: 10%
+    }
+    .b8_2
+    {
+      width: 5%;
+      height: 100%;
+      float: left;
+      text-align: center;
+      margin-right: 2%;
+      margin-top: 0.5%
+    }
+    .carousel
+    {
+      height: 580px !important;
+    }
+    .robot_1
+    {
+      margin-top: 22%;
+      margin-left: 23%;
+    }
+  }
+  @media screen and (min-width: 600px) and (max-width: 1023px)  /*  600<X<1024平板尺寸 */ 
+  {
+    .v-window__container
+    {
+      height:800px !important;
+    } 
+    .v-image
+    {
+      height: 800px  !important;
+    }
+    .b1
+    {
+     width: 100%;
+     height: 100%;
+    }
+    .b3
+    {
+      border: 1.7px solid black !important;
+      background-color:#91B0DE;
+      position: absolute;
+      bottom: 0.2%;
+      width: 100%;
+      height: 6%;
+    }
+    .b2
+    {
+       border: 1.7px solid black !important;
+       position: absolute;
+       bottom: 19%;
+    }
+    .b4
+    {
+      border: 1.7px solid black !important;
+      background-color:#91B0DE;
+      width: 100%;
+      height: 40px;
+    }
+    .reorder
+    {
+      border-right: 1.7px solid black !important;
+      height: 100%;
+      width: 6%;
+      float: left;
+      width:6%;
+      padding-left: 0.6%;
+    }
+    .space
+    {
+      border-right: 1.7px solid black !important;
+      height: 100%;
+      width: 4%;
+      float: left;
+    }
+    .Disconnect
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      padding-left: 1%;
+      float: left;
+      width: 6%;
+    }
+    .OFF
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+      width:6%;
+      padding-left: 1%;
+    }
+    .Pause
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+      width:6%;
+      padding-left: 0.6%;
+    }
+    .Auto{
+      width:11%;
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+      padding-left: 1%;
+    }
+    .trans
+    {
+      width:19%;
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+    
+      padding-left: 1%;
+    }
+    .speed
+    {
+      width: 30%;
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left;
+      padding-left: 1%;
+      padding-top: 0.8%;
+    }
+    .slide
+    {
+      float: right; 
+      width: 50%;
+      padding-left: 1%;
+    }
+    .person
+    {
+      height: 100%;
+      border-right: 1.7px solid black !important;
+      float: left; 
+      width:6%;
+      padding-left: 0.6%;
+    }
+    .setting
+    {
+      width: 5%;
+      height: 100%;
+      float: left;
+      padding-left: 0.8%
+    }
+    .b7
+    {
+      font-size: 17px;
+      color:white;
+      float: left;
+      letter-spacing:0.7px;
+      
+      margin-top: 4px;
+    }
+    .b7_1
+    {
+      font-size: 16px;
+      color:white;
+      font-weight:bold;
+      display: none;
+      margin-top: 3px;
+      
+    }
+    .b8
+    {
+      width: 5%;
+      height: 100%;
+      float: left;
+      text-align: center;
+      margin-right: 2%
+      
+    }
+    .b8_1
+    {
+      margin-top: 15%
+    }
+    .b8_2
+    {
+      width: 5%;
+      height: 100%;
+      float: left;
+      text-align: center;
+      margin-right: 2%;
+      margin-top: 0.7%
+    }
+    .carousel
+    {
+      height: 800px !important;
+    }
+    .robot
+    {
+      width: 1%;
+      height: 13%;
+      position: absolute;
+      left: 10%;
+      z-index: 1;
+      top: 33%;
+      background-color: white;
+    }
+    .robot_1
+    {
+      margin-top: 66%;
+      margin-left: 9%;
+    }
+    .hamburger_det
+    {
+      display: none;
+      border-right: 1.7px solid black !important;
+      width: 25%;
+      border-bottom: 1.7px solid black !important;
+      border-left: 1.7px solid black !important;
+    
+      position: absolute;
+      margin-top: 0px;
+      z-index: 2;
+      
+    }
+    .setting_det
+  {
+    display: none;
+    border-right: 1.7px solid black !important;
+    width: 25%;
+    border-bottom: 1.7px solid black !important;
+    border-left: 1.7px solid black !important;
+
+    position: absolute;
+    right: 0px;
+    margin-top: 0px;
+    z-index: 2;
+  }
+  .det_tile
+  {
+    font-size: 24px;
+  
+    color: white;
+
+}
+  }
+  

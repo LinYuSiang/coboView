@@ -1,0 +1,695 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+<head>
+<link href="./../css/vuetify.css" rel="stylesheet">
+<link href="./../css/page/menuTab.css" rel="stylesheet">
+<link href="./../css/MaterialIcons.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>分頁設計(3)-完整功能</title>
+
+
+</head>
+<body >
+<div id="app">
+	
+	<div id="tabsF">
+		<ul>
+			<li><a href="javascript://" @click="loadTab(this,1);"><span class="toptag" id="L1">Current State</span></a></li>
+			<li><a href="javascript://" @click="loadTab(this,2);"><span class="toptag" id="L2">Tool Frame</span></a></li>
+			<li><a href="javascript://" @click="loadTab(this,3);"><span class="toptag" id="L3">User Frame</span></a></li>
+			<li><a href="javascript://" @click="loadTab(this,4);"><span class="toptag" id="L4">Workspace</span></a></li>
+		</ul>
+	</div>
+
+	<div id="tabsC">
+		<div id="S1" style="display:inline;">
+				<div style="margin-top: 20px; margin-left: 20px;">
+					<label  class="item_label">Tool Frame ID :</label>
+					<input id="cutoolid" v-model="toolid" style="margin-left: 6px;" class="item_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" >
+				</div>
+				<div style="margin-top: 20px; margin-left: 20px;">
+					<label  class="item_label">User Frame ID :</label>
+					<input id="cuuserid" v-model="userid" class="item_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" >
+				</div>
+				<div style="margin-top: 20px; margin-left: 20px;">
+					<label  class="item_label">Workspace :</label>
+
+					<table class="item_table">
+							<tr>
+								<th style="border-right: 1px solid black;border-bottom: 1px solid black;"
+								 class="table_title"></th>
+								<th style="border-right: 1px solid black;border-bottom: 1px solid black;"
+								class="table_title">Type</th>
+								<th style="border-bottom: 1px solid black;" class="table_title">Area</th>
+								
+
+							</tr>
+				
+							<tr  v-for ='(list,index) in lists'   v-bind:key='index'>
+				
+								<td class="table_id">{{list.id}}</td>
+								<td class="table_type" :id="Cutype+(index+1)">{{list.type}}</td>
+								<td class="table_area" :id="Cuarea+(index+1)">{{list.area}}</td>
+								<button id="toolsetcal" @click="setting" class="item_btn" style="margin-left: 10px;">Set</button>
+							</tr>
+							
+				
+						</table>
+
+					</div>
+				</div>   
+		</div>
+		<div id="S2" style="display:none;">
+			<div style="margin-top: -430px; margin-left: 25px;">
+				<label  class="item_label">ID :</label>
+				<select  id="tool_select" >
+					<option >1</option>
+					<option >2</option>
+					<option >3</option>
+					<option >4</option>
+					<option >5</option>
+					<option >6</option>
+					<option >7</option>
+					<option >8</option>
+					<option >9</option>
+				</select>
+				
+			</div>
+			<table style="margin-top: 5px; margin-left: 25px;">
+				<tr>
+					<th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;"
+						class="table_title">Width(mm)</th>
+					<th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;"
+					class="table_title">Height(mm) </th>
+					<th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">Angle(deg.)</th>
+
+				</tr>
+				<tr>
+					<th>
+						<input id="toolwidth" v-model="widthmm" style="width: 96px;" class="tool_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number" >
+					</th>
+					<th>
+						<input id="toolheight" v-model="heightmm" style="width: 99px;" class="tool_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number" >
+					</th>
+					<th>
+						<input id="toolangle" v-model="angle" style="width: 98px;" class="tool_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number" >
+					</th>
+
+				</tr>
+				<tr>
+					<th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;"
+						class="table_title">Roll(RX)</th>
+					<th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;"
+					class="table_title">Pitch(RY) </th>
+					<th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">Yaw(RZ)</th>
+
+				</tr>
+				<tr>
+					<th>
+						<input id="toolroll" v-model="roll" style="width: 96px;" class="tool_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number" >
+					</th>
+					<th>
+						<input id="toolpitch" v-model="pitch" style="width: 99px;" class="tool_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number" >
+					</th>
+					<th>
+						<input id="toolyaw" v-model="yaw" style="width: 98px;" class="tool_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number" >
+					</th>
+
+				</tr>
+
+			</table>
+			<button id="toolget" @click="getnumber" class="item_btn" style="margin-left: 220px;margin-top: 5px;">Get</button>
+			<button id="toolset" @click="setnumber" class="item_btn" style="margin-left: 10px;">Set</button>
+			<br>
+			<label  class="item_label" style="margin-left: 20px;">Tool Calculation</label>
+			<br>
+			<div class="tool_scroll">
+			
+				<table style="margin-top: 5px; margin-left: 25px; border:solid 1px black;">
+
+					<tr >
+						<th style=" background-color:#D5DFEB ;"
+						class="table_title">Index</th>
+						<th style=" background-color:#D5DFEB ;"
+						class="table_title">X</th>
+						<th style=" background-color:#D5DFEB ;"
+						class="table_title">Y</th>
+						<th style=" background-color:#D5DFEB ;"
+						class="table_title">Z </th>
+						<th style=" background-color:#D5DFEB ;"
+						class="table_title">Error</th>
+						<th style=" background-color:#D5DFEB ;"
+						class="table_title">Select</th>
+					</tr>
+					<tr  v-for ='(item,index) in calculation'   v-bind:key='index'>
+				
+						<td style=" background-color:white ;"
+						class="table_title">{{item.id}}</td>
+						<th style=" background-color:white ;"
+						class="table_title">
+						<input v-model="item.X" :id="X+(index+1)" class="tool_calculation_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" >
+						
+						</th>
+						<th style=" background-color:white ;"
+						class="table_title">
+						<input v-model="item.Y" :id="Y+(index+1)" class="tool_calculation_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" >
+
+						</th>
+						<th style=" background-color:white ;"
+						class="table_title">
+						<input v-model="item.Z" :id="Z+(index+1)" class="tool_calculation_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" >
+
+						</th>
+						<th style=" background-color:white ;"
+						class="table_title">
+						<input v-model="item.Error" :id="Error+(index+1)" class="tool_calculation_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" >
+
+						</th>					
+						<th style=" background-color:white ;"
+						class="table_title"><input :id="Select+(index+1)" v-model="item.Select"  style="transform: scale(1.8);" class="project_checkbar"  type="checkbox" ></th>
+					</tr>
+				
+				</table>
+			</div>
+			<button id="toolteach" @click="getteach" class="item_btn" style="margin-left: 190px; margin-top: 15px; width: 60px; background-color: #C4D6A0;">Teach</button>
+			<button id="toolgetcal" @click="getcal" class="item_btn" style="margin-left: 10px;  width: 60px;">Calcu</button>
+			<button id="toolsetcal" @click="setcal" class="item_btn" style="margin-left: 10px;">Set</button>
+			<button id="toolsetcal" @click="setting" class="item_btn" style="margin-left: 10px;">Set</button>
+		</div>
+		<div id="S3" style="display:none;">
+				<div style="margin-top: -430px; margin-left: 25px;">
+					<label  class="item_label">ID :</label>
+					<select  id="user_select_id"  >
+						<option >1</option>
+						<option >2</option>
+						<option >3</option>
+						<option >4</option>
+						<option >5</option>
+						<option >6</option>
+						<option >7</option>
+						<option >8</option>
+						<option >9</option>
+					</select>
+					<br>
+					<div style="margin-top: 20px;">
+						<label  class="item_label" >Type :</label>
+						<select id="user_select_orth" class="user_select_type"   >
+							<option>Orthogonal</option>
+							<option>Non Orthogonal</option>
+						</select>
+						<select id="user_select_incl" class="user_select_type"   style="width:110px;" >
+							<option >NonInclined</option>
+							<option >Inclined</option>
+						</select>
+						<table style="margin-top: 30px; margin-left: 25px; border:solid 1px black; width: 300px;">
+								<tr >
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;"></th>
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;">X</th>
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;">Y</th>
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;">Z</th>
+									
+								</tr>
+								<tr >
+									<th style=" background-color:white ;">Origin</th>
+									
+									<th style=" background-color:white ;">
+										<input id="OriginX"  class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="OriginY" class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="OriginZ"  class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+								</tr>
+								<tr >
+									<th style=" background-color:white ;">+Xaxis</th>
+									
+									<th style=" background-color:white ;">
+										<input id="axisX"  class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="axisY" class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text"  value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="axisZ"  class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+								</tr>
+								<tr >
+									<th style=" background-color:white ;">XY</th>
+									
+									<th style=" background-color:white ;">
+										<input id="XYX"  class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="XYY" class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="XYZ"  class="user_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+								</tr>
+									
+						</table>
+					</div>
+					<button id="user_teach" onclick="user_write()" class="user_btn" style="margin-left: 70px; margin-top: 20px; background-color:#C4D6A0 ;border:1.5px solid #7f7f7f ;">Teach</button>
+					<button id="user_get" onclick="user_getnumber()" class="user_btn" style="margin-left: 10px;">Get</button>
+					<button id="user_set" onclick="user_setnumber()" class="user_btn" style="margin-left: 10px;">Set</button>
+					<button id="user_clear" onclick="user_clearnumber()" class="user_btn" style="margin-left: 10px;">Clear</button>
+					<button id="toolsetcal" @click="setting" class="item_btn" style="margin-left: 10px;">Set</button>
+					<!-- <button  @click="getcalx" class="item_btn" style="margin-left: 10px;">Set</button> -->
+				</div>
+				
+		</div>
+		<div id="S4" style="display:none;">
+				<div style="margin-top: -430px; margin-left: 25px;">
+					<label  class="item_label">ID :</label>
+					<select id="work_select_id">
+						<option >1</option>
+						<option >2</option>
+						<option >3</option>
+						<option >4</option>
+						<option >5</option>
+						<option >6</option>
+						<option >7</option>
+						<option >8</option>
+						<option >9</option>
+					</select>
+					<br>
+					<div style="margin-top: 20px;">
+						<label  class="item_label" >Type :</label>
+						<select id="work_select_shape" class="user_select_type" style="width:100px"  >
+							<option>Rectangle</option>
+							<option>Cylinder</option>
+						</select>
+						<select id="work_select_area" class="user_select_type"   style="width:150px;" >
+							<option >Restricted Area</option>
+							<option >Working Area</option>
+						</select>
+						<table style="margin-top: 30px;  border:solid 1px black; width: 350px;">
+								<tr >
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;"></th>
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;">X</th>
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;">Y</th>
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;">Z</th>
+									<th style=" background-color:#D5DFEB ;"
+									class="table_title" style="width: 80px;">Tool ID</th>
+									
+								</tr>
+								<tr >
+									<th style=" background-color:white ;">PO</th>
+									
+									<th style=" background-color:white ;">
+										<input id="POX"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="POY" class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="POZ"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+									<th style=" background-color:white ;">
+										<input id="POtool"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0 >
+									</th>
+
+								</tr>
+								<tr >
+									<th style=" background-color:white ;">PX</th>
+									
+									<th style=" background-color:white ;">
+										<input id="PXX"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="PXY" class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text"  value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="PXZ"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+									<th style=" background-color:white ;">
+										<input id="PXtool"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0 >
+									</th>
+
+								</tr>
+								<tr >
+									<th style=" background-color:white ;">PY</th>
+									
+									<th style=" background-color:white ;">
+										<input id="PYX"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="PYY" class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="PYZ"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000 >
+									</th>
+
+									<th style=" background-color:white ;">
+										<input id="PYtool"  class="workspace_input"  oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0 >
+									</th>
+
+								</tr>
+									
+						</table>
+					</div>
+					<button  onclick="work_write()" class="user_btn" style="margin-left: 144px; margin-top: 20px; background-color:#C4D6A0 ;border:1.5px solid #7f7f7f ;">Teach</button>
+					<button  onclick="work_getnumber()" class="user_btn" style="margin-left: 10px;">Get</button>
+					<button  onclick="work_setnumber()" class="user_btn" style="margin-left: 10px;">Set</button>
+					<button id="toolsetcal" @click="setting" class="item_btn" style="margin-left: 10px;">Set</button>
+				</div>		
+		</div>
+	</div>
+
+		
+<script src="./../js/vue.js"></script>
+<script src="./../js/vuetify.js"></script>
+<script>
+	function getcalx() {
+		console.log('asd');
+		
+	}
+	function user_write() {
+		console.log('user 點位寫入表格中');
+		
+	}
+	function user_getnumber() {
+		parseInt(document.getElementById("user_select_id").value,10); //user下拉ID
+		document.getElementById("user_select_orth").value;//user下拉左邊type
+		document.getElementById("user_select_incl").value;//user下拉右邊type
+		parseFloat(document.getElementById("OriginX").value);//user設定Origin的輸入
+		parseFloat(document.getElementById("OriginY").value);
+		parseFloat(document.getElementById("OriginZ").value);
+		parseFloat(document.getElementById("axisX").value);//user設定axis的輸入
+		parseFloat(document.getElementById("axisY").value);
+		parseFloat(document.getElementById("axisZ").value);
+		parseFloat(document.getElementById("XYX").value);//user設定XY的輸入
+		parseFloat(document.getElementById("XYY").value);
+		parseFloat(document.getElementById("XYZ").value);
+		console.log('XY: ',parseFloat(document.getElementById("XYX").value),parseFloat(document.getElementById("XYX").value)
+		,parseFloat(document.getElementById("XYZ").value));
+		console.log(parseInt(document.getElementById("user_select_id").value,10),
+		document.getElementById("user_select_orth").value,document.getElementById("user_select_incl").value);
+		
+		
+	}
+	function user_setnumber() {
+		console.log('user 設定數值');
+		
+	}
+	function user_clearnumber() {
+		console.log('user 清除設定');
+		document.getElementById("OriginX").value = 0.000;
+		document.getElementById("OriginY").value = 0.000;
+		document.getElementById("OriginZ").value = 0.000;
+		document.getElementById("axisX").value = 0.000;
+		document.getElementById("axisY").value = 0.000;
+		document.getElementById("axisZ").value = 0.000;
+		document.getElementById("XYX").value = 0.000;
+		document.getElementById("XYY").value = 0.000;
+		document.getElementById("XYZ").value = 0.000;
+	}
+	function work_write() {
+		console.log('work 點位寫入表格中');
+		
+	}
+	function work_getnumber() {
+
+		parseInt(document.getElementById("work_select_id").value,10) ; //user下拉ID
+		document.getElementById("work_select_shape").value;//user下拉左邊type
+		document.getElementById("work_select_area").value;//user下拉右邊type
+		parseFloat(document.getElementById("POX").value);//字串轉成數字 work設定PO的輸入
+		parseFloat(document.getElementById("POY").value);
+		parseFloat(document.getElementById("POZ").value);
+		parseFloat(document.getElementById("POtool").value);
+		parseFloat(document.getElementById("PXX").value);//work設定PX的輸入
+		parseFloat(document.getElementById("PXY").value);
+		parseFloat(document.getElementById("PXZ").value);
+		parseFloat(document.getElementById("PXtool").value);
+		parseFloat(document.getElementById("PYX").value);//work設定PY的輸入
+		parseFloat(document.getElementById("PYY").value);
+		parseFloat(document.getElementById("PYZ").value);
+		parseFloat(document.getElementById("PYtool").value);
+		console.log('PO: ',parseFloat(document.getElementById("POX").value),parseFloat(document.getElementById("POY").value)
+		,parseFloat(document.getElementById("POZ").value),parseFloat(document.getElementById("POtool").value));
+		
+		console.log(parseInt(document.getElementById("work_select_id").value,10),
+		document.getElementById("work_select_shape").value,document.getElementById("work_select_area").value);
+		
+		
+	}
+	function work_setnumber() {
+		console.log('work 設定數值');
+		
+	}
+
+	new Vue({
+		el: '#app',
+		vuetify: new Vuetify(),
+		data: () => ({
+			toolid:1,
+			userid:1,
+			widthmm:0,
+			heightmm:0,
+			angle:0,
+			roll:0,
+			pitch:0,
+			yaw:0,
+			Cutype:'Cutype',
+			Cuarea:'Cuarea',
+			X:'X',//給ID用
+			Y:'Y',
+			Z:'Z',
+			Error:'Error',
+			Select:'Select',
+			lists:
+			[
+				{
+					id:1,
+					type:'Rectangle',
+					area:'Restricted Area',
+				
+				},
+				{
+					id:2,
+					type:'Rectangle',
+					area:'Working Area',
+				},
+				{
+					id:3,
+					type:'',
+					area:'',
+				},
+				{
+					id:5,
+					type:'',
+					area:'',
+				},
+				{
+					id:6,
+					type:'',
+					area:'',
+				},
+				{
+					id:7,
+					type:'',
+					area:'',
+				},
+				{
+					id:8,
+					type:'',
+					area:'',
+				},
+				{
+					id:9,
+					type:'',
+					area:'',
+				},
+			],
+			calculation:[
+				{
+					id:1,
+					X:'1.00',
+					Y:'1.000',
+					Z:'1.000',
+					Error:'1.000',
+					Select:true,
+				},
+				{
+					id:2,
+					X:'2.000',
+					Y:'2.000',
+					Z:'2.000',
+					Error:'2.000',
+					Select:true,
+				},
+				{
+					id:3,
+					X:'3.000',
+					Y:'3.000',
+					Z:'3.000',
+					Error:'3.000',
+					Select:true,
+				},
+				{
+					id:4,
+					X:'0.000',
+					Y:'0.000',
+					Z:'0.000',
+					Error:'0.000',
+					Select:false,
+				},
+				{
+					id:5,
+					X:'5.000',
+					Y:'5.000',
+					Z:'5.000',
+					Error:'5.000',
+					Select:false,
+				},
+				{
+					id:6,
+					X:'6.000',
+					Y:'6.000',
+					Z:'6.000',
+					Error:'6.000',
+					Select:false,
+				},
+				{
+					id:7,
+					X:'7.000',
+					Y:'7.000',
+					Z:'7.000',
+					Error:'7.000',
+					Select:false,
+				},
+				{
+					id:8,
+					X:'0.000',
+					Y:'0.000',
+					Z:'0.000',
+					Error:'0.000',
+					Select:false,
+				},
+				{
+					id:9,
+					X:'0.000',
+					Y:'0.000',
+					Z:'0.000',
+					Error:'0.000',
+					Select:false,
+				},
+			]
+		
+		}),
+		mounted () { //等於js onload
+			document.getElementById("L1").style.backgroundColor  = "#C6D8F0";
+			window.onresize = () => { //尺寸變動時
+
+					return (() => {
+						console.log('resize');
+						
+					})()
+			}     
+	
+		},
+
+		methods: {
+			setting : function()
+			{
+				console.log(123);
+				
+			},
+			
+			loadTab:function(obj,n){
+				var layer,bgcolor;
+				layer = "S"+n;
+				bgcolor = "L"+n; 		
+				//將 Tab 標籤樣式設成 Blur 型態
+				var tabsF=document.getElementById('tabsF').getElementsByTagName('li');//拿到底下的li
+				for (var i=0;i<tabsF.length;i++){
+					if (document.getElementById("L"+(i+1)).id == bgcolor) {
+						document.getElementById(bgcolor).style.backgroundColor  = "#C6D8F0"; 
+						document.getElementById(layer).style.display='block'; //出現按到的
+					}
+					else
+					{
+
+					// tabsF[i].setAttribute('id',null);//每個ID變為空值
+					// tabsF[i].setAttribute('id','Link'+(i+1) );//更改每個的切換的ID值
+					document.getElementById("S"+(i+1)).style.display='none';
+					document.getElementById("L"+(i+1)).style.backgroundColor  = "#D8D8D8"; 
+					}
+				}
+			
+				//變更分頁標題樣式
+				// obj.parentNode.setAttribute('id','current');
+				
+			},
+			getnumber:function(){
+				parseInt(document.getElementById("tool_select").value,10);
+				this.widthmm = parseInt(this.widthmm,10); //要轉成數字再存進去
+				this.heightmm = parseInt(this.heightmm,10);
+				this.angle = parseInt(this.angle,10);
+				this.roll = parseInt(this.roll,10);
+				this.pitch = parseInt(this.pitch,10);
+				this.yaw = parseInt(this.yaw,10);
+				console.log('讀回設定數值',parseInt(document.getElementById("tool_select").value,10),this.widthmm,this.heightmm,this.angle,this.roll,this.pitch,this.yaw);
+
+			},
+			setnumber:function(){
+				console.log('設定數值sadas');
+				
+			},
+			getteach:function(){
+				
+				this.calculation.map(function(item,index){
+					if( item.Select == true){
+						item.X = parseFloat(item.X); //把字串重新轉成福點數再存入
+						item.Y = parseFloat(item.Y);
+						item.Z = parseFloat(item.Z);
+						item.Error = parseFloat(item.Error); 
+						console.log('有打勾的話才顯示資料: ',item.X,item.Y,item.Z,item.Error);
+					}
+				})
+				
+			},
+			getcal:function(){
+				console.log('進行校正演算');
+				
+			},
+			setcal:function(){
+				console.log('設定至控制器');
+				
+			},
+
+
+			
+		}
+	})	
+	
+</script>
+</body>
+</html>

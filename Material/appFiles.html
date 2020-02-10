@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/files/files.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <div id="app">
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+
+
+
+
+            <div class="imgicon" id="imgicontorl">
+
+                <div class="download" @click="downloadproject" width="50"><img src="./../img/addporject_e.png" width="60">
+                </div>
+                <div class="loading"  @click="loadingproject" width="50"><img src="./../img/deleteProject_e.png" width="55">
+                </div>
+            </div>
+
+            <div class="rightcol" id="rightcotrol">
+
+                <div class="title" style="margin-left:-125px;">
+                    <img style="float:left;" src="./../img/robotPic_e.png" height="80" width="70">
+                    <div class="title_text">
+                        <label class="settext">{{ $t('message.Robot') }}</label><br>
+                        <label class="settext">(192.168.1.2)</label>
+                    </div>
+                </div>
+                <div class="common">
+                    <div class="title_text">
+                        <label class="common_text">-Global Point</label>
+
+                    </div>
+                </div>
+                <div class="rightcol_top" width="50" @click="right_top"><img src="./../img/top.png" width="50"></div>
+                <div class="rightcol_bot" width="50" @click="right_bot"><img src="./../img/bot.png" width="50"></div>
+
+                <div class="right_project" @click="switched">
+
+                    <img id="right_va" @click="right_extend" class="project_addicon" width="35" height="35"
+                        src="./../img/collapse_e.png" />
+
+                    <label class="project_extend_label">{{ $t('message.VA') }}</label>
+
+                </div>
+
+                <div id="allproject" class="right_allproject">
+
+                    <div style="margin-top: 10px;" v-bind:key='index' v-for="(one, index) in showinput">
+                        <div class="only_checkbar" @click="checkindex(index)">
+                            <label class="only_checkbar_label">
+                                {{one.content}}</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                        <div class="project_common" v-for="(two, twoindex) in one.label_text" v-bind:key='twoindex'
+                            @click="seccheckindex(index,twoindex)">
+                            <label class="project_common_label">- {{two.content}} </label>
+                        </div>
+                    </div>
+                    <!-- <div class="only_checkbar" :style="[pr[1] ? bgblue : bgwhite]" >
+                            <input id="pr1"  class="project_checkbar" style="margin-left:58px;" type="checkbox" v-model="pr[1]">
+                            <label class="only_checkbar_label" >002:Project1</label> 
+        
+                        </div>
+                        <div class="only_checkbar" :style="[pr[2] ? bgblue : bgwhite]" >
+                            <input id="pr2" class="project_checkbar" style="margin-left:58px; " type="checkbox" v-model="pr[2]">
+                            <label class="only_checkbar_label" >003:Project3</label> 
+            
+                        </div>
+                        <div class="only_checkbar" :style="[pr[3] ? bgblue : bgwhite]" >
+                            <input id="pr3" class="project_checkbar" style="margin-left:58px;" type="checkbox" v-model="pr[3]" >
+                            <label class="only_checkbar_label" >004:Project4</label> 
+            
+                        </div>
+                        <div class="only_checkbar" :style="[pr[4] ? bgblue : bgwhite]" >
+                            <input id="pr4" class="project_checkbar" style="margin-left:58px;" type="checkbox" v-model="pr[4]">
+                            <label class="only_checkbar_label" >005:Project5</label> 
+            
+                        </div>
+                        <div class="only_checkbar" :style="[pr[5] ? bgblue : bgwhite]" >
+                            <input id="pr5" class="project_checkbar" style="margin-left:58px;" type="checkbox" v-model="pr[5]">
+                            <label class="only_checkbar_label" >006:Project6</label> 
+            
+                        </div>
+                        <div class="only_checkbar" :style="[pr[6] ? bgblue : bgwhite]" >
+                            <input id="pr6" class="project_checkbar" style="margin-left:58px;" type="checkbox" v-model="pr[6]" >
+                            <label class="only_checkbar_label" >007:Project7</label> 
+            
+                        </div> -->
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+        <v-dialog persistent v-model="dialog" width="500" style="font-family: Roboto,sans-serif">
+            <v-card style=" padding-top: 15px;height: 300px;">
+                <div class="div_label_title" style="width: 450px;">
+                    <label class="label_title">PC Project</label>
+                </div>
+                <div class="label_content">
+                    {{createText}}
+                </div>
+                <div>
+                    <input type="text" class="label_input" v-model="labelinput">
+                </div>
+                <div style="float: left">
+                    <button style="margin-left:320px;" class="btn_finsh" @click="created" id="otherok">OK</button>
+                </div>
+                <div style="float: left">
+                    <button class="btn_finsh1" @click="dialog = false" id="otherok">cancel</button>
+                </div>
+            </v-card>
+        </v-dialog>
+        <v-dialog persistent v-model="dialog2" width="500" style="font-family: Roboto,sans-serif">
+            <v-card style=" padding-top: 15px;height: 300px;">
+                <div class="div_label_title" style="width: 450px;">
+                    <label class="label_title">PC Project</label>
+                </div>
+                <div class="label_content">
+                    Delete
+                </div>
+
+                <div style="float: left">
+                    <button style="margin-left:320px;" class="btn_finsh" @click="deleted" id="otherok">OK</button>
+                </div>
+                <div style="float: left">
+                    <button class="btn_finsh1" @click="dialog2 = false" id="otherok">cancel</button>
+                </div>
+            </v-card>
+        </v-dialog>
+
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+    <script>
+
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+        let vue = new Vue({
+            el: '#app',
+            i18n,
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: "",
+                value: 0,
+                switchs: 1,
+                labelinput: "",
+                createText: "",
+                newProject: " New Project Name",
+                newcontent: "New Project content",
+                seclabelnumber: "",
+                showinput: [
+                    // {
+                    //     id: 0,
+                    //     content: 'textproject',
+                    //     label_text: [
+
+                    //     ]
+                    // },
+                ],
+                labelnumber: null,
+                allprojcetcheck: false,
+                dialog: false, //打開文字跟%數
+                dialog2: false,
+                storearrytext: [], //存文字陣列
+                leftva: false,
+                vapr: [false, false], // va project
+                SCARAch: false,
+                smallSCch: false, //小的
+                SCARAch3: false,
+                smallSCch3: false, //小的
+                SCARAch5: false,
+                smallSCch5: false, //小的
+                pr: [false, false, false, false, false, false, false], //7小
+                // data: ['001:Project1', '002:Project2', '003:Project3', '004:Project4', '005:Project5',
+                //     '006:Project6', '007:Project7'
+                // ],
+                data: [],
+                bgwhite: {
+                    backgroundColor: 'white',
+                },
+                bgblue: {
+                    backgroundColor: '#C6D8F0',
+                }
+
+            }),
+            beforeDestroy() { //生命週期 實體銷毀之前
+                clearInterval(this.interval)
+            },
+            mounted() { //等於js onload
+                this.value = 0;
+                let i = 0;
+                this.interval = setInterval(() => {
+
+                    if (this.storearrytext.length > i) { //換文字
+                        this.timetext = this.storearrytext[i];
+                        console.log("this.timetext:", this.timetext);
+                        i++;
+
+                    }
+
+                    if (this.value >= 100) {
+                        this.value = 100;
+                        this.storearrytext.length = 0;
+                        i = 0;
+                        this.dialog = false;
+                        // @click="dialog = false"
+                    } else {
+                        this.value += parseInt((100 / this.storearrytext.length));
+                    }
+                    if (this.value >= 100) {
+                        this.value = 100;
+                        this.storearrytext.length = 0;
+                        i = 0;
+                    }
+                    // console.log('this.value',this.value);
+
+
+                }, 1000)
+                window.onresize = () => { //尺寸變動時
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        } else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })()
+                }
+
+            },
+            watch:
+            {
+                language(language) {
+                    i18n.locale = this.language;
+                    console.log("xxxxxx");
+
+                },
+            },
+            methods: {
+                created: function () {
+                    if (this.switchs == 1) {
+                        this.showinput.push({
+                            id: this.showinput.length, content: this.labelinput,
+                            label_text: [
+
+                            ]
+                        }),
+                            this.dialog = false
+                        this.labelnumber = "";
+                        this.seclabelnumber = "";
+                        this.labelinput = ""
+                        console.log(this.showinput);
+                    }
+                    else {
+
+                        var ln = this.showinput[this.labelnumber].label_text.length
+                        this.showinput[this.labelnumber].label_text.push({
+                            id: ln, content: this.labelinput,
+                        })
+                        this.dialog = false
+                        this.labelnumber = "";
+                        this.seclabelnumber = "";
+                        this.labelinput = ""
+                        console.log(this.showinput);
+                    }
+                },
+                seccheckindex: function (index, twoindex) {
+                    console.log(index, twoindex);
+                    this.labelnumber = index;
+                    this.seclabelnumber = twoindex;
+                    this.switchs = 2
+                },
+                deleted: function () {
+                    if (this.switchs == 0) {
+                        this.showinput.splice(this.labelnumber, 1);
+                        this.showinput.map(function (item, index) {
+                            if (item.id != + index) {
+                                item.id = + index;
+                            }
+                        })
+                        this.dialog2 = false
+                        this.labelnumber = "";
+                        this.seclabelnumber = "";
+                    }
+                    else {
+                        this.showinput[this.labelnumber].label_text.splice(this.seclabelnumber, 1);
+                        this.showinput[this.labelnumber].label_text.map(function (item, index) {
+                            if (item.id != + index) {
+                                item.id = + index;
+                            }
+                        })
+                        this.dialog2 = false
+                        this.labelnumber = "";
+                        this.seclabelnumber = "";
+                    }
+
+                },
+
+                switched: function () {
+                    this.switchs = 1
+                    console.log(1212121);
+
+                },
+                checkindex: function (index) {
+                    this.switchs = 0
+                    this.labelnumber = index;
+                    console.log(123);
+
+                },
+                inputtital: function (index) {
+
+
+                },
+                seccreated: function () {
+                    console.log(123);
+                    var ln = this.showinput[this.labelnumber].label_text.length
+                    this.showinput[this.labelnumber].label_text.push({
+                        id: ln, content: this.labelinput,
+                    })
+                    this.dialog2 = false
+                    this.labelinput = ""
+                    console.log(this.showinput);
+
+                },
+                top: function () {
+                    console.log("top");
+                },
+                right_top: function () {
+                    console.log("right_top");
+                },
+                bot: function () {
+                    console.log("bot");
+                },
+                right_bot: function () {
+                    console.log("right_top");
+                },
+                leftcheckva: function () {
+                    if (this.leftva == false) {
+
+                        this.vapr[0] = false;
+                        this.vapr[1] = false;
+
+                    } else {
+
+                        this.vapr[0] = true;
+                        this.vapr[1] = true;
+                    }
+
+                },
+                allcheck: function () {
+
+                    if (this.allprojcetcheck == false) {
+                        for (var i = 0; this.pr.length > i; i++) {
+                            this.pr[i] = false;
+                        }
+                    }
+
+                    if (this.allprojcetcheck == true) {
+                        for (var i = 0; this.pr.length > i; i++) {
+                            this.pr[i] = true;
+                        }
+                    }
+
+                },
+                pr0: function () {
+                    if (this.pr[0] == true) {
+                        // console.log("true");
+                    } else {
+                        // console.log('false');
+                    }
+                    // console.log('asd');
+                },
+                SCch: function () {
+                    if (this.SCARAch == true) {
+                        this.smallSCch = true;
+                    } else {
+                        this.smallSCch = false;
+                    }
+                },
+                SCch3: function () {
+                    if (this.SCARAch3 == true) {
+                        this.smallSCch3 = true;
+                    } else {
+                        this.smallSCch3 = false;
+                    }
+                },
+                SCch5: function () {
+                    if (this.SCARAch5 == true) {
+                        this.smallSCch5 = true;
+                    } else {
+                        this.smallSCch5 = false;
+                    }
+                },
+                downloadproject: function () {
+                    console.log(this.switchs);
+
+                    console.log('downloadproject');
+                    if (this.switchs == 1) {
+                        this.createText = this.newProject
+                        this.dialog = true
+                        console.log(789);
+                    }
+                    if (this.switchs == 0) {
+                        this.createText = this.newcontent
+                        this.dialog = true
+                        console.log(456);
+
+                    }
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appFiles',
+                        command: 'projectList',
+                        args: {}
+                    }, '*');
+                },
+                loadingproject: function () {
+                    this.dialog2 = true
+                    var text = [];
+                    for (i = 0; i < this.data.length; i++) {
+                        if (this.pr[i] == true) {
+                            text.push(this.data[i]); //把有打勾的文字推進陣列
+                        }
+                    }
+                    console.log(text);
+
+                    if (text.length == 0) {
+                        this.dialog = false; // 打開彈跳視窗
+
+                    } else {
+                        this.storearrytext = text; //存進變數
+                        this.dialog = true; // 打開彈跳視窗
+                        this.value = 0; //讓%數歸0
+                    }
+                },
+                clickJ5: function () {
+                    let x = document.getElementById('va');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('projectVA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('projectVA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ6: function () {
+                    let x = document.getElementById('va2');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ7: function () {
+                    let x = document.getElementById('va3');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA3').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA3').style.display = 'none';
+
+                    }
+
+                },
+                clickJ8: function () {
+                    let x = document.getElementById('va4');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA5').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA5').style.display = 'none';
+
+                    }
+
+                },
+                right_extend: function () {
+                    let x = document.getElementById('right_va');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('allproject').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('allproject').style.display = 'none';
+
+                    }
+                },
+                bluebarright: function () {
+                    document.getElementById('bar').style.display = 'none';
+                    document.getElementById('bar2').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'none';
+                    document.getElementById('bar2').style.marginLeft = '50px';
+                    document.getElementById('rightcotrol').style.left = '52%';
+                    document.getElementById('imgicontorl').style.left = '42%';
+
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+                        document.getElementById('imgicontorl').style.left = '26%';
+                        document.getElementById('rightcotrol').style.left = '42%';
+                    }
+                },
+                bluebarleft: function () {
+                    document.getElementById('bar2').style.display = 'none';
+                    document.getElementById('bar').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'inline';
+
+                    document.getElementById('rightcotrol').style.left = '66%';
+                    document.getElementById('imgicontorl').style.left = '55%';
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+                        document.getElementById('imgicontorl').style.left = '47%';
+                        document.getElementById('rightcotrol').style.left = '62%';
+                    }
+                }
+            },
+
+        })
+       
+        window.addEventListener('message', (event) => {
+           
+            console.log(123);
+            
+            
+            if (!isNaN(parseInt(event.data))) {
+                const message = event.data;
+                switch (message.command) {
+                    case 'list':
+                        vue.data = [];
+                        for (let index = 0; index < message.args.length; index++) {
+                            console.log(message.args[index]);
+                            vue.data.push(message.args[index]);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+            else {
+                if (event.data.lang == undefined) {
+                    vue.language = event.data;
+                } else {
+                    console.log(123456789);
+                    
+                    vue.language = event.data.lang;
+                }
+            }
+
+
+
+
+
+        });
+    </script>
+</body>
+
+</html>

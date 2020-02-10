@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <link href="./../css/vuetify.css" rel="stylesheet">
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/login/login.css" rel="stylesheet"> <!-- login的css -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body>
+  <div id="secheader" style="font-family: Roboto,sans-serif;font-weight:bold" >
+  <button style="position: absolute;top: 10%;left: 8%;" @click="model1" id="mod1" value="22">
+    <div>
+      <img src="./../img/DualArm_e.png" height="150" width="160" alt="" >
+    </div>  
+    <div style="margin-left: 22px;">
+      <span style="font-size: 25px">Dual Arm</span>
+    </div>
+  </button>
+  <div style="position: absolute;top: 55%;left: 7%;">
+    <div>
+      <img src="./../img/backup_e.png" height="155" width="165" alt="">
+    </div>
+    <div style="font-size: 25px;margin-left: 35px;">
+      <span>Back Up</span>
+    </div>
+  </div>
+  <div style="position: absolute;top: 55%;left: 28%;">
+    <div>
+      <img src="./../img/recovery_e.png" height="155" width="165" alt="">
+    </div>
+    <div style="font-size: 25px;margin-left: 25px;">
+      <span>Recovery</span>
+    </div>
+  </div>
+  
+  </div>
+</body>
+<style>
+ 
+  </style>
+  <script src="./../js/vue.js"></script>
+  <script src="./../js/vuetify.js"></script>
+  <script>
+    var text1;
+     
+    
+    
+     
+   test1 =  new Vue({
+      el: '#secheader',
+      vuetify: new Vuetify(),
+      data: () => ({
+        
+  }),
+  
+  methods:{
+    model1: function () {
+          var x = document.getElementById("mod1").value
+          window.parent.postMessage( parseInt(x), '*');
+          console.log(x);
+          console.log( parseInt(x));
+          
+        },
+       
+  }
+
+    })
+   
+       
+  
+       </script>
+</html>

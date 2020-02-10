@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/home/home.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+</head>
+
+<body onresize="resize()">
+    <div id="app">
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+            <div class="Robot">
+            </div>
+
+            <div class="center">
+                <div id="icon_user">
+                    <div id="top" width="50" @click="top"><img src="./../img/top.png" width="50"></div>
+                    <div id="servo">
+                        <div style="margin-top:20px;" class="title" style="background-color: #b8cbe6">
+                            <p>{{ $t('message.Go_Home') }}</p>
+                        </div>
+
+                        <button class="btn_center" @click="goHome(-1)">{{ $t('message.Home_All_Joint') }}</button>
+                        <button class="btn_center" @click="goHome(1)">{{ $t('message.Joint1') }}</button>
+                        <button class="btn_center" @click="goHome(2)">{{ $t('message.Joint2') }}</button>
+                        <button class="btn_center" @click="goHome(3)">{{ $t('message.Joint3') }}</button>
+                        <button class="btn_center" @click="goHome(4)">{{ $t('message.Joint4') }}</button>
+                        <button class="btn_center" @click="goHome(5)">{{ $t('message.Joint5') }}</button>
+                        <button class="btn_center" @click="goHome(6)">{{ $t('message.Joint6') }}</button>
+                    </div>
+                    <div id="sethome">
+                        <div style="margin-top:20px; " class="title" style="background-color: #b8cbe6">
+                            <p>{{ $t('message.Set_Home') }}</p>
+                        </div>
+
+                        <button class="btn_center" @click="setHome(-1)">{{ $t('message.Home_All_Joint') }}</button>
+                        <button class="btn_center" @click="setHome(1)">{{ $t('message.Joint1') }}</button>
+                        <button class="btn_center" @click="setHome(2)">{{ $t('message.Joint2') }}</button>
+                        <button class="btn_center" @click="setHome(3)">{{ $t('message.Joint3') }}</button>
+                        <button class="btn_center" @click="setHome(4)">{{ $t('message.Joint4') }}</button>
+                        <button class="btn_center" @click="setHome(5)">{{ $t('message.Joint5') }}</button>
+                        <button class="btn_center" @click="setHome(6)">{{ $t('message.Joint6') }}</button>
+                    </div>
+                    <div id="bot" width="50" @click="bot"><img src="./../img/bot.png" width="50"></div>
+                </div>
+
+            </div>
+
+            <v-dialog v-model="dialog" width="300">
+                <template v-slot:activator="{ on }">
+                </template>
+
+                <v-card>
+                    <!-- <v-card-title
+                    class="headline grey lighten-2"
+                    primary-title
+                >
+                    Privacy Policy
+                </v-card-title> -->
+
+                    <v-card-text>
+                        <v-progress-circular class="loading" :rotate="-90" :size="125" :width="15" :value="value"
+                            color=#0071C1>
+                            {{ value }}%
+                        </v-progress-circular>
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                        <div class="flex-grow-1"></div>
+                        <button class="btn_finsh" @click="dialog = false">Set finshed</button>
+
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+    <script>
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+
+        let vue = new Vue({
+            i18n,
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: null,
+                dialog: false,
+                value: 0,
+            }),
+
+            beforeDestroy() { //生命週期 實體銷毀之前
+                clearInterval(this.interval)
+            },
+            created: function () {
+
+            },
+            mounted() { //等於js onload
+                window.onresize = () => { //尺寸變動時
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        } else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })()
+                }
+                this.value = 0;
+                this.interval = setInterval(() => {
+                    if (this.value === 100) {
+                        //  this.dialog = false;
+                        return (this.value = 100) //讓%數停留在100%
+                    }
+                    this.value += 10
+                }, 1000)
+
+                // this.language = localStorage.todoList
+                // i18n.locale = this.language;
+
+
+
+
+            },
+            watch:
+            {
+                language(language) {
+                    i18n.locale = this.language;
+                    console.log("ttttt");
+
+                },
+            },
+
+            methods: {
+                opendialog: function () {
+                    console.log('opendialog');
+                    this.value = 0; //讓%數歸0
+                    this.dialog = true;
+                    console.log(document.getElementById('btnAll').value);
+                },
+                top: function () {
+                    console.log(document.getElementById("servo"));
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        console.log('在平板尺寸');
+                        // document.getElementById("servo").style.display = "";  
+                        // document.getElementById("sethome").style.display = ""; 
+                    } else {
+                        document.getElementById("sethome").style.display = "none";
+                        document.getElementById("servo").style.display = "inline";
+
+                    }
+                },
+                bot: function () {
+                    console.log(document.getElementById("sethome"));
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        console.log('在平板尺寸');
+                        // document.getElementById("servo").style.display = "";  
+                        // document.getElementById("sethome").style.display = ""; 
+                    } else {
+                        document.getElementById("servo").style.display = "none";
+                        document.getElementById("sethome").style.display = "inline"; // 強制同行
+
+                    }
+
+                },
+                next: function () {
+                    console.log("next");
+
+                },
+                prev: function () {
+                    console.log("prev");
+
+                },
+                goHome: function (e) {
+                    if (e === -1) {
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appHome',
+                            command: 'goHome',
+                            args: {}
+                        }, '*');
+                    } else {
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appHome',
+                            command: 'goAxisHome',
+                            args: {
+                                index: e,
+                            }
+                        }, '*');
+                    }
+                },
+                setHome: function (e) {
+                    if (e === -1) {
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appHome',
+                            command: 'setHome',
+                            args: {}
+                        }, '*');
+                    } else {
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appHome',
+                            command: 'setAxisHome',
+                            args: {
+                                index: e,
+                            }
+                        }, '*');
+                    }
+                }
+            }
+
+        })
+
+        function resize() {
+            console.log('resize');
+            document.getElementById("servo").style.display = ""; //div servo 出現
+            document.getElementById("sethome").style.display = ""; //div sethome 出現
+        }
+
+        window.addEventListener('message', (e) => {
+            const message = e.data;
+            console.log(message);
+            if (!isNaN(parseInt(event.data))) {
+
+                if (message.command == 'FAE') {
+                    document.getElementById('top').style.display = "inline";
+                    document.getElementById('bot').style.display = "inline";
+                    document.getElementById('setHome').style.display = "inline";
+                    console.log('PASSWORD : FAE')
+                } else {
+                    document.getElementById('top').style.display = "none";
+                    document.getElementById('bot').style.display = "none";
+                    document.getElementById('sethome').style.display = "none";
+                    console.log('PASSWORD : 2222')
+                }
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    vue.language = event.data;
+                } else {
+                    vue.language = event.data.lang;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

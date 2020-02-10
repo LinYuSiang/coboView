@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="English">
+
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <link href="./../css/vuetify.css" rel="stylesheet">
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/login/login.css" rel="stylesheet"> <!-- login的css -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+  <div id="secheader" style="font-family: Roboto,sans-serif; font-weight:bold">
+    <v-app>
+      <v-card class="a1" color="#91B0DE" tile>
+        <div class="a2">
+          <span class="a3">DIO</span>
+        </div>
+        <div class="a2_1">
+          <span class="a3" style="font-size: 18px;">{{ $t('message.user_DI') }} :</span>
+        </div>
+        <div class="a4" style="margin-right:20px">
+          <select id="user_select_orth" class="a4_1">
+            <option>Ortl</option>
+            <option>Non </option>
+          </select>
+        </div>
+        <div style="float: left;">
+          <v-switch v-model="Dswitch" inset  color="success"></v-switch>
+        </div>
+
+
+        <div class="a2" style=" width: 3%;">
+
+        </div>
+        <div class="a2_1">
+          <span class="a3" style="font-size: 18px;">{{ $t('message.user_DO') }} :</span>
+        </div>
+        <div class="a4" style="margin-right:20px">
+          <select id="user_select_orth" class="a4_1">
+            <option>Orthogonal</option>
+            <option>Non </option>
+          </select>
+        </div>
+        <div style="float: left;">
+          <v-switch v-model="Dswitch2" inset  color="red"></v-switch>
+        </div>
+
+
+
+      </v-card>
+    </v-app>
+  </div>
+</body>
+<style>
+  .a1 {
+    border-bottom: 1.7px solid black !important;
+    border-right: 1.7px solid black !important;
+    border-left: 1.7px solid black !important;
+    background-color: #91B0DE;
+    width: 100%;
+    height: 50px;
+  }
+
+  .a2 {
+    width: auto;
+    height: 100%;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    padding-right: 10px;
+  }
+
+  .a2_1 {
+    font-size: 18px;
+    width: 9%;
+    height: 100%;
+    text-align: center;
+    float: left;
+  }
+
+  .a3 {
+    color: black;
+    font-size: 20px;
+    line-height: 50px;
+
+  }
+
+  .a4 {
+    width: 14%;
+    height: 100%;
+    float: left;
+    padding-top: 0.4%;
+  }
+
+  .a4_1 {
+    margin-left: 5px;
+    font-size: 16px;
+    background: url("./../img/selectdown_e.png") no-repeat scroll right center transparent;
+    background-size: 20px 20px;
+    background-position: 93% 50%;
+    background-color: #cccccc;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    float: left;
+    width: 95%;
+    height: 40px;
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding-left: 13px;
+    margin-left: 8px;
+    background-color: white;
+
+  }
+  .v-input--selection-controls
+  {
+    margin-top: 9px
+  }
+</style>
+<script src="./../js/vue.js"></script>
+<script src="./../js/vuetify.js"></script>
+<script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+<script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+<script>
+   // var text;
+   const i18n = new VueI18n({
+    locale: 'English', // locale後方對應的就是語系名稱
+    messages,//整包翻譯
+  })
+  window.addEventListener('message', function (event) {
+
+    console.log(event.data);
+    text.language = event.data;
+
+  });
+
+  let text = new Vue({
+    el: '#secheader',
+    i18n,
+    vuetify: new Vuetify(),
+    data: () => ({
+      language:'',
+      activeBtn: 3,
+      drawer: false,
+      slider: 80,
+      max: 100,
+      min: 0,
+      Dswitch: false,
+      Dswitch2: false,
+    }),
+    watch:{
+      language(language)
+      {
+        
+        i18n.locale = this.language;
+      }
+
+    }
+  })
+</script>
+
+</html>

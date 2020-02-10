@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="English">
+
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <!-- <link href="./../css/vuetify.css" rel="stylesheet"> -->
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/login/login.css" rel="stylesheet"> <!-- login的css -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+</head>
+
+<body class="a1_2">
+  <div id="secheader" style="font-family: Roboto,sans-serif; font-weight:bold">
+
+    <div class="a1" color="#91B0DE" tile>
+      <div class="a2">
+        <span class="a3">Excution tool</span>
+      </div>
+      <div class="a2">
+        <span class="a3">Project Name</span>
+      </div>
+      <div class="a4">
+        <select id="user_select_orth" class="a4_1">
+          <option>Orthogonal</option>
+          <option>Non Orthogonal</option>
+        </select>
+      </div>
+
+      <div class="a7">
+        <button class="a6">
+          <span class="a8">{{ $t('message.Start') }}</span>
+        </button>
+      </div>
+      <div class="a7">
+        <button class="a6">
+          <span class="a8">{{ $t('message.Pause') }}</span>
+        </button>
+      </div>
+      <div class="a7">
+        <button class="a6">
+          <span class="a8">{{ $t('message.Stop') }}</span>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+<style>
+  .a1 {
+    border-bottom: 1.7px solid black !important;
+    border-right: 1.7px solid black !important;
+    background-color: #91B0DE;
+    width: 100%;
+    height: 48.3px;
+  }
+
+  .a1_2 {
+    background-repeat: no-repeat;
+    padding: 0px;
+    margin: 0px;
+    border-right: 1.7px solid;
+    border-left: 1.7px solid black !important;
+  }
+
+  .a2 {
+    width: auto;
+    height: 100%;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    padding-right: 10px;
+  }
+
+  .a4 {
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding-top: 0.5%;
+  }
+
+  .a4_1 {
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    float: left;
+    width: 95%;
+    height: 35px;
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding-left: 13px;
+    font-size: 16px;
+    background-color: white;
+
+  }
+
+  .a5 {
+    width: 33%;
+    height: 100%;
+    float: left;
+  }
+
+  .a3 {
+    color: black;
+    font-size: 20px;
+    line-height: 50px;
+
+  }
+
+  .a6 {
+    border: 1.7px solid black !important;
+    background-color: rgb(175, 203, 245);
+    width: auto;
+    height: 100%;
+    border-radius: 10px;
+  }
+
+  .a7 {
+    width: auto;
+    height: 35px;
+    float: left;
+    padding: 7px;
+  }
+
+  .icon {
+    float: left;
+    margin-right: 5px;
+  }
+
+  .a8 {
+    font-weight: 600;
+    font-size: 19px;
+
+  }
+</style>
+<script src="./../js/vue.js"></script>
+<script src="./../js/vuetify.js"></script>
+<script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+<script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+
+<script>
+  // var text;
+  const i18n = new VueI18n({
+    locale: 'English', // locale後方對應的就是語系名稱
+    messages,//整包翻譯
+  })
+  window.addEventListener('message', function (event) {
+
+    console.log(event.data);
+    text.language = event.data;
+
+  });
+
+  let text = new Vue({
+
+
+    el: '#secheader',
+    i18n,
+    vuetify: new Vuetify(),
+    data: () => ({
+      language: '',
+      activeBtn: 3,
+      drawer: false,
+      slider: 80,
+      max: 100,
+      min: 0,
+    }),
+    watch: {
+      language(language) {
+        console.log(this.language, "123");
+        i18n.locale = this.language;
+      }
+
+    }
+
+  })
+</script>
+
+</html>

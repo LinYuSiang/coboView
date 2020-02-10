@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/setting/setting.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Document</title>
+   
+</head>
+<body>
+    <div id="app">
+        <button @click="dialog1" class="btn_finsh">1</button>
+        <button @click="dialog2" class="btn_finsh">2</button>
+        <button @click="dialog3" class="btn_finsh">3</button>
+        <button @click="dialog4" class="btn_finsh">4</button>
+        <button @click="dialog5" class="btn_finsh">5</button>
+
+        <div id="Jogsetting" style="display: none">
+            <v-dialog
+                persistent
+                v-model="d1"
+                width="500"
+            >
+        
+                <v-card style=" padding-top: 15px;">
+
+                <div class="div_label_title" style="width: 450px;">
+                    <label class="label_title">Jog Setting</label>
+                </div>
+
+
+                <div  style="width:400px; margin-left: 25px;" >
+                    <div style="margin-top:40px;">
+                        <label  class="label_size">Distance :</label>
+                        <input id="jog_distance" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" style="margin-left: 55px;" type="text" class="jog_input"> 
+                        <label  class="label_size">mm</label>
+                    </div>
+                    <br>
+                    <div style="margin-top:20px;">
+                        <label  class="label_size">Speed :</label>
+                        <input id="jog_speed" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" style="margin-left: 75px;" type="text" class="jog_input"> 
+                        <label  class="label_size">%</label>
+                    </div>
+                    <br>
+                </div>
+                <div style="height: 300px;">
+                </div>
+        
+                <v-card-text>
+
+                </v-card-text>             
+                    <button  style="margin-left:375px;" class="btn_finsh" @click="d1 = false" id="jogok">OK</button>  
+
+                <v-card-actions>
+                </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+
+        <div id="systemsetting" style="display: none">
+            <v-dialog
+                persistent
+                v-model="d2"
+                width="500"
+            >
+        
+                <v-card style=" padding-top: 15px;">
+
+                <div class="div_label_title" style="width:450px;">
+                    <label class="label_title">System Setting</label>
+                </div>
+
+
+                <div  style="width:400px; margin-left: 25px;" >
+                    <div id="tabsF" style="margin-top:-44px;">
+                        <ul>
+                            <li><a href="javascript://" @click="loadTab(this,1);"><span class="toptag" id="L1" style="background-color: #C6D8F0;">Ethernet IP</span></a></li>
+                            <li><a href="javascript://" @click="loadTab(this,2);"><span class="toptag" id="L2">RS232/485</span></a></li>
+                        </ul>
+                    </div>
+                    <div id="tabsC">
+
+                        <div id="S1" style="display:inline;">
+                            <div style="margin-top:20px; margin-left: 5px;">
+                                <label  class="label_size">IP</label>
+                                <div style="float:right;margin-right:10px;">
+                                    <input id="ip1" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                    .
+                                    <input id="ip2" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                    .
+                                    <input id="ip3" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                    .
+                                    <input id="ip4" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                                </div> 
+                            </div>
+                            <br>
+                            <div style="margin-top:10px; margin-left: 5px;">
+                                <label class="label_size" >SubNet Mask</label>
+                                <div style="float:right;margin-right:10px;">
+                                    <input id="mask1" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                    .
+                                    <input id="mask2" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                    .
+                                    <input id="mask3" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                    .
+                                    <input id="mask4" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                                </div> 
+                            </div>
+                            <br>
+                            <div style="margin-top:10px; margin-left: 5px;">
+                                <label class="label_size" >Default Gateway</label>
+                                <div style="float:right;margin-right:10px;">
+                                <input id="getway1" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                .
+                                <input id="getway2" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                .
+                                <input id="getway3" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"> 
+                                .
+                                <input id="getway4" class="system_input" oninput = "value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                                </div>  
+                            </div>
+                            <br>
+                            <div style="float: right;margin-top: 175px;">
+                                <button  class="btn_finsh" id="eternetset" @click="eternet_setting">Set</button>
+                            </div>
+                        </div> 
+                        <div id="S2" style="display:none;">
+                          
+                            <div class="system_border" >
+                                <div class="system_text">
+                                    <label class="label_size" >Set</label>
+                                </div>
+                                <div style="margin-left:10px;">
+                                    <label class="label_size" >Transmission Mode :</label>
+                                    <select  class="system_select" id="set_trmode" style="width: 140px;margin-left: 43px;">
+                                        <option class="system_item">RS232</option>
+                                        <option class="system_item">RS485</option>
+                                    </select>
+                                    <div style="margin-top: 10px;">
+                                        <label class="label_size" >Transmission Rate :</label>
+                                        <select  class="system_select" id="set_trrate" style="width: 140px; margin-left: 52px;">
+                                            <option class="system_item">4800</option>
+                                            <option class="system_item">9600</option>
+                                            <option class="system_item">19200</option>
+                                            <option class="system_item">38400</option>
+                                            <option class="system_item">57600</option>
+                                            <option class="system_item">115200</option>
+                                        </select>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <label class="label_size" >Protocol :</label>
+                                        <select  class="system_select" id="set_proto" style="width: 260px; margin-left: 15px;">
+                                            <option class="system_item">7，N，29(6M0O0DBUS，ASCII)</option>
+                                            <option class="system_item">7，E，1 (MODBUS，ASCII)</option>
+                                            <option class="system_item">7，O，1 (MODBUS，ASCII)</option>
+                                            <option class="system_item">8，N，2 (MODBUS，ASCII)</option>
+                                            <option class="system_item">8，E，1 (MODBUS，ASCII)</option>
+                                            <option class="system_item">8，O，1 (MODBUS，ASCII)</option>
+                                            <option class="system_item">8，N，2 (MODBUS，RTU) </option>
+                                            <option class="system_item">8，E，1 (MODBUS，RTU)</option>
+                                            <option class="system_item">8，O，1 (MODBUS，RTU)</option>
+                                        </select>
+                                    </div>
+                                    <button  style="margin-left:285px;margin-top:10px;" class="btn_finsh" id="set_transmission" @click="set_trdata">Set</button>  
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="system_border" >
+                                <div class="system_text">
+                                    <label class="label_size" >Get</label>
+                                </div> 
+                                <div style="margin-left:10px;">
+                                    <div style="margin-top: 5px;">
+                                        <label class="label_size" >Transmission Mode :</label>
+                                        <input id="get_trmode" class="transmission_input" style="margin-left: 42px;" type="text">
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <label class="label_size" >Transmission Rate :</label>
+                                        <input id="get_trrate" class="transmission_input" style="margin-left: 52px;" type="text">
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <label class="label_size" >Protocol :</label>
+                                        <input id="get_proto" class="transmission_input" style="margin-left: 14px;width: 260px;" type="text">
+                                    </div>
+                                </div>
+                                <button  style="margin-left:285px;margin-top:10px;" class="btn_finsh" id="get_transmission" @click="get_trdata">Get</button>  
+
+                            </div>
+                        </div> 
+
+                    </div>
+                </div>
+        
+                <v-card-text>
+
+                </v-card-text>             
+                    <button  style="margin-left:400px;" class="btn_finsh" @click="d2 = false" id="systemok">OK</button>  
+
+                <v-card-actions>
+                </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+
+        <div id="robotsetting" style="display: none">
+            <v-dialog
+                persistent
+                v-model="d3"
+                width="500"
+            >
+        
+                <v-card style=" padding-top: 15px;">
+
+                <div class="div_label_title" style="width: 450px;">
+                    <label class="label_title">Robot Setting</label>
+                </div>
+
+
+                <div style="height: 440px;">
+                </div>
+        
+                <v-card-text>
+
+                </v-card-text>             
+                    <button  style="margin-left:375px;" class="btn_finsh" @click="d3 = false" id="robotok">OK</button>  
+
+                <v-card-actions>
+                </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+
+        <div id="language" style="display: none">
+            <v-dialog
+                persistent
+                v-model="d4"
+                width="500"
+            >
+        
+                <v-card style=" padding-top: 15px;">
+
+                <div class="div_label_title" style="width: 450px;">
+                    <label class="label_title">Language</label>
+                </div>
+                <div  style="width:400px; margin-left: 25px;" >
+                    <div style="margin-top:40px;">
+                        <select @change="language_change" class="system_select" id="language_set" style="width: 200px;margin-left: 125px;">
+                            <option class="system_item">English</option>
+                            <option class="system_item">Traditional Chinese</option>
+                            <option class="system_item">Simplified Chinese</option>
+                            <option class="system_item">Japenese</option>
+                            <option class="system_item">Korean</option>
+                            <option class="system_item">Spanish</option>
+                            <option class="system_item">Portuguese</option>
+                        </select>
+                    </div>
+                  
+                </div>
+
+                <div style="height: 370px;">
+                </div>
+        
+                <v-card-text>
+
+                </v-card-text>             
+                    <button  style="margin-left:375px;" class="btn_finsh" @click="d4 = false" id="robotok">OK</button>  
+
+                <v-card-actions>
+                </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+
+        <div id="other" style="display: none">
+            <v-dialog
+                persistent
+                v-model="d5"
+                width="500"
+            >
+        
+                <v-card style=" padding-top: 15px;">
+
+                <div class="div_label_title" style="width: 450px;">
+                    <label class="label_title">Other</label>
+                </div>
+                <div  style="width:450px; margin-left: 25px;" >
+                    <div style="margin-top: 40px;">
+                        <label class="label_size" >JRC Operate :</label>
+                        <select @change="other_change" class="system_select" id="other_set" style="width: 300px;">
+                                <option class="system_item">0:JRC Inactive</option>
+                                <option class="system_item">1:JRC Active</option>
+                                <option class="system_item">2:Select Near Path</option>
+                                <option class="system_item">3:Select Near Path & Avoid Joint Limit</option>
+                                <option class="system_item">4:Directly motion by value</option>
+                        </select>
+                    </div>
+                           
+                </div>
+
+                <div style="height: 365px;">
+                </div>
+        
+                <v-card-text>
+
+                </v-card-text>             
+                    <button  style="margin-left:375px;" class="btn_finsh" @click="d5 = false" id="otherok">OK</button>  
+
+                <v-card-actions>
+                </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+
+        
+    </div>    
+<script src="./../js/vue.js"></script>
+<script src="./../js/vuetify.js"></script>
+<script>
+	new Vue({
+		el: '#app',
+		vuetify: new Vuetify(),
+        data: () => ({
+            d1 : false,
+            d2 : false,
+            d3 : false,
+            d4 : false,
+            d5 : false,
+        }),
+        mounted () { //等於js onload
+			window.onresize = () => { //尺寸變動時
+
+					return (() => {
+						console.log('resize');
+						
+					})()
+			}     
+	
+		},
+        methods: {
+            loadTab:function(obj,n){
+				var layer,bgcolor;
+				layer = "S"+n;
+				bgcolor = "L"+n; 		
+				//將 Tab 標籤樣式設成 Blur 型態
+				var tabsF=document.getElementById('tabsF').getElementsByTagName('li');//拿到底下的li
+				for (var i=0;i<tabsF.length;i++){
+					// tabsF[i].setAttribute('id',null);//每個ID變為空值
+					// tabsF[i].setAttribute('id','Link'+(i+1) );//更改每個的切換的ID值
+					document.getElementById("S"+(i+1)).style.display='none';
+					document.getElementById("L"+(i+1)).style.backgroundColor  = "#D8D8D8"; 
+				}
+			
+				//變更分頁標題樣式
+				// obj.parentNode.setAttribute('id','current');
+				document.getElementById(bgcolor).style.backgroundColor  = "#C6D8F0"; 
+				document.getElementById(layer).style.display='inline'; //出現按到的
+			},
+            eternet_setting:function(){
+                console.log
+                (
+                    "ip: ",
+                    document.getElementById("ip1").value,
+                    document.getElementById("ip2").value,
+                    document.getElementById("ip3").value,
+                    document.getElementById("ip4").value,
+                    "mask: ",
+                    document.getElementById("mask1").value,
+                    document.getElementById("mask2").value,
+                    document.getElementById("mask3").value,
+                    document.getElementById("mask4").value,
+                    "getway: ",
+                    document.getElementById("getway1").value,
+                    document.getElementById("getway2").value,
+                    document.getElementById("getway3").value,
+                    document.getElementById("getway4").value,
+                );
+                
+            },
+            set_trdata:function(){ //RS232/485 的set功能
+                console.log
+                (   
+                    "set_trdata :",
+                    document.getElementById("set_trmode").value,
+                    document.getElementById("set_trrate").value,
+                    document.getElementById("set_proto").value
+                );
+
+            },
+            get_trdata:function(){ //RS232/485 的get功能
+                console.log
+                (
+                    "get_trdata :",
+                    document.getElementById("get_trmode").value,
+                    document.getElementById("get_trrate").value,
+                    document.getElementById("get_proto").value
+                );
+
+            },
+            language_change:function(){ //language_change 功能
+                console.log
+                (
+                    document.getElementById("language_set").value,
+                );
+
+            },
+            other_change:function(){ //language_change 功能
+                console.log
+                (
+                    document.getElementById("other_set").value,
+                );
+
+            },
+            dialog1:function(){
+                // console.log("dialog1");
+                document.getElementById("Jogsetting").style.display = "";
+                this.d1 = true;
+            },
+            dialog2:function(){
+                // console.log("dialog2");
+                document.getElementById("systemsetting").style.display = "";
+                this.d2 = true;
+            },
+            dialog3:function(){
+                // console.log("dialog3");
+                document.getElementById("robotsetting").style.display = "";
+                this.d3 = true;
+            },
+            dialog4:function(){
+                // console.log("dialog4");               
+                document.getElementById("language").style.display = "";
+                this.d4 = true;
+                
+            },
+            dialog5:function(){
+                // console.log("dialog5");
+                document.getElementById("other").style.display = "";
+                this.d5 = true;
+            },
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/history/history.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <div id="app">
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+            <div style="position: absolute;top: 14%;left: 12%;">
+                <div class="history_scroll">
+                    <table class="history_table">
+                        <tr>
+                            <th class="table_title">Date/Time</th>
+                            <th class="table_title">Type</th>
+                            <th class="table_title">No.</th>
+                            <th class="table_title">Error code</th>
+                            <th class="table_title">Description</th>
+                        </tr>
+
+                        <tr v-for='(list,index) in lists' v-bind:key='index'>
+
+                            <td class="table_time">{{list.time}}</td>
+                            <td class="table_type">{{list.type}}</td>
+                            <td class="table_no">{{list.no}}</td>
+                            <td class="table_error">{{list.error_code}}</td>
+                            <td class="table_description">{{list.description}}</td>
+
+                        </tr>
+
+
+                    </table>
+                </div>
+                <button class="update" @click="update_date">{{ $t('message.Update') }}</button>
+            </div>
+        </div>
+    </div>
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+    <script>
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+
+        window.addEventListener("message", function (event) {
+
+            if (!isNaN(parseInt(event.data))) {
+                return;
+
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    vue.language = event.data;
+                } else {
+                    vue.language = event.data.lang;
+                }
+            }
+
+        })
+        let vue = new Vue({
+            el: '#app',
+            i18n,
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: "",
+                lists:
+                    [
+                        {
+                            id: 0,
+                            time: '20191016 13:10:44',
+                            type: 'Axis',
+                            no: 'Joint-1',
+                            error_code: 'AL011',
+                            description: 'Encoder error'
+                        },
+                        {
+                            id: 1,
+                            time: '20191016 10:00:01',
+                            type: 'Group',
+                            no: '1',
+                            error_code: 'E1.998',
+                            description: 'Operating mode has not been activated'
+                        },
+                        {
+                            id: 2,
+                            time: '',
+                            type: '',
+                            no: '',
+                            error_code: '',
+                            description: ''
+                        },
+                        {
+                            id: 3,
+                            time: '',
+                            type: '',
+                            no: '',
+                            error_code: '',
+                            description: ''
+                        },
+                        {
+                            id: 4,
+                            time: '',
+                            type: '',
+                            no: '',
+                            error_code: '',
+                            description: ''
+                        },
+                        {
+                            id: 5,
+                            time: '',
+                            type: '',
+                            no: '',
+                            error_code: '',
+                            description: ''
+                        },
+                        {
+                            id: 6,
+                            time: '',
+                            type: '',
+                            no: '',
+                            error_code: '',
+                            description: ''
+                        },
+                        {
+                            id: 7,
+                            time: '',
+                            type: '',
+                            no: '',
+                            error_code: '',
+                            description: ''
+                        },
+                    ]
+            }),
+
+            mounted() { //等於js onload
+                window.onresize = () => { //尺寸變動時
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        }
+                        else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })
+                }
+            },
+            watch: {
+                language(language) {
+                    i18n.locale = this.language;
+                },
+            },
+
+
+
+            methods: {
+                update_date: function () {
+                    console.log('更新表格資訊');
+
+                },
+
+
+            },
+        })
+
+    </script>
+</body>
+
+</html>

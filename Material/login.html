@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <link href="./../css/vuetify.css" rel="stylesheet">
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/login/login.css" rel="stylesheet"> <!-- login的css -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+  
+
+         
+                <div class="center"> 
+                     <div id="icon_user">
+
+                        <div class="input_boder">
+                          <img src="./../img/authority_e.png" style="float: left;" width="30" height="28" id="icon">
+                            <input id="btn_user" type="text" v-model="user" placeholder="Name" oninput = "value=value.replace(/[^a-zA-Z]/g,'')">
+                        </div>
+                        
+                        <div class="input_boder">
+                            <i  id="icon2" class="material-icons">
+                            vpn_key
+                            </i>
+                            <input id="btn_userpassword"  v-model="user_password"  type="password" placeholder="******" oninput = "value=value.replace(/[^\d]/g,'')">
+                        </div>
+
+                        <button id="btn_center">Sign In</button> 
+                     </div>    
+                 </div>
+            
+            
+  
+
+  <script src="./../js/vue.js"></script>
+  <script src="./../js/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: () => ({
+        user: '',
+        user_password: ''
+    }),
+
+    })
+  </script>
+</body>
+</html>

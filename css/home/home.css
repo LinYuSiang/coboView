@@ -1,0 +1,236 @@
+         @media screen and (min-width: 641px) and (max-width: 980px) { /*  641<X<980 平板尺寸 */
+           
+                    /* #servo{
+                        display:"";
+                    }
+                    #sethome{
+                        display:"";
+                    } */
+           #btn_user{
+                position: absolute;
+                height: 30px;
+                width:calc(100% - 35px);
+                padding-left: 5px;
+            
+           }
+           .input_boder{
+               width: 206px;
+               height: 35px;
+               border: #176BAB solid 3px;
+               border-radius:5px;
+               margin-bottom: 3px;
+           }
+           #btn_userpassword{
+               position: absolute;
+               padding-left: 5px;
+               height: 30px;
+               width:calc(100% - 35px);
+           }
+           .btn_center{
+               background:#C6D8F0;
+               border: black solid 3px;
+               font-size: 20px;
+             
+               border-radius:5px;
+               color:black; 
+               margin-left: 15px;
+               width:176px;
+               left: 16px;
+               top: 50%;  
+               margin-top:2.5%; 
+           }
+           .btn_finsh{
+            font-size: 20px;
+            color:white; 
+            background:#0071C1;
+         
+            border-radius:5px;
+            width:150px;
+            margin-left: 75px;
+           }
+           .loading{
+            /* background:black; */
+            margin-left:70px;
+           }
+            #icon_user{
+               position: absolute;
+               left: 50%;
+               top: 26%;  
+               width: 206px;
+               height: 50%;
+               margin-left: -103px;
+               margin-top: 62px;
+          }
+          .center{
+            width: 50%;
+            height: 250px;
+            position:absolute;  
+            left: 53%;
+            top: 50%;   
+            margin-top:-450px; 
+            margin-left:-10%; 
+            /* background-color:red;   */
+          
+            
+        }
+        .picr {
+            position: absolute;
+            top: 45%;
+            right: 1%;
+        }
+        .picl {
+            position: absolute;
+            top: 45%;
+            left: 1%;
+        }
+        .Robot{
+            width: 36%;
+            height: 250px;
+            float: left;
+            margin-top: 28%;
+            margin-left: 8%;
+        }
+
+       
+       }
+       
+         @media screen and (min-width: 981px) and (max-width: 1920px) { /*  981<X<1920 電腦尺寸 */
+         
+              #sethome{
+
+                display:none;
+            }
+            #btn_user{
+                position: absolute;
+                height: 30px;
+                width:calc(100% - 35px);
+                padding-left: 5px;
+            
+           }
+           .input_boder{
+               width: 206px;
+               height: 35px;
+               border: #176BAB solid 3px;
+               border-radius:5px;
+               margin-bottom: 3px;
+           }
+           #btn_userpassword{
+               position: absolute;
+               padding-left: 5px;
+               height: 30px;
+               width:calc(100% - 35px);
+           }
+       
+          #icon_user{
+               position: absolute;
+               left: 50%;
+               top: -120%;  
+               width: 206px;
+               height: 50%;
+               /* background-color: gold ;     */
+       
+          }
+       
+           .btn_center{
+               background:#C6D8F0;
+               border: black solid 3px;
+               font-size: 20px;
+               
+               border-radius:5px;
+               color:black; 
+               margin-left: 15px;
+               width:176px;
+               left: 16px;
+               top: 50%;  
+               margin-top:2.5%; 
+           }
+           .btn_finsh{
+            font-size: 20px;
+            color:white; 
+            background:#0071C1;
+           
+            border-radius:5px;
+            width:150px;
+            margin-left: 75px;
+           }
+           .loading{
+            /* background:black; */
+            margin-left:70px;
+           }
+           .center{
+            width: 50%;
+            height: 250px;
+            position:absolute;  
+            left: 50%;
+            top: 55%;   
+            /* margin-top:75px;  */
+            margin-top: 8%;
+            margin-left: -18%;
+           
+            /* background-color:red;   */
+        }
+        .picr {
+            position: absolute;
+            top: 45%;
+            right: 1%;
+        }
+        .picl {
+            position: absolute;
+            top: 45%;
+            left: 1%;
+        }
+        .Robot{
+            width: 32%;
+            height: 250px;
+            float: left;
+            margin-top: 8%;
+            margin-left: 18%;
+          }
+                       
+        }
+       
+       .box1{ 
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff ;     
+        position:absolute;  
+       }
+       
+      
+       .box2{ 
+        border: black solid 1.5px;
+        width: 100%;
+        height: 75px;
+        background-color:#8DB1E3;     
+        position:absolute;  
+        top: 0px;          
+       
+       }
+       .box3{/* 下div */
+        border: black solid 1.5px;
+         width: 100%;
+        height: 75px;
+        background-color:#8DB1E3;     
+        position:absolute;  
+        bottom: 0px;          
+       
+       }
+       .title{
+        background-color: #b8cbe6;
+        text-align: center;
+        font-size: 25px;
+     
+        line-height: 45px;
+        width: 206px;
+        /* height: auto; */
+        margin-bottom: 5%;
+        margin-left: 0%
+       }
+       #top{
+        margin-left: 78px;
+       }
+       #bot{
+        margin-top:20px;
+        margin-left: 78px;
+       }
+  

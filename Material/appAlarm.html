@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <style>
+        @media screen and (min-width: 641px) and (max-width: 980px) {
+
+            /*  641<X<980 平板尺寸 */
+            .box1 {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                background-color: #ffffff;
+            }
+
+            .box2 {
+
+                position: absolute;
+                top: 17%;
+                left: 22%;
+            }
+
+            .td_text {
+                /* border: 1px solid black; */
+                border-left: 3px solid black;
+                border-right: 3px solid black;
+                border-bottom: 1px solid #A5A5A5;
+                text-align: left;
+                padding: 8px;
+                width: 300px;
+                font-size:20px;
+            }
+
+            .td_title {
+                /* border: 1px solid black; */
+                border-top: 1px solid #A5A5A5;
+                border-left: 3px solid black;
+                border-right: 1px solid #A5A5A5;
+                border-bottom: 1px solid #A5A5A5;
+                text-align: left;
+                padding: 8px;
+                width: 20px;
+                font-size:20px;
+            }
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width:770px;
+                font-size: 24px;
+            }
+        }
+
+        @media screen and (min-width: 981px) and (max-width: 1920px) {
+
+            /*  981<X<1920 ?�腦尺寸 */
+            .box1 {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                background-color: #ffffff;
+            }
+
+            .box2 {
+
+                position: absolute;
+                top: 16%;
+                left: 12%;
+            }
+
+            .td_text {
+                /* border: 1px solid black; */
+                border-left: 1px solid #A5A5A5;
+                border-right: 3px solid black;
+                border-bottom: 1px solid #A5A5A5;
+                text-align: left;
+                padding: 8px;
+                width: 300px;
+                font-size:20px;
+            }
+
+            .td_title {
+                /* border: 1px solid black; */
+                border-top: 1px solid #A5A5A5;
+                border-left: 3px solid black;
+                border-right: 1px solid #A5A5A5;
+                border-bottom: 1px solid #A5A5A5;
+                text-align: left;
+                padding: 8px;
+                width: 20px;
+                font-size:20px;
+            }
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width:770px;
+                font-size: 18px;
+                background-color: #f2f2f2;
+            }
+        }
+
+        .error {
+            background-color: #cc0000;
+        }
+
+        .waring {
+            background-color: #ffc000;
+        }
+
+        .clear {
+            font-size: 20px;
+            color: #474745;
+            border: #474745 solid 2px;
+            background: #8DB1E2;
+            font-weight: bolder;
+            border-radius: 8px;
+            width: 80px;
+            margin-left: 320px;
+            margin-top: 20px;
+            /* margin-right: 100px; */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+            <div class="box2">
+                <table>
+
+                    <tr>
+                        <td class="td_title" style="border-top: 3px solid black;color: #17355D;">
+                            {{ $t('message.Monitor') }}</td>
+                        <td class="td_text" :style="[bgcolortf ? error : gray]"
+                            style="border-top: 3px solid black;color: #17355D;">{{monitor}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_title">{{ $t('message.Controller') }}</td>
+                        <td class="td_text" :style="[bgcolortf2 ? error : gray]">{{controller}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_title">{{ $t('message.Group') }}</td>
+                        <td class="td_text" :style="[bgcolortf3 ? error : gray]">{{group}}</td>
+                    </tr>
+
+                    <tr v-for="(n, i) in J_data">
+                        <td class="td_title">J{{i + 1}}</td>
+                        <td class="td_text" :style="[bgcolortf4 ? error : gray]">{{n}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_title">{{ $t('message.Warming') }}</td>
+                        <td class="waring td_text" :style="[bgcolortf8 ? waring : gray]">{{warming}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_title" style="border-bottom: 3px solid black;">{{ $t('message.Tips') }}</td>
+                        <td class="td_text" style="border-bottom: 3px solid black;">{{tips}}</td>
+                    </tr>
+
+                </table>
+                <button class="clear" @click="clear_text">{{ $t('message.Clear') }}</button>
+            </div>
+        </div>
+    </div>
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+    <script>
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+
+        window.addEventListener("message", function (event) {
+          
+            if (!isNaN(parseInt(event.data))) {
+                return;
+
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    vue.language = event.data;
+                } else {
+                    vue.language = event.data.lang;
+                }
+            }
+
+        })
+        let interval;
+        let vue = new Vue({
+            el: '#app',
+            i18n,
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: "",
+                alaem: 'Alaem tabel',
+                monitor: '',
+                controller: '',
+                group: '',
+                warming: '',
+                tips: '',
+                J_data: [],
+                bgcolortf: false,
+                bgcolortf2: false,
+                bgcolortf3: false,
+                bgcolortf4: false,
+                bgcolortf8: false,
+                error: {
+                    backgroundColor: '#cc0000'
+                },
+                waring: {
+                    backgroundColor: '#ffc000'
+                },
+                gray: {
+                    backgroundColor: '#f2f2f2'
+                },
+            }),
+            mounted() {
+                window.onresize = () => {
+                    return (() => {
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        } else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })
+                }
+
+                interval = setInterval(() => {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appAlarm',
+                        command: 'alarmState',
+                        args: {}
+                    }, '*');
+                }, 500);
+                this.updateState();
+            },
+            watch:
+            {
+                language(language) {
+                    i18n.locale = this.language;
+                },
+            },
+            methods: {
+                clear_text: function () {
+                    this.monitor = '';
+                    this.controller = '';
+                    this.group = '';
+                    this.warming = '';
+                    this.tips = '';
+                    this.J_data = [];
+                    this.bgcolortf = false;
+                    this.bgcolortf2 = false;
+                    this.bgcolortf3 = false;
+                    this.bgcolortf4 = false;
+                    this.bgcolortf8 = false;
+
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appAlarm',
+                        command: 'alarmReset',
+                        args: {}
+                    }, '*');
+                },
+                updateState: function () {
+                    if (this.monitor.slice(0, 1) == "E") {
+                        this.bgcolortf = true;
+                    }
+                    if (this.controller.slice(0, 1) == "E") {
+                        this.bgcolortf2 = true;
+                    }
+                    if (this.group.slice(0, 1) == "E") {
+                        this.bgcolortf3 = true;
+                    }
+                    if (this.J_data.length > 0) {
+                        this.bgcolortf4 = true;
+                    }
+                    if (this.warming.slice(0, 1) == "W") {
+                        this.bgcolortf8 = true;
+                    }
+                    this.tips.slice(0, 1);
+                }
+            },
+        })
+
+        window.addEventListener('message', (e) => {
+            const message = e.data;
+
+            switch (message.command) {
+                case 'alarmState':
+                    vue.group = message.args.group;
+                    // vue.controller = message.args.controller;
+                    // vue.J_data = message.args.joint;
+                    vue.updateState();
+                    break;
+                default:
+                    break;
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/point/point.css" rel="stylesheet">
+    <link href="./../css/page/menuTab.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+            <!-- <div class="leftcol" id="leftcontrol">
+                <div class="title">
+                    <img style="float:left;" src="./../img/pc_e.png" height="80" width="70">
+                    <div class="    _text">
+                        <label class="settext">PC</label><br>
+                        <label class="settext">(192.168.1.1)</label>
+                    </div>
+                </div>
+                <div class="common">
+                    <div class="title_text">
+                        <label class="common_text">-Global Point</label>
+                        <div style="margin-top: 5px; float: right;"><img src="./../img/add_e.png" width="30"></div>
+                    </div>
+                </div>
+                <div class="top" width="50" @click="top"><img src="./../img/top.png" width="50"></div>
+                <div class="project">
+                    <div class="project_extend">
+                        <img id="va" @click="clickJ5" class="project_addicon" width="35" height="35"
+                            src="./../img/collapse_e.png" />
+                        <input id="va_chbox" class="project_checkbar" type="checkbox" v-model="leftva"
+                            @change="leftcheckva">
+                        <label class="project_extend_label">VA</label>
+                    </div>
+                    <div id="projectVA">
+                        <div class="only_checkbar" :style="[vapr[0] ? bgblue : bgwhite]">
+                            <input id="project1_chbox" class="project_checkbar" style="margin-left:58px;"
+                                type="checkbox" v-model="vapr[0]">
+                            <label class="only_checkbar_label">Project1</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                        <div class="only_checkbar" :style="[vapr[1] ? bgblue : bgwhite]">
+                            <input id="pr3" class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="vapr[1]">
+                            <label class="only_checkbar_label">project2</label>
+                        </div>
+                    </div>
+                    <div class="project_extend" style="margin-top:10px; background-color:#BFBFBF  ">
+                        <img id="va2" @click="clickJ6" class="project_addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <input id="scara_chbox" class="project_checkbar" type="checkbox" v-model="SCARAch"
+                            @change="SCch">
+                        <label class="project_extend_label">SCARA</label>
+                    </div>
+                    <div id="SCARA">
+                        <div class="only_checkbar" :style="[SCARAch ? bgblue : bgwhite]">
+                            <input class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="smallSCch">
+                            <label class="only_checkbar_label">SCARA</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                    </div>
+
+                    <div class="project_extend" style="margin-top:10px; background-color:#BFBFBF  ">
+                        <img id="va3" @click="clickJ7" class="project_addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <input id="scara3_chbox" class="project_checkbar" type="checkbox" v-model="SCARAch3"
+                            @change="SCch3">
+                        <label class="project_extend_label">SCARA3</label>
+                    </div>
+                    <div id="SCARA3">
+                        <div class="only_checkbar" :style="[SCARAch3 ? bgblue : bgwhite]">
+                            <input class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="smallSCch3">
+                            <label class="only_checkbar_label">SCARA3</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                    </div>
+                    <div class="project_extend" style="margin-top:10px; background-color:#BFBFBF  ">
+                        <img id="va4" @click="clickJ8" class="project_addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <input id="scara5_chbox" class="project_checkbar" type="checkbox" v-model="SCARAch5"
+                            @change="SCch5">
+                        <label class="project_extend_label">SCARA5</label>
+                    </div>
+                    <div id="SCARA5">
+                        <div class="only_checkbar" :style="[SCARAch5 ? bgblue : bgwhite]">
+                            <input class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="smallSCch5">
+                            <label class="only_checkbar_label">SCARA5</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="bot" width="50" @click="bot"><img src="./../img/bot.png" width="50"></div>
+            </div> -->
+            <!-- <img class="bluebar" id="bar" width="30" height="550" src="./../img/bluebar.png" @click="bluebarright">
+            <img class="bluebar" id="bar2" width="30" height="550" src="./../img/bluebar.png" @click="bluebarleft"> -->
+            <!-- 頁籤 -->
+            <div class="switchproject">
+                <div id="tabsF" class="tabsFA" style="padding-left: 0px;">
+                    <ul>
+                        <li><a href="javascript://" @click="loadTab(this,1);"><span style="border-top: 2px solid;
+                        border-right: 2px solid;background-color: rgb(141, 177, 227);
+                        border-left: 3px solid; border-radius: 6px 6px 0 0;" class="toptag" id="L1">Local
+                                    Point</span></a></li>
+                        <li><a href="javascript://" @click="loadTab(this,2);"><span style="border-top: 2px solid;
+                        border-right: 2px solid;
+                        border-left: 2px solid; border-radius: 6px 6px 0 0;margin-left: -2px;" class="toptag"
+                                    id="L2">Global Point</span></a></li>
+                    </ul>
+                </div>
+                <div id="S1" style="display:inline;">
+                    <div class="right_project" id="right_project">
+                        <div class="project_title">
+                            <div style="height: 23px;margin-left: 14px">
+                                <div class="a7">
+                                    <button class="a6_1">
+                                        <div class="a8" style="float:left">MovP</div>
+                                    </button>
+                                </div>
+                                <div class="a7">
+                                    <button class="a6_1">
+
+                                        <div class="a8" style="float:left">Goto</div>
+                                    </button>
+                                </div>
+                                <div class="a7">
+                                    <button class="a6_1">
+
+                                        <div class="a8" style="float:left">{{ $t('message.Teach') }}</div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="project_id">
+                                <div class="project_item_itmes" style="margin-left:8px;width: 68px;margin-top: 5px">
+                                    <label style="font-size:18px">id</label>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                            </div>
+                            <div class="project_item" id="project_item">
+                                <div class="project_item_itmes">
+                                    <label style="font-size:18px">Name</label>
+                                    <img @click="sort" style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">X</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">Y</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">Z</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">RX</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">RY</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">RZ</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">E</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">L</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">F</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">User</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">id</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">Tool</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">id</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">Coord</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">J4_</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">JRC</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">J6_</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">JRC</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">JRC_</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">Active</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                            </div>
+                            <div class="project_edit"></div>
+                        </div>
+                        <div class="project_content">
+                            <div class="project_id_cont" id="project_id_cont">
+                                <div style="height:33px; width:80px; line-height: 33px; text-align: center"
+                                    :id="one.Local_id" v-for='(one,id_index) in Local_lists_id' v-bind:key='id_index'>
+                                    <label style="font-size:20px">{{one.Local_name}}</label>
+                                </div>
+                            </div>
+                            <div class="project_item_cont" id="project_item_cont">
+                                <div class="project_item_text" v-for='(one,index) in Local_lists_content'
+                                    :id="one.Local_id" v-bind:key='index' @click="Local_changed(index)">
+                                    <input class="project_text" style="text-align: right" v-model="two.Local_content"
+                                        oninput="value=value.replace(/[\W]/g,'')" :id="two.Local_id"
+                                        v-for='(two,index2) in one.Local_test' v-bind:key='index2' type="text">
+                                </div>
+                            </div>
+                            <div class="project_edit_cont" id="project_edit_cont">
+                                <div style="height: 33px; width: 100%" v-for='(one,edit_index) in Local_lists_edit'
+                                    v-bind:key='edit_index' :id="one.Local_id">
+                                    <div style="width: 50%;height:100%;float: left;">
+                                        <img class="edit_img" style="margin-left: 8px" width="30" height="30"
+                                            src="./../img/edit_e.png">
+                                    </div>
+                                    <div style="width: 50%;height:100%;float: left;">
+                                        <img class="edit_img" width="30" height="30" src="./../img/delete_e.png"
+                                            @click="Local_deleted(edit_index)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 100%;height: 47px; background-color: white; border-bottom: black solid 2px;">
+                            <div style="height: 100%;width:80px;float: left;  border-right: black solid 3px; ">
+                                <button @click="Local_created">123</button>
+                            </div>
+                            <div class="create_item" id="create">
+                                <div style="height: 100%;width:80px;float: left;">
+                                    <input id="Local_name" value="name" v-model="Local_name" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_x" value="x" v-model="Local_x" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_y" value="y" v-model="Local_y" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_z" value="z" v-model="Local_z" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_rx" value="rx" v-model="Local_rx" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_ry" value="ry" v-model="Local_ry" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_rz" value="rz" v-model="Local_rz" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_e" value="e" v-model="Local_e" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_l" value="l" v-model="Local_l" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_f" value="f" v-model="Local_f" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_user_id" value="user_id" v-model="Local_user_id"
+                                        class="project_text_1" oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_tool_id" value="tool_id" v-model="Local_tool_id"
+                                        class="project_text_1" oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_coord" value="coord" v-model="Local_coord" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_j4_jrc" value="j4_jrc" v-model="Local_j4_jrc"
+                                        class="project_text_1" oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_j6_jrc" value="j6_jrc" v-model="Local_j6_jrc"
+                                        class="project_text_1" oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="Local_jrc_active" value="jrc_active" v-model="Local_jrc_active"
+                                        class="project_text_1" oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="S2" style="display:none;">
+                    <div class="right_project" id="right_project">
+                        <div class="project_title">
+                            <div style="height: 23px;margin-left: 14px">
+                                <div class="a7">
+                                    <button class="a6_1">
+                                        <div class="a8" style="float:left">MovP</div>
+                                    </button>
+                                </div>
+                                <div class="a7">
+                                    <button class="a6_1">
+
+                                        <div class="a8" style="float:left">Goto</div>
+                                    </button>
+                                </div>
+                                <div class="a7">
+                                    <button class="a6_1">
+
+                                        <div class="a8" style="float:left">{{ $t('message.Teach') }}</div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="project_id">
+                                <div class="project_item_itmes" style="margin-left:8px">
+                                    <label style="font-size:18px">id</label>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                            </div>
+                            <div class="project_item" id="GlobL_project_item">
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">Name</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">X</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">Y</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">Z</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">RX</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">RY</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">RZ</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">E</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">L</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">F</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">User</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">id</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">Tool</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">id</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline;"><label style="font-size:18px">Coord</label></div>
+                                    <img style="margin-top:12px" src="./../img/sort_e.png" width="16">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">J4_</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">JRC</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">J6_</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">JRC</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                                <div class="project_item_itmes">
+                                    <div style="display: inline-block">
+                                        <div style="height: 16px"><label style="font-size:18px">JRC_</label></div>
+                                        <div style="height: 16px"><label style="font-size:18px">Active</label></div>
+                                    </div>
+                                    <img style="margin-top:12px;" src="./../img/sort_e.png" width="18" height="18">
+                                </div>
+                            </div>
+                            <div class="project_edit"></div>
+                        </div>
+                        <div class="project_content">
+                            <div class="project_id_cont" id="GlobL_project_id_cont">
+                                <div style="height:33px; width:80px; line-height: 33px; text-align: center" :id="one.id"
+                                    v-for='(one,id_index) in lists_id' v-bind:key='id_index'>
+                                    <label style="font-size:20px">{{one.name}}</label>
+                                </div>
+                            </div>
+                            <div class="project_item_cont" id="GlobL_project_item_cont">
+                                <div class="project_item_text" v-for='(one,index) in lists_content' :id="one.id"
+                                    v-bind:key='index' @click="changed(index)">
+                                    <input class="project_text" style="text-align: right" v-model="two.content"
+                                        oninput="value=value.replace(/[\W]/g,'')" :id="two.Local_id"
+                                        v-for='(two,index2) in one.test' v-bind:key='index2' type="text">
+                                </div>
+                            </div>
+                            <div class="project_edit_cont" id="GlobL_project_edit_cont">
+                                <div style="height: 33px; width: 100%" v-for='(one,edit_index) in lists_edit'
+                                    v-bind:key='edit_index' :id="one.id">
+                                    <div style="width: 50%;height:100%;float: left;">
+                                        <img class="edit_img" style="margin-left: 8px" width="30" height="30"
+                                            src="./../img/edit_e.png">
+                                    </div>
+                                    <div style="width: 50%;height:100%;float: left;">
+                                        <img class="edit_img" width="30" height="30" src="./../img/delete_e.png"
+                                            @click="deleted(edit_index)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="width: 100%;height: 47px; background-color: white; border-bottom: black solid 2px;">
+                            <div style="height: 100%;width:80px;float: left;  border-right: black solid 3px; ">
+                                <button @click="created">123</button>
+                            </div>
+                            <div class="create_item" id="GlobL_create">
+                                <div style="height: 100%;width:80px;float: left;">
+                                    <input id="name" value="name" v-model="name" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="x" value="x" v-model="x" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="y" value="y" v-model="y" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="z" value="z" v-model="z" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="rx" value="rx" v-model="rx" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="ry" value="ry" v-model="ry" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="rz" value="rz" v-model="rz" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="e" value="e" v-model="e" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="l" value="l" v-model="l" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="f" value="f" v-model="f" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="user_id" value="user_id" v-model="user_id" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="tool_id" value="tool_id" v-model="tool_id" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="coord" value="coord" v-model="coord" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="j4_jrc" value="j4_jrc" v-model="j4_jrc" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="j6_jrc" value="j6_jrc" v-model="j6_jrc" class="project_text_1"
+                                        oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                    <input id="jrc_active" value="jrc_active" v-model="jrc_active"
+                                        class="project_text_1" oninput="value=value.replace(/[\W]/g,'')" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <v-dialog v-model="delete_alert" width="450">
+                <v-card style=" padding-top: 25px;">
+                    <div
+                        style="width:400px; margin-left: 25px;text-align: center;background-color: cornflowerblue;font-size: 22px;">
+                        <label class="project_label_title">Delete</label>
+                    </div>
+                    <v-card-text>
+                        <div style="margin-top:20px; ">
+                            <div style=" margin-bottom:20px;"><img class="delete_icon" src="./../img/trashcan_e.png"
+                                    width="50"><label style="color:#404343; margin-left:10px; font-size: 20px ">Do you
+                                    want to delete this process?</label>
+                            </div>
+                        </div>
+                    </v-card-text>
+                    <v-card-actions>
+                        <button style="margin-left:240px;  " class="btn_finsh" @click="deleteed">Yes</button>
+                        <button class="btn_finsh" @click="delete_alert = false">No</button>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+
+            <v-dialog v-model="Local_delete_alert" width="450">
+                <v-card style=" padding-top: 25px;">
+                    <div
+                        style="width:400px; margin-left: 25px;text-align: center;background-color: cornflowerblue;font-size: 22px;">
+                        <label class="project_label_title">Delete</label>
+                    </div>
+                    <v-card-text>
+                        <div style="margin-top:20px; ">
+                            <div style=" margin-bottom:20px;"><img class="delete_icon" src="./../img/trashcan_e.png"
+                                    width="50"><label style="color:#404343; margin-left:10px; font-size: 20px ">Do you
+                                    want to delete this process?</label>
+                            </div>
+                        </div>
+                    </v-card-text>
+                    <v-card-actions>
+                        <button style="margin-left:240px;  " class="btn_finsh" @click="Local_deleteed">Yes</button>
+                        <button class="btn_finsh" @click="Local_delete_alert = false">No</button>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+    <script>
+        var text1;
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+        window.addEventListener("message", function (event) {
+            text1 = event.data;
+            console.log(text1, "postmessage");
+            if (!isNaN(parseInt(event.data))) {
+                test1.model = text1
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    text1.language = event.data;
+                } else {
+                    text1.language = event.data.lang;
+                }
+            }
+        }, false);
+        test1 = new Vue({
+            el: '#app',
+            i18n,
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: '',
+                model: "",
+                leftva: false,
+                vapr: [false, false],// va project
+                SCARAch: false,
+                smallSCch: false,//小的
+                SCARAch3: false,
+                smallSCch3: false,//小的
+                SCARAch5: false,
+                smallSCch5: false,//小的
+                delete_alert: false,
+                Local_delete_alert: false,
+                Local_delete_edit: "",
+                delete_edit: "",
+                Local_name: "",
+                Local_x: "",
+                Local_y: "",
+                Local_z: "",
+                Local_rx: "",
+                Local_ry: "",
+                Local_rz: "",
+                Local_e: "",
+                Local_l: "",
+                Local_f: "",
+                Local_user_id: "",
+                Local_tool_id: "",
+                Local_coord: "",
+                Local_j4_jrc: "",
+                Local_j6_jrc: "",
+                Local_jrc_active: "",
+                bgwhite: {
+                    backgroundColor: 'white',
+                },
+                bgblue: {
+                    backgroundColor: '#C6D8F0',
+                },
+                Local_lists_id: [
+                    { Local_id: "Local_id_0", Local_name: 1000 },
+                ],
+                Local_lists_edit: [
+                    { Local_id: "Local_edit_0" },
+                ],
+                Local_lists_content: [
+                    {
+                        Local_id: "Local_conte_0",
+                        Local_test: [
+                            { Local_id: 0, Local_name: "name", Local_content: '3' },
+                            { Local_id: 1, Local_name: "x", Local_content: '1' },
+                            { Local_id: 2, Local_name: "y", Local_content: '2' },
+                            { Local_id: 3, Local_name: "z", Local_content: '3' },
+                            { Local_id: 4, Local_name: "rx", Local_content: '1' },
+                            { Local_id: 5, Local_name: "ry", Local_content: '2' },
+                            { Local_id: 6, Local_name: "rz", Local_content: '3' },
+                            { Local_id: 7, Local_name: "e", Local_content: '3' },
+                            { Local_id: 8, Local_name: "l", Local_content: '1' },
+                            { Local_id: 9, Local_name: "f", Local_content: '2' },
+                            { Local_id: 10, Local_name: "user_id", Local_content: '1' },
+                            { Local_id: 11, Local_name: "tool_id", Local_content: '2' },
+                            { Local_id: 12, Local_name: "coord", Local_content: '3' },
+                            { Local_id: 13, Local_name: "j4_jrc", Local_content: '1' },
+                            { Local_id: 14, Local_name: "j6_jrc", Local_content: '2' },
+                            { Local_id: 15, Local_name: "jrc_active", Local_content: '2' },
+                        ]
+                    },
+                ],
+                name: "",
+                x: "",
+                y: "",
+                z: "",
+                rx: "",
+                ry: "",
+                rz: "",
+                e: "",
+                l: "",
+                f: "",
+                user_id: "",
+                tool_id: "",
+                coord: "",
+                j4_jrc: "",
+                j6_jrc: "",
+                jrc_active: "",
+                bgwhite: {
+                    backgroundColor: 'white',
+                },
+                bgblue: {
+                    backgroundColor: '#C6D8F0',
+                },
+                lists_id: [
+                    { id: "id_0", name: 1000 },
+                    { id: "id_1", name: 1001 }
+                ],
+                lists_edit: [
+                    { id: "edit_0" },
+                    { id: "edit_1" }
+                ],
+                lists_content: [
+                    {
+                        id: "conte_0",
+                        test: [
+                            { id: 0, name: "name", content: '3' },
+                            { id: 1, name: "x", content: '1' },
+                            { id: 2, name: "y", content: '2' },
+                            { id: 3, name: "z", content: '3' },
+                            { id: 4, name: "rx", content: '1' },
+                            { id: 5, name: "ry", content: '2' },
+                            { id: 6, name: "rz", content: '3' },
+                            { id: 7, name: "e", content: '3' },
+                            { id: 8, name: "l", content: '1' },
+                            { id: 9, name: "f", content: '2' },
+                            { id: 10, name: "user_id", content: '1' },
+                            { id: 11, name: "tool_id", content: '2' },
+                            { id: 12, name: "coord", content: '3' },
+                            { id: 13, name: "j4_jrc", content: '1' },
+                            { id: 14, name: "j6_jrc", content: '2' },
+                            { id: 15, name: "jrc_active", content: '2' },
+                        ]
+                    },
+                    {
+                        id: "conte_1",
+                        test: [
+                            { id: 0, name: "name", content: '3' },
+                            { id: 1, name: "x", content: '1' },
+                            { id: 2, name: "y", content: '2' },
+                            { id: 3, name: "z", content: '3' },
+                            { id: 4, name: "rx", content: '1' },
+                            { id: 5, name: "ry", content: '2' },
+                            { id: 6, name: "rz", content: '3' },
+                            { id: 7, name: "e", content: '3' },
+                            { id: 8, name: "l", content: '1' },
+                            { id: 9, name: "f", content: '2' },
+                            { id: 10, name: "user_id", content: '1' },
+                            { id: 11, name: "tool_id", content: '2' },
+                            { id: 12, name: "coord", content: '3' },
+                            { id: 13, name: "j4_jrc", content: '1' },
+                            { id: 14, name: "j6_jrc", content: '2' },
+                            { id: 15, name: "jrc_active", content: '2' },
+                        ]
+                    },
+                ],
+                tempor: 1,
+                Temporary: "",
+                Temporary2: ""
+            }),
+            mounted() {
+                // //等於js onload
+                // for (let i= 0; i <   this.lists_content.length; i++) {
+                //      document.getElementById('conte').id += i
+
+                //   }
+                console.log(this.lists_content);
+                window.onresize = () => { //尺寸變動時
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        }
+                        else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })()
+                }
+            },
+            watch:
+            {
+                language(language) {
+                    console.log(this.language, "model");
+
+                    i18n.locale = this.language;
+                },
+                model(model) {
+                    if (this.model == 1) {
+                        alert(123);
+                        console.log(this.model, "123456789");
+                    }
+                }
+            },
+            methods: {
+                loadTab: function (obj, n) {
+                    var layer, bgcolor;
+                    layer = "S" + n;
+                    bgcolor = "L" + n;
+                    //將 Tab 標籤樣式設成 Blur 型態
+                    var tabsF = document.getElementById('tabsF').getElementsByTagName('li');//拿到底下的li
+                    for (var i = 0; i < tabsF.length; i++) {
+                        if (document.getElementById("L" + (i + 1)).id == bgcolor) {
+                            document.getElementById(bgcolor).style.backgroundColor = "#8DB1E3";
+                            document.getElementById(layer).style.display = 'block'; //出現按到的
+                        }
+                        else {
+                            // tabsF[i].setAttribute('id',null);//每個ID變為空值
+                            // tabsF[i].setAttribute('id','Link'+(i+1) );//更改每個的切換的ID值
+                            document.getElementById("S" + (i + 1)).style.display = 'none';
+                            document.getElementById("L" + (i + 1)).style.backgroundColor = "#D8D8D8";
+                        }
+                    }
+                    //變更分頁標題樣式
+                    // obj.parentNode.setAttribute('id','current');
+                },
+
+                Local_changed: function (value) {  //local function
+                    for (let i = 0; i < this.Local_lists_content.length; i++) {
+                        console.log(this.Local_lists_content.length);
+
+                        if (i == value) {
+                            document.getElementById("Local_conte_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("Local_edit_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("Local_id_" + value).style.backgroundColor = "#5caceb"
+                        }
+                        else {
+                            console.log(123, this.Local_lists_content.length);
+
+                            document.getElementById("Local_conte_" + i).style.backgroundColor = "white"
+                            document.getElementById("Local_edit_" + i).style.backgroundColor = "white"
+                            document.getElementById("Local_id_" + i).style.backgroundColor = "white"
+                        }
+                    }
+                },
+                Local_created: function () { //創建
+
+                    this.Local_lists_content.push({
+                        Local_id: "Local_conte_" + this.Local_lists_content.length,
+                        Local_test:
+                            [
+                                { Local_id: 0, Local_name: "name", Local_content: this.Local_name },
+                                { Local_id: 1, Local_name: "x", Local_content: this.Local_x },
+                                { Local_id: 2, Local_name: "y", Local_content: this.Local_y },
+                                { Local_id: 3, Local_name: "z", Local_content: this.Local_z },
+                                { Local_id: 4, Local_name: "rx", Local_content: this.Local_rx },
+                                { Local_id: 5, Local_name: "ry", Local_content: this.Local_ry },
+                                { Local_id: 6, Local_name: "rz", Local_content: this.Local_rz },
+                                { Local_id: 7, Local_name: "e", Local_content: this.Local_e },
+                                { Local_id: 8, Local_name: "l", Local_content: this.Local_l },
+                                { Local_id: 9, Local_name: "f", Local_content: this.Local_f },
+                                { Local_id: 10, Local_name: "user_id", Local_content: this.Local_user_id },
+                                { Local_id: 11, Local_name: "tool_id", Local_content: this.Local_tool_id },
+                                { Local_id: 12, Local_name: "coord", Local_content: this.Local_coord },
+                                { Local_id: 13, Local_name: "j4_jrc", Local_content: this.Local_j4_jrc },
+                                { Local_id: 14, Local_name: "j6_jrc", Local_content: this.Local_j6_jrc },
+                                { Local_id: 15, Local_name: "jrc_active", Local_content: this.Local_jrc_active },
+                            ]
+                    })
+                    console.log(this.Local_lists_content, "test");
+                    this.Temporary = this.Local_lists_content;
+                    this.Temporary2 = this.Local_lists_content;
+                    console.log(this.Local_lists_content);
+
+                    this.Local_lists_id.push({
+                        Local_id: "Local_id_" + this.Local_lists_id.length,
+                        Local_name: parseInt(1000) + parseInt(this.Local_lists_id.length)
+                    })
+                    console.log(this.Local_lists_id)
+                    this.Local_lists_edit.push({
+                        Local_id: "Local_edit_" + this.Local_lists_edit.length,
+                    })
+                    console.log(this.Local_lists_edit);
+                },
+                Local_deleted: function (edit_index) {
+                    this.Local_delete_edit = edit_index;
+                    this.Local_delete_alert = true;
+                },
+                Local_deleteed: function () {
+                    this.Local_lists_edit.splice(this.Local_delete_edit, 1);
+                    this.Local_lists_edit.map(function (item, index) {
+                        if (item.Local_id != "Local_edit_" + index) {
+                            item.Local_id = "Local_edit_" + index;
+                        }
+                    })
+                    this.Local_lists_id.splice(this.Local_delete_edit, 1);
+                    this.Local_lists_id.map(function (item, index) {
+                        if (item.Local_id != "Local_id_" + index) {
+                            item.Local_id = "Local_id_" + index;
+                        }
+                        if (item.Local_name != parseInt(1000) + parseInt(index)) {
+                            item.Local_name = parseInt(1000) + parseInt(index);
+                        }
+                    })
+                    this.Local_lists_content.splice(this.Local_delete_edit, 1);
+                    this.Local_lists_content.map(function (item, index) {
+                        if (item.Local_id != "Local_conte_" + index) {
+                            item.Local_id = "Local_conte_" + index;
+                        }
+                    })
+                    this.Local_delete_alert = false;
+                },
+                sort: function () {
+                    if (this.tempor == 1) {
+                        this.Temporary.sort(function (a, b) {
+                            return a.Local_test[0].Local_content - b.Local_test[0].Local_content;
+                        })
+                        this.Local_lists_content = this.Temporary
+                        this.Local_lists_content.map(function (item, index) {
+                            if (item.Local_id != "Local_conte_" + index) {
+                                item.Local_id = "Local_conte_" + index;
+                            }
+                        })
+                        this.tempor = 0;
+                        return
+                    }
+                    if (this.tempor == 0) {
+                        console.log(this.Temporary2, "2");
+                        this.Local_lists_content = "";
+                        this.Local_lists_content = this.Temporary2;
+                        this.Local_lists_content.map(function (item, index) {
+                            if (item.Local_id != "Local_conte_" + index) {
+                                item.Local_id = "Local_conte_" + index;
+                            }
+                        })
+                    }
+                    this.tempor = 1
+                },
+                changed: function (value) {  //global function
+                    for (let i = 0; i < this.lists_content.length; i++) {
+                        console.log(this.lists_content.length);
+                        if (i == value) {
+                            document.getElementById("conte_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("edit_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("id_" + value).style.backgroundColor = "#5caceb"
+                        }
+                        else {
+                            console.log(123, this.lists_content.length);
+                            document.getElementById("conte_" + i).style.backgroundColor = "white"
+                            document.getElementById("edit_" + i).style.backgroundColor = "white"
+                            document.getElementById("id_" + i).style.backgroundColor = "white"
+                        }
+                    }
+                },
+                created: function () { //創建
+                    this.lists_content.push({
+                        id: "conte_" + this.lists_content.length,
+                        test:
+                            [
+                                { id: 0, name: "name", content: this.name },
+                                { id: 1, name: "x", content: this.x },
+                                { id: 2, name: "y", content: this.y },
+                                { id: 3, name: "z", content: this.z },
+                                { id: 4, name: "rx", content: this.rx },
+                                { id: 5, name: "ry", content: this.ry },
+                                { id: 6, name: "rz", content: this.rz },
+                                { id: 7, name: "e", content: this.e },
+                                { id: 8, name: "l", content: this.l },
+                                { id: 9, name: "f", content: this.f },
+                                { id: 10, name: "user_id", content: this.user_id },
+                                { id: 11, name: "tool_id", content: this.tool_id },
+                                { id: 12, name: "coord", content: this.coord },
+                                { id: 13, name: "j4_jrc", content: this.j4_jrc },
+                                { id: 14, name: "j6_jrc", content: this.J6_jrc },
+                                { id: 15, name: "jrc_active", content: this.jrc_active },
+                            ]
+                    })
+                    console.log(this.lists_content, "testttt");
+
+                    this.lists_id.push({
+                        id: "id_" + this.lists_id.length,
+                        name: parseInt(1000) + parseInt(this.lists_id.length)
+                    })
+                    console.log(this.lists_id)
+                    this.lists_edit.push({
+                        id: "edit_" + this.lists_edit.length,
+                    })
+                    console.log(this.lists_edit);
+                },
+                deleted: function (edit_index) {
+                    this.delete_edit = edit_index;
+                    this.delete_alert = true;
+                },
+                deleteed: function () {
+                    this.lists_edit.splice(this.delete_edit, 1);
+                    this.lists_edit.map(function (item, index) {
+                        if (item.id != "edit_" + index) {
+                            item.id = "edit_" + index;
+                        }
+                    })
+                    this.lists_id.splice(this.delete_edit, 1);
+                    this.lists_id.map(function (item, index) {
+                        if (item.id != "id_" + index) {
+                            item.id = "id_" + index;
+                        }
+                        if (item.name != parseInt(1000) + parseInt(index)) {
+                            item.name = parseInt(1000) + parseInt(index);
+                        }
+
+                    })
+                    this.lists_content.splice(this.delete_edit, 1);
+                    this.lists_content.map(function (item, index) {
+                        if (item.id != "conte_" + index) {
+                            item.id = "conte_" + index;
+                        }
+                    })
+                    this.delete_alert = false;
+                },
+                top: function () {
+                    console.log("top");
+                },
+                right_top: function () {
+                    console.log("right_top");
+                },
+                bot: function () {
+                    console.log("bot");
+                },
+
+                leftcheckva: function () {
+                    if (this.leftva == false) {
+
+                        this.vapr[0] = false;
+                        this.vapr[1] = false;
+
+                    }
+                    else {
+
+                        this.vapr[0] = true;
+                        this.vapr[1] = true;
+                    }
+
+                },
+                SCch: function () {
+                    if (this.SCARAch == true) {
+                        this.smallSCch = true;
+                    } else {
+                        this.smallSCch = false;
+                    }
+                },
+                SCch3: function () {
+                    if (this.SCARAch3 == true) {
+                        this.smallSCch3 = true;
+                    } else {
+                        this.smallSCch3 = false;
+                    }
+                },
+                SCch5: function () {
+                    if (this.SCARAch5 == true) {
+                        this.smallSCch5 = true;
+                    } else {
+                        this.smallSCch5 = false;
+                    }
+                },
+
+                clickJ5: function () {
+                    let x = document.getElementById('va');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('projectVA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('projectVA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ6: function () {
+                    let x = document.getElementById('va2');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ7: function () {
+                    let x = document.getElementById('va3');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA3').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA3').style.display = 'none';
+
+                    }
+
+                },
+                clickJ8: function () {
+                    let x = document.getElementById('va4');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA5').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA5').style.display = 'none';
+
+                    }
+
+                },
+
+                bluebarright: function () {
+                    document.getElementById('bar').style.display = 'none';
+                    document.getElementById('bar2').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'none';
+                    document.getElementById('bar2').style.marginLeft = '50px';
+                    document.getElementById('right_project').style.left = "25%";
+
+
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+
+
+                    }
+                },
+                bluebarleft: function () {
+                    document.getElementById('bar2').style.display = 'none';
+                    document.getElementById('bar').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'inline';
+                    document.getElementById('right_project').style.left = '43%'
+
+
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+
+
+                    }
+                }
+
+
+            },
+
+        })
+        var box1 = document.getElementById('project_item_cont')
+        var box2 = document.getElementById('project_item')
+        var box3 = document.getElementById('project_id_cont')
+        var box4 = document.getElementById('create')
+        var box5 = document.getElementById('project_edit_cont')
+
+        var box6 = document.getElementById('GlobL_project_item_cont')
+        var box7 = document.getElementById('GlobL_project_item')
+        var box8 = document.getElementById('GlobL_project_id_cont')
+        var box9 = document.getElementById('GlobL_create')
+        var box10 = document.getElementById('GlobL_project_edit_cont')
+
+        onwheel = function (event) { //Local 左右
+
+            var step = 50;
+            if (event.deltaY < 0) {
+
+                document.getElementById('project_item_cont').scrollTop -= step;
+                document.getElementById('project_id_cont').scrollTop -= step;
+                document.getElementById('project_edit_cont').scrollTop -= step;
+
+            } else {
+
+                box1.scrollTop += step;
+                box3.scrollTop += step;
+                box5.scrollTop += step;
+
+            }
+        }
+
+        box1.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box2.scrollLeft = box1.scrollLeft
+            box4.scrollLeft = box1.scrollLeft
+        })
+
+        box2.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box4.scrollLeft = box2.scrollLeft
+            box1.scrollLeft = box2.scrollLeft
+        })
+        box4.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box2.scrollLeft = box4.scrollLeft
+            box1.scrollLeft = box4.scrollLeft
+        })
+
+        box1.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box3.scrollTop = box1.scrollTop
+            box5.scrollTop = box1.scrollTop
+        })
+
+        box3.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box1.scrollTop = box3.scrollTop
+            box5.scrollTop = box3.scrollTop
+        })
+
+        box5.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box1.scrollTop = box5.scrollTop
+            box3.scrollTop = box5.scrollTop
+        })
+
+
+        //Global 左右
+        onwheel = function (event) {
+
+            var step = 50;
+            if (event.deltaY < 0) {
+
+                document.getElementById('project_item_cont').scrollTop -= step;
+                document.getElementById('project_id_cont').scrollTop -= step;
+                document.getElementById('project_edit_cont').scrollTop -= step;
+
+            } else {
+
+                box6.scrollTop += step;
+                box8.scrollTop += step;
+                box10.scrollTop += step;
+
+            }
+        }
+
+        box6.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box7.scrollLeft = box6.scrollLeft
+            box9.scrollLeft = box6.scrollLeft
+        })
+
+        box7.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box9.scrollLeft = box7.scrollLeft
+            box6.scrollLeft = box7.scrollLeft
+        })
+        box9.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box7.scrollLeft = box9.scrollLeft
+            box6.scrollLeft = box9.scrollLeft
+        })
+
+        box6.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box8.scrollTop = box6.scrollTop
+            box10.scrollTop = box6.scrollTop
+        })
+
+        box8.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box6.scrollTop = box8.scrollTop
+            box10.scrollTop = box8.scrollTop
+        })
+
+        box10.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box6.scrollTop = box10.scrollTop
+            box8.scrollTop = box10.scrollTop
+        })
+
+    </script>
+</body>
+<style>
+    .a7 {
+        float: right;
+        width: auto;
+        height: 40px;
+        padding: 1%;
+        margin-top: 5px
+    }
+
+    .a6_1 {
+
+        background-color: #548Bd4;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        line-height: 30px
+    }
+</style>
+
+</html>

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/parameter/Paramter.css" rel="stylesheet">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<body>
+    <div id="app">
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+
+
+
+            <div class="center">
+                <div id="icon_user">
+                    <div id="filter">
+                        <img id="btnFT" @click="clickFT" class="addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <!-- <button class="center_btn" @click="clickFT" id="btnFT">+</button> -->
+                        <input class="center_checkbar" type="checkbox" id="checkbox_FT" @change="allclick"
+                            v-model="vcheckbox_FT">
+                        <input id="filter_input" type="text" @input="filtertext" placeholder="Add a filter"
+                            v-model="addfilter">
+                        <input class="center_divitem_input" @input="filternum" type="number" v-model="filter_number"
+                            placeholder="0000">
+                        <img style="float: right;" src="./../img/refresh_e.png" width="46px" height="35px"
+                            @click="refresh">
+                    </div>
+
+                    <div id="top" width="50" @click="top"><img src="./../img/top.png" width="50"></div>
+                    <div style="overflow-y: scroll;width: auto;height: 308px;">
+                    <div class="input_boder">
+                        <img id="btnCT" @click="clickCT" class="addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <input class="center_checkbar" type="checkbox" value="food pasdsd" id="checkbox_CT"
+                            v-model="vcheckbox[0]" @change="ch_CT">
+                        <label class="center_text"> Controller </label>
+                    </div>
+                
+                    <div class="center_dispalydiv" id="Controller">
+
+                        <div class="center_divitem" v-show="show[0]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="C1_1 DSFF" v-model="C[0]">
+                            <label class="center_divitem_label"> P1-1:Controller IP </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[0][0]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P1-1:Controller IP')">...</button>
+
+                        </div>
+                        <div class="center_divitem" v-show="show[1]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[1]">
+                            <label class="center_divitem_label"> P1-2:Controller Port </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[0][1]" placeholder="1000">
+                            <button class="center_divitem_btn" style="margin-right:-50px; "
+                                @click="openloading('P1-2:Controller Port')">...</button>
+
+                        </div>
+
+                        <div class="center_divitem" v-show="show[2]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[2]">
+                            <label class="center_divitem_label"> P1-3:In Position (puu) </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[0][2]" placeholder="1000">
+                            <button class="center_divitem_btn" style="margin-right:-34px; "
+                                @click="openloading('P1-3:In Position (puu)')">...</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input_boder">
+                        <img id="btnJ1" @click="clickJ1" class="addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <!-- <button class="center_btn" @click="clickJ1" id="btnJ1">+</button> -->
+                        <input class="center_checkbar" type="checkbox" value="food pasdsd" id="checkbox_J1"
+                            v-model="vcheckbox[1]" @change="ch_J1">
+                        <label class="center_text"> J1 </label>
+                    </div>
+
+                    <div class="center_dispalydiv" id="dispalydiv_J1">
+
+                        <div class="center_divitem" v-show="show[3]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[3]">
+                            <label class="center_divitem_label"> P2-1:Controller IP </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[1][0]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P2-1:Controller IP')">...</button>
+
+                        </div>
+                        <div class="center_divitem" v-show="show[4]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[4]">
+                            <label class="center_divitem_label"> P2-2:Controller Port </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[1][1]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P2-2:Controller Port')"
+                                style="margin-right:-50px; ">...</button>
+
+                        </div>
+
+                        <div class="center_divitem" v-show="show[5]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[5]">
+                            <label class="center_divitem_label"> P2-3:In Position (puu) </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[1][2]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P2-3:In Position (puu)')"
+                                style="margin-right:-34px; ">...</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input_boder">
+                        <img id="btnJ2" @click="clickJ2" class="addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <!-- <button class="center_btn" @click="clickJ2" id="btnJ2">+</button> -->
+                        <input class="center_checkbar" type="checkbox" value="food pasdsd" id="checkbox_J2"
+                            v-model="vcheckbox[2]" @change="ch_J2">
+                        <label class="center_text"> J2 </label>
+                    </div>
+
+                    <div class="center_dispalydiv" id="dispalydiv_J2">
+
+                        <div class="center_divitem" v-show="show[6]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[6]">
+                            <label class="center_divitem_label"> P3-1:Controller IP </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[2][0]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P3-1:Controller IP')">...</button>
+
+                        </div>
+                        <div class="center_divitem" v-show="show[7]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[7]">
+                            <label class="center_divitem_label"> P3-2:Controller Port </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[2][1]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P3-2:Controller Port')"
+                                style="margin-right:-50px; ">...</button>
+
+                        </div>
+
+                        <div class="center_divitem" v-show="show[8]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[8]">
+                            <label class="center_divitem_label"> P3-3:In Position (puu) </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[2][2]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P3-3:In Position (puu)')"
+                                style="margin-right:-34px; ">...</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input_boder">
+                        <img id="btnJ3" @click="clickJ3" class="addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+
+                        <!-- <button class="center_btn" @click="clickJ3" id="btnJ3">+</button> -->
+                        <input class="center_checkbar" type="checkbox" value="food pasdsd" id="checkbox_J3"
+                            v-model="vcheckbox[3]" @change="ch_J3">
+                        <label class="center_text"> J3 </label>
+                    </div>
+
+                    <div class="center_dispalydiv" id="dispalydiv_J3">
+
+                        <div class="center_divitem" v-show="show[9]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[9]">
+                            <label class="center_divitem_label"> P4-1:Controller IP </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[3][0]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P4-1:Controller IP')">...</button>
+
+                        </div>
+                        <div class="center_divitem" v-show="show[10]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[10]">
+                            <label class="center_divitem_label"> P4-2:Controller Port </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[3][1]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P4-2:Controller Port')"
+                                style="margin-right:-50px; ">...</button>
+
+                        </div>
+
+                        <div class="center_divitem" v-show="show[11]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[11]">
+                            <label class="center_divitem_label"> P4-3:In Position (puu) </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[3][2]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P4-3:In Position (puu)')"
+                                style="margin-right:-34px; ">...</button>
+
+                        </div>
+
+                    </div>
+                    <div class="input_boder">
+                        <img id="btnJ4" @click="clickJ4" class="addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+
+                        <!-- <button class="center_btn" @click="clickJ4" id="btnJ4">+</button> -->
+                        <input class="center_checkbar" type="checkbox" value="food pasdsd" id="checkbox_J4"
+                            v-model="vcheckbox[4]" @change="ch_J4">
+                        <label class="center_text"> J4 </label>
+                    </div>
+
+                    <div class="center_dispalydiv" id="dispalydiv_J4">
+
+                        <div class="center_divitem" v-show="show[12]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[12]">
+                            <label class="center_divitem_label"> P5-1:Controller IP </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[4][0]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P5-1:Controller IP')">...</button>
+
+                        </div>
+                        <div class="center_divitem" v-show="show[13]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[13]">
+                            <label class="center_divitem_label"> P5-2:Controller Port </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[4][1]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P5-2:Controller Port')"
+                                style="margin-right:-50px; ">...</button>
+
+                        </div>
+
+                        <div class="center_divitem" v-show="show[14]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[14]">
+                            <label class="center_divitem_label"> P5-3:In Position (puu) </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[4][2]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P5-3:In Position (puu)')"
+                                style="margin-right:-34px; ">...</button>
+
+                        </div>
+
+                    </div>
+                    <div class="input_boder">
+                        <img id="btnJ5" @click="clickJ5" class="addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+
+                        <!-- <button class="center_btn" @click="clickJ5" id="btnJ5">+</button> -->
+                        <input class="center_checkbar" type="checkbox" value="food pasdsd" id="checkbox_J5"
+                            v-model="vcheckbox[5]" @change="ch_J5">
+                        <label class="center_text"> J5 </label>
+                    </div>
+
+                    <div class="center_dispalydiv" id="dispalydiv_J5">
+
+                        <div class="center_divitem" v-show="show[15]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[15]">
+                            <label class="center_divitem_label"> P6-1:Controller IP </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[5][0]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P6-1:Controller IP')">...</button>
+
+                        </div>
+                        <div class="center_divitem" v-show="show[16]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[16]">
+                            <label class="center_divitem_label"> P6-2:Controller Port </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[5][1]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P6-2:Controller Port')"
+                                style="margin-right:-50px; ">...</button>
+
+                        </div>
+
+                        <div class="center_divitem" v-show="show[17]">
+
+                            <input class="center_dispalydiv_checkbar" type="checkbox" value="food DSFDSF"
+                                v-model="C[17]">
+                            <label class="center_divitem_label"> P6-3:In Position (puu) </label>
+                            <input class="center_divitem_input" oninput="value=value.replace(/[^\d]/g,'')" type="text"
+                                v-model="P[5][2]" placeholder="1000">
+                            <button class="center_divitem_btn" @click="openloading('P6-3:In Position (puu)')"
+                                style="margin-right:-34px; ">...</button>
+
+                        </div>
+
+                    </div>
+                </div>
+                    <div id="bot" width="50" @click="bot"><img src="./../img/bot.png" width="50"></div>
+
+                </div>
+            </div>
+
+
+            <v-dialog persistent v-model="dialog" width="300">
+                <template v-slot:activator="{ on }">
+                </template>
+
+
+
+                <v-card height="300">
+
+                    <v-card-text>
+                        <v-progress-circular class="loading" :rotate="-90" :size="125" :width="15" :value="value"
+                            color=#0071C1 style="margin-top: 50px">
+                            {{ this.value }}%
+                        </v-progress-circular>
+                    </v-card-text>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                        <div class="flex-grow-1"></div>
+                        <button class="btn_finsh" id="dialogmenu">Reading...</br> {{this.timetext}}</button>
+
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+
+
+            <div id="setIP" style="display: none">
+                <v-dialog persistent v-model="finish" width="500">
+                    <v-card height="300">
+
+                        <v-card-text style="padding-top: 32px;">
+
+                            <div class="settitle"> {{this.storetext}}</div>
+                            <label class="settext">Description: The IP address of robot controller </label>
+                            </br>
+                            <label class="settext">Default Value:192.168.1.1</label>
+                            </br>
+                            <label class="settext">Value Range:0.0.0.0 ~ 255.255.255.254</label>
+                            </br>
+                            <label class="settext">Current:
+                                <input class="setinput" oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"
+                                    type="text" v-model="read" placeholder="192.168.1.1">
+                                <button class="setbtn" @click="readIP()">Read</button>
+
+                            </label>
+                            </br>
+                            <label class="settext" style="margin-left:26px; ">Change:
+                                <input class="setinput" oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"
+                                    type="text" v-model="write" placeholder="192.168.100.100">
+                                <button class="setbtn" @click="writeIP()">Write</button>
+                            </label>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <div class="flex-grow-1"></div>
+
+                            <button class="setbtn" style="margin-left: 400px;" @click="finish = false">OK</button>
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </div>
+
+            <div id="readloading" style="display: none">
+                <v-dialog persistent v-model="reading" width="300">
+                    <template v-slot:activator="{ on }">
+                    </template>
+
+                    <v-card>
+
+                        <v-card-text>
+                            <v-progress-circular class="loading" :rotate="-90" :size="125" :width="15" :value="loading"
+                                color=#0071C1>
+                                {{ this.loading }}%
+                            </v-progress-circular>
+                        </v-card-text>
+
+                        <v-divider></v-divider>
+
+                        <v-card-actions>
+                            <div class="flex-grow-1"></div>
+                            <button class="btn_finsh">Reading...</br> {{this.storetext}}</button>
+
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+                show: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true],//影藏用
+                value: 0,
+                loading: 0,
+                addfilter: '',
+                dialog: false, //打開文字跟%數
+                finish: false, //打開IP設定
+                reading: false, //純文字
+                vcheckbox_FT: false,
+                storetext: '', //暫存打開的文字  給...用
+                storearrytext: [], //存文字陣列
+                timetext: '', // 給長度換文字輸出
+                filter_number: 0,
+                read: '192.168.1.1',
+                write: '192.168.100.100',
+                P: [[1000, 1000, 1000], [1000, 1000, 1000], [1000, 1000, 1000],
+                [1000, 1000, 1000], [1000, 1000, 1000], [1000, 1000, 1000]],//影藏用
+                data: ['P1-1:Controller IP', 'P1-2:Controller Port', 'P1-3:In Position (puu)', 'P2-1:Controller IP', 'P2-2:Controller Port', 'P2-3:In Position (puu)', 'P3-1:Controller IP', 'P3-2:Controller Port', 'P3-3:In Position (puu)'
+                    , 'P4-1:Controller IP', 'P4-2:Controller Port', 'P4-3:In Position (puu)', 'P5-1:Controller IP', 'P5-2:Controller Port', 'P5-3:In Position (puu)', 'P6-1:Controller IP', 'P6-2:Controller Port', 'P6-3:In Position (puu)'],
+                vcheckbox: [false, false, false, false, false, false],//6大
+                C: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],//18小
+
+
+            }),
+            beforeDestroy() { //生命週期 實體銷毀之前
+                clearInterval(this.interval)
+            },
+            mounted() { //等於js onload
+
+                this.value = 0;
+                let i = 0;
+                this.interval = setInterval(() => {
+
+                    if (this.storearrytext.length > i) { //換文字
+                        this.timetext = this.storearrytext[i];
+                        console.log("this.timetext:", this.timetext);
+                        i++;
+
+                    }
+
+                    if (this.value >= 100) {
+                        this.value = 100;
+                        this.storearrytext.length = 0;
+                        i = 0;
+                        this.dialog = false;
+                        // @click="dialog = false"
+                    }
+                    else {
+                        this.value += parseInt((100 / this.storearrytext.length));
+                    }
+                    if (this.value >= 100) {
+                        this.value = 100;
+                        this.storearrytext.length = 0;
+                        i = 0;
+                    }
+                    // console.log('this.value',this.value);
+
+
+                }, 1000)
+
+                this.setloading = setInterval(() => { //跑單存loading
+                    if (this.loading >= 100) {
+                        this.reading = false;
+                        return (this.loading = 100) //讓%數停留在100%
+                    }
+                    this.loading += 20;
+                    // console.log(this.loading);
+                }, 1000)
+
+                window.onresize = () => { //尺寸變動時
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        }
+                        else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })()
+                }
+            },
+
+            methods: {
+                filternum: function () {
+                    // console.log(this.show[0]);
+                    var s = [this.P[0][0], this.P[0][1], this.P[0][2], this.P[1][0], this.P[1][1], this.P[1][2], this.P[2][0], this.P[2][1], this.P[2][2]
+                        , this.P[3][0], this.P[3][1], this.P[3][2], this.P[4][0], this.P[4][1], this.P[4][2], this.P[5][0], this.P[5][1], this.P[5][2]];
+
+                    for (i = 0; i < s.length; i++) {
+
+                        if (this.filter_number == s[i]) {
+                            this.show[i] = true;
+
+                        } else {
+                            this.show[i] = false;
+                        }
+
+                    }
+
+                    console.log('this.filter_number ', this.filter_number);
+
+                },
+                filtertext: function () {
+                    console.log('this.addfilter ', this.addfilter);
+
+                    this.data.filter((item, x) => {
+                        // console.log(x);
+                        if (item.toLowerCase().indexOf(this.addfilter.toLowerCase()) !== -1) {
+                            this.show[x] = true;
+                        } else {
+                            this.show[x] = false;
+                        }
+
+                    })
+
+
+                },
+                refresh: function () { //打開loading
+                    var text = [];
+                    for (i = 0; i < 18; i++) {
+                        if (this.C[i] == true) {
+                            text.push(this.data[i]); //把有打勾的文字推進陣列
+                        }
+                    }
+                    //    console.log('text.length',text.length);
+                    if (text.length == 0) {
+                        this.dialog = false; // 打開彈跳視窗
+
+                    }
+                    else {
+                        this.storearrytext = text;   //存進變數
+                        this.dialog = true; // 打開彈跳視窗
+                        this.value = 0; //讓%數歸0
+
+                    }
+
+
+                },
+                readIP: function () {
+                    this.reading = true;
+                    this.loading = 0;
+                    document.getElementById("readloading").style.display = "block";
+
+                },
+                openloading: function (text) { // 輸入文字
+                    document.getElementById("setIP").style.display = "block";
+                    this.storetext = text; //存輸入文字
+                    this.finish = true; // 打開彈跳視窗
+                },
+                allclick: function () {
+                    if (this.vcheckbox_FT == false) {
+                        for (var i = 0; this.vcheckbox.length > i; i++) {
+                            this.vcheckbox[i] = false;
+                        }
+                        for (var i = 0; this.C.length > i; i++) {
+                            this.C[i] = false;
+                        }
+
+                    }
+
+                    if (this.vcheckbox_FT == true) {
+
+                        for (var i = 0; this.vcheckbox.length > i; i++) {
+                            this.vcheckbox[i] = true;
+                        }
+                        for (var i = 0; this.C.length > i; i++) {
+                            this.C[i] = true;
+                        }
+
+                    }
+                },
+
+                ch_CT: function () {
+
+                    if (this.vcheckbox[0] == false) {
+                        this.C[0] = false;
+                        this.C[1] = false;
+                        this.C[2] = false;
+                    } else {
+                        this.C[0] = true;
+                        this.C[1] = true;
+                        this.C[2] = true;
+                    }
+                },
+
+                ch_J1: function () {
+                    if (this.vcheckbox[1] == false) {
+                        this.C[3] = false;
+                        this.C[4] = false;
+                        this.C[5] = false;
+                    } else {
+                        this.C[3] = true;
+                        this.C[4] = true;
+                        this.C[5] = true;
+                    }
+                },
+
+                ch_J2: function () {
+                    if (this.vcheckbox[2] == false) {
+                        this.C[6] = false;
+                        this.C[7] = false;
+                        this.C[8] = false;
+                    } else {
+                        this.C[6] = true;
+                        this.C[7] = true;
+                        this.C[8] = true;
+                    }
+                },
+
+                ch_J3: function () {
+                    if (this.vcheckbox[3] == false) {
+                        this.C[9] = false;
+                        this.C[10] = false;
+                        this.C[11] = false;
+                    } else {
+                        this.C[9] = true;
+                        this.C[10] = true;
+                        this.C[11] = true;
+                    }
+                },
+
+                ch_J4: function () {
+                    if (this.vcheckbox[4] == false) {
+                        this.C[12] = false;
+                        this.C[13] = false;
+                        this.C[14] = false;
+                    } else {
+                        this.C[12] = true;
+                        this.C[13] = true;
+                        this.C[14] = true;
+                    }
+                },
+
+                ch_J5: function () {
+                    if (this.vcheckbox[5] == false) {
+                        this.C[15] = false;
+                        this.C[16] = false;
+                        this.C[17] = false;
+                    } else {
+                        this.C[15] = true;
+                        this.C[16] = true;
+                        this.C[17] = true;
+                    }
+                },
+
+
+                writeIP: function () {
+                    console.log('writeIP');
+                },
+
+                top: function () {
+                    console.log('top');
+                },
+                bot: function () {
+                    console.log('bot');
+                },
+                prev: function () {
+                    console.log('prev');
+                },
+                next: function () {
+                    console.log('next');
+                },
+                clickFT: function () {
+                    let x = document.getElementById('btnFT');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+
+                        x.src = './../img/collapse_e.png';
+                        // console.log('true');
+                        //展開
+                    }
+                    else {
+                        // console.log('f');
+                        x.src = './../img/open_e.png';
+
+                    }
+                },
+                clickCT: function () {
+                    let x = document.getElementById('btnCT');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('Controller').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('Controller').style.display = 'none';
+
+                    }
+
+                },
+                clickJ1: function () {
+                    let x = document.getElementById('btnJ1');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('dispalydiv_J1').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+
+                        x.src = './../img/open_e.png';
+                        document.getElementById('dispalydiv_J1').style.display = 'none';
+
+                    }
+
+                },
+                clickJ2: function () {
+                    let x = document.getElementById('btnJ2');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('dispalydiv_J2').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('dispalydiv_J2').style.display = 'none';
+
+                    }
+
+                },
+                clickJ3: function () {
+                    let x = document.getElementById('btnJ3');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('dispalydiv_J3').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('dispalydiv_J3').style.display = 'none';
+
+                    }
+
+                },
+                clickJ4: function () {
+                    let x = document.getElementById('btnJ4');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('dispalydiv_J4').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('dispalydiv_J4').style.display = 'none';
+
+                    }
+
+                },
+                clickJ5: function () {
+                    let x = document.getElementById('btnJ5');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('dispalydiv_J5').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('dispalydiv_J5').style.display = 'none';
+
+                    }
+
+                },
+
+            }
+        })
+    </script>
+</body>
+
+</html>

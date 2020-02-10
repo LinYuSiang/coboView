@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/monitorio/monitorio.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app" style="    font-weight: bold">
+        <v-app>
+
+            <div class="monitorio_scroll">
+                <div class="monitorio_title">
+                        System DI
+                </div>
+
+                <table style="margin-top: 5px; width: 600px;">
+                    <tr >
+                        <th style=" background-color:#F2F2F2 ;"
+                        class="monitorio_text" >E-Stop</th>
+
+                        <th style=" background-color:#F2F2F2 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_stop"
+                            id="di_stop_btn"
+                            label="1"
+                            color="success"
+                            ></v-switch>
+                        </th>
+                    </tr>
+
+                    <tr >
+                        
+                        <th style=" background-color:#D8D8D8 ;"
+                        class="monitorio_text" >Functional Pause</th>
+
+                        <th style=" background-color:#D8D8D8 ;" 
+                        class="monitorio_button">
+                            <v-switch
+
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_funpause"
+                            id="di_funpause_btn"
+                            label="2"
+                            color="#FFC000"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+
+                    <tr >
+                        <th style=" background-color:#F2F2F2 ;"
+                        class="monitorio_text" >Reset Functional Pause</th>
+
+                        <th style=" background-color:#F2F2F2 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_repause"
+                            id="di_repause_btn"
+                            label="3"
+                            color="success"
+                            ></v-switch>
+                        </th>
+                    </tr>
+                    
+                    <tr >
+                        
+                        <th style=" background-color:#D8D8D8 ;"
+                        class="monitorio_text" >Operational Mode: None / T1 / T2/ Auto</th>
+
+                        <th style=" background-color:#D8D8D8 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            style="float: left; margin-right: 20px;"
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_modet1"
+                            id="di_modet1_btn"
+                            label="4"
+                            color="success"
+                            ></v-switch>
+                            <v-switch
+                            
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_modet2"
+                            id="di_modet2_btn"
+                            label="5"
+                            color="success"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+                    <tr >
+                        
+                        <th style=" background-color:#F2F2F2 ;"
+                        class="monitorio_text" >Project Control : None / Run / Stop / Pause</th>
+
+                        <th style=" background-color:#F2F2F2 ;" 
+                        class="monitorio_button">
+                        
+                            <v-switch
+                            style="float: left; margin-right: 20px;"
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_con1"
+                            id="di_con1_btn"
+                            label="6"
+                            color="success"
+                            ></v-switch>
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_con2"
+                            id="di_con2_btn"
+                            label="7"
+                            color="success"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+                    <tr >
+                        
+                        <th style=" background-color:#D8D8D8 ;"
+                        class="monitorio_text" >Alarm Reset</th>
+
+                        <th style=" background-color:#D8D8D8 ;" 
+                        class="monitorio_button">
+                            <v-switch
+
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="di_rest"
+                            id="di_rest_btn"
+                            label="8"
+                            color="success"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+
+                
+                </table>
+
+                <div class="monitorio_title" style="margin-top: 20px;">
+                        System DO
+                </div>
+
+                <table style="margin-top: 5px; width: 600px;">
+                    <tr >
+                        <th style=" background-color:#F2F2F2 ;"
+                        class="monitorio_text" >Alarm</th>
+
+                        <th style=" background-color:#F2F2F2 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_alarm"
+                            id="do_alarm_btn"
+                            label="1"
+                            color="success"
+                            ></v-switch>
+                        </th>
+                    </tr>
+
+                    <tr >
+                        
+                        <th style=" background-color:#D8D8D8 ;"
+                        class="monitorio_text" >Servo</th>
+
+                        <th style=" background-color:#D8D8D8 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_servo"
+                            id="do_servo_btn"
+                            label="2"
+                            color="#FFC000"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+
+                    <tr >
+                        <th style=" background-color:#F2F2F2 ;"
+                        class="monitorio_text" >Moving</th>
+
+                        <th style=" background-color:#F2F2F2 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_moving"
+                            id="do_moving_btn"
+                            label="3"
+                            color="success"
+                            ></v-switch>
+                        </th>
+                    </tr>
+                    
+                    <tr >
+                        
+                        <th style=" background-color:#D8D8D8 ;"
+                        class="monitorio_text" >Functional Pause</th>
+
+                        <th style=" background-color:#D8D8D8 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_funpause"
+                            id="do_funpause_btn"
+                            label="4"
+                            color="success"
+                            ></v-switch>
+                          
+                        </th>
+
+                    </tr>
+                    <tr >
+                        
+                        <th style=" background-color:#F2F2F2 ;"
+                        class="monitorio_text" >Project Execution : None / Run / Stop / Pause</th>
+
+                        <th style=" background-color:#F2F2F2 ;" 
+                        class="monitorio_button">
+                        
+                            <v-switch
+                            style="float: left; margin-right: 20px;"
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_ex1"
+                            id="do_ex1_btn"
+                            label="5"
+                            color="success"
+                            ></v-switch>
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_ex2"
+                            id="do_ex2_btn"
+                            label="6"
+                            color="success"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+                    <tr >
+                        
+                        <th style=" background-color:#D8D8D8 ;"
+                        class="monitorio_text" >Control Ready
+                        </th>
+
+                        <th style=" background-color:#D8D8D8 ;" 
+                        class="monitorio_button">
+                            <v-switch
+
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_ready"
+                            id="do_ready_btn"
+                            label="7"
+                            color="success"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+                    <tr >
+                        <th style=" background-color:#F2F2F2 ;"
+                        class="monitorio_text" >System Servo</th>
+
+                        <th style=" background-color:#F2F2F2 ;" 
+                        class="monitorio_button">
+                            <v-switch
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="do_stservo"
+                            id="do_stservo_btn"
+                            label="8"
+                            color="success"
+                            ></v-switch>
+                        </th>
+                    </tr>
+
+                </table>
+
+                <div class="monitorio_title" style="margin-top: 20px;">
+                        User DI
+                </div>
+                <!-- list_user_di -->
+                <table style="margin-top: 5px; width: 600px;">
+                    <tr v-for ='(item,index) in list_user_di'   v-bind:key='index'>
+
+                        <th style="background-color: #D8D8D8;"
+                        class="monitorio_text" v-if="item.id %2 == 0">
+                            <input type="text" :id="(user_di_input+index)" @change="user_ditext(index+1,item.text)" v-model="item.text"  class="user_input" oninput="value=value.replace(/[^a-zA-Z]/g,'')">
+                        </th>
+
+                        <th style="background-color: #f2f2f2;"
+                        class="monitorio_text" v-if="item.id %2 == 1">
+                            <input type="text" :id="(user_di_input+index)" @change="user_ditext(index+1,item.text)" v-model="item.text"  class="user_input" oninput="value=value.replace(/[^a-zA-Z]/g,'')">
+                        </th>
+
+                        <th  
+                        class="monitorio_user_button"  v-if='item.id %2 == 1'>
+                            <v-switch
+                            :id="(user_di_btn+index)"
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="item.btn_status"
+                            :label=item.number
+                            color="success"
+                            ></v-switch>
+                        </th>
+
+                        <th   style="background-color: #D8D8D8;"
+                        class="monitorio_user_button"  v-if='item.id %2 == 0 && item.id == 2 || item.id == 8'>
+                            <v-switch
+                            :id="(user_di_btn+index)"
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="item.btn_status"
+                            :label=item.number
+                            color="#FFC000"
+                            ></v-switch>
+                        </th>
+
+                        <th   style="background-color: #D8D8D8;"
+                        class="monitorio_user_button"  v-if='item.id %2 == 0 && item.id !== 2 &&  item.id !== 8'>
+                            <v-switch
+                            :id="(user_di_btn+index)"
+                            inset
+                            class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                            v-model="item.btn_status"
+                            :label=item.number
+                            color="success"
+                            ></v-switch>
+                        </th>
+
+                    </tr>
+
+                </table>
+
+                <div class="monitorio_title" style="margin-top: 20px;">
+                       User DO
+                </div>
+                <!-- list_user_do -->
+                <table style="margin-top: 5px; width: 600px;">
+                        <tr v-for ='(item,index) in list_user_do'   v-bind:key='index'>
+    
+                            <th style="background-color: #D8D8D8;"
+                            class="monitorio_text" v-if="item.id %2 == 0">
+                                <input type="text" :id="(user_do_input+index)" @change="user_dotext(index+1,item.text)" v-model="item.text"  class="user_input" oninput="value=value.replace(/[^a-zA-Z]/g,'')">
+                            </th>
+    
+                            <th style="background-color: #f2f2f2;"
+                            class="monitorio_text" v-if="item.id %2 == 1">
+                                <input type="text" :id="(user_do_input+index)" @change="user_dotext(index+1,item.text)" v-model="item.text"  class="user_input" oninput="value=value.replace(/[^a-zA-Z]/g,'')">
+                            </th>
+    
+                            <th  
+                            class="monitorio_user_button"  v-if='item.id %2 == 1'>
+                                <v-switch
+                                inset
+                                :id="(user_do_btn+index)"
+                                class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                                v-model="item.btn_status"
+                                :label=item.number
+                                color="success"
+                                ></v-switch>
+                            </th>
+    
+                            <th   style="background-color: #D8D8D8;"
+                            class="monitorio_user_button"  v-if='item.id %2 == 0 && item.id == 2 || item.id == 8'>
+                                <v-switch                             
+                                inset
+                                :id="(user_do_btn+index)"
+                                class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                                v-model="item.btn_status"
+                                :label=item.number
+                                color="#FFC000"
+                                ></v-switch>
+                            </th>
+    
+                            <th   style="background-color: #D8D8D8;"
+                            class="monitorio_user_button"  v-if='item.id %2 == 0 && item.id !== 2 &&  item.id !== 8'>
+                                <v-switch
+                                inset
+                                :id="(user_do_btn+index)"
+                                class="v-input--selection-controls v-input--selection-controls v-input v-label"
+                                v-model="item.btn_status"
+                                :label=item.number
+                                color="success"
+                                ></v-switch>
+                            </th>
+    
+                        </tr>
+    
+                    </table>
+
+            </div>
+    
+    
+
+        </v-app>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+                user_di_input:'user_di_input',
+                user_di_btn:'user_di_btn',
+                user_do_btn:'user_do_btn',
+                user_do_input:'user_do_input',
+                di_stop: false,
+                di_funpause:false,
+                di_repause:false,
+                di_modet1:false,
+                di_modet2:false,
+                di_con1:false,
+                di_con2:false,
+                di_rest:false,
+                do_alarm:false,
+                do_servo:false,
+                do_moving:false,
+                do_funpause:false,
+                do_ex1:false,
+                do_ex2:false,
+                do_ready:false,
+                do_stservo:false,
+                list_user_di:[
+                    {
+                        id:1,
+                        number:'1',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:2,
+                        number:'2',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:3,
+                        number:'3',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:4,
+                        number:'4',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:5,
+                        number:'5',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:6,
+                        number:'6',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:7,
+                        number:'7',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:8,
+                        number:'8',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:9,
+                        number:'9',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:10,
+                        number:'10',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:11,
+                        number:'11',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:12,
+                        number:'12',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:13,
+                        number:'13',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:14,
+                        number:'14',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:15,
+                        number:'15',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:16,
+                        number:'16',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:17,
+                        number:'17',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:18,
+                        number:'18',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:19,
+                        number:'19',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:20,
+                        number:'20',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:21,
+                        number:'21',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:22,
+                        number:'22',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:23,
+                        number:'23',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:24,
+                        number:'24',
+                        text:'',
+                        btn_status:false,
+                    },
+
+                ],
+                list_user_do:[
+                    {
+                        id:1,
+                        number:'1',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:2,
+                        number:'2',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:3,
+                        number:'3',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:4,
+                        number:'4',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:5,
+                        number:'5',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:6,
+                        number:'6',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:7,
+                        number:'7',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:8,
+                        number:'8',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:9,
+                        number:'9',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:10,
+                        number:'10',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:11,
+                        number:'11',
+                        text:'',
+                        btn_status:false,
+                    },
+                    {
+                        id:12,
+                        number:'12',
+                        text:'',
+                        btn_status:false,
+                    },
+                ]
+
+            }),
+            mounted () { //等於js onload
+                window.onresize = () => { //尺寸變動時
+
+                        return (() => {
+                            console.log('resize');
+                            
+                        })()
+                }     
+        
+            },
+            methods: {
+                user_ditext:function(num,text){
+                    // console.log(num);
+                    if(num < 24){
+                        console.log('user DI: 第 ',num,'個',text,this.list_user_di[num].text);
+                        console.log('整體user DI',this.list_user_di);
+
+                    }
+                    else{ //最後一個ID要減1否則會錯
+                        console.log('user DI: 第 ',num,'個',text,this.list_user_di[num-1].text);
+                        console.log('整體user DI',this.list_user_di);
+                    }
+
+                    
+                },
+                user_dotext:function(num,text){
+                    // console.log(num);
+                    if(num < 12){
+                        console.log('user DI: 第 ',num,'個',text,this.list_user_do[num].text);
+                        console.log('整體user DO',this.list_user_do);
+
+                    }
+                    else{ //最後一個ID要減1否則會錯
+                        console.log('user DI: 第 ',num,'個',text,this.list_user_do[num-1].text);
+                        console.log('整體user DO',this.list_user_do);
+                    }
+
+                    
+                },
+            }
+        })
+
+    </script>
+</body>
+</html>

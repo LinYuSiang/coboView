@@ -1,0 +1,255 @@
+.box1 {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    position: absolute;
+}
+
+.box2 {
+    border: black solid 1.5px;
+    width: 100%;
+    height: 37.5px;
+    background-color: #8DB1E3;
+    position: absolute;
+    top: 0px;
+}
+
+.box3 {
+    /* 下div */
+    border: black solid 1.5px;
+    width: 100%;
+    height: 75px;
+    background-color: #8DB1E3;
+    position: absolute;
+    bottom: 0px;
+}
+
+.box4 {
+    border-right: black solid 1.5px;
+    border-left: black solid 1.5px;
+    border-bottom: black solid 1.5px;
+    width: 100%;
+    height: 37.5px;
+    background-color: #b8cbe6;
+    position: absolute;
+    top: 37.5px
+}
+
+
+
+/* .servo {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    width: 200px;
+    height: 90%;
+    margin-bottom: 5%;
+    margin-left: 0%
+} */
+
+.try {
+    font-size: 50px;
+}
+
+.left {
+    float: left;
+    width: 100%;
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.left1 {
+    float: left;
+    margin-right: 77px;
+    font-size: 20px;
+}
+
+.right {
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.arrowdown {
+    position: absolute;
+    /* margin-right: 100px; */
+    /* left: 30%; */
+    top: 1000%;
+    margin-left: 40px;
+}
+.v-input__control
+{
+    height: 20px;
+}
+.v-application p {
+    margin-bottom: 0px;
+}
+
+
+@media screen and (min-width: 641px) and (max-width: 980px) {
+    .v-application p {
+        margin-bottom: 0px;
+    }
+    .v-input__control
+{
+    height: 20px;
+}
+
+    .box1 {
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        position: absolute;
+    }
+    .box2 {
+        border: black solid 1.5px;
+        width: 100%;
+        height: 37.5px;
+        background-color: #8DB1E3;
+        position: absolute;
+        top: 0px;
+    }
+    .box3 {
+        /* 下div */
+        border: black solid 1.5px;
+        width: 100%;
+        height: 75px;
+        background-color: #8DB1E3;
+        position: absolute;
+        bottom: 0px;
+    }
+    .box4 {
+        border-right: black solid 1.5px;
+        border-left: black solid 1.5px;
+        border-bottom: black solid 1.5px;
+        width: 100%;
+        height: 37.5px;
+        background-color: #b8cbe6;
+        position: absolute;
+        top: 37.5px
+    }
+    .center {
+        /* background: red; */
+        width: 50%;
+        height: 50px;
+        position: absolute;
+        left: 56%;
+        top: 15%;
+        bottom: 25%;
+        margin-top: 9px;
+        /* margin-left: -25%; */
+    }
+    .servo {
+        /* background-color: #b8cbe6; */
+        text-align: center;
+        font-size: 25px;
+        font-weight: bolder;
+        line-height: 45px;
+        width: 200px;
+        height: 90%;
+        margin-bottom: 5%;
+        margin-left: 0%
+    }
+    .try {
+        font-size: 50px;
+    }
+    .left {
+        float: left;
+        margin: 0;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    .left1 {
+        float: left;
+       
+        font-size: 20px;
+    }
+    .right {
+        float: right;
+        margin: 0;
+        padding: 0;
+    }
+    .picr {
+        position: absolute;
+        top: 45%;
+        right: 1%;
+    }
+    .picl {
+        position: absolute;
+        top: 45%;
+        left: 1%;
+    }
+    .arrowup {
+        position: absolute;
+        left: 15%;
+        bottom: 120%;
+    }
+    .arrowdown {
+        position: absolute;
+        /* margin-top:20px;  */
+        margin-right: 100px;
+        left: 10%;
+        top: 1100%;
+        /* margin-left: 70px; */
+    }
+    .Robot{
+        width: 32%;
+        height: 250px;
+        float: left;
+        margin-top: 28%;
+        margin-left: 8%;
+    }
+}
+
+@media screen and (min-width: 981px) and (max-width: 1920px) {
+    .center {
+        /* background: blue; */
+        width: 50%;
+        height: 44px;
+        position: absolute;
+        left: 75%;
+        top: 15%;
+        margin-top: 9px;
+        margin-left: -18%;
+    }
+    .servo {
+        text-align: center;
+        font-size: 25px;
+        font-weight: bolder;
+        width: 200px;
+        height: 90%;
+      
+        margin-left: 0%
+    }
+    .picr {
+        position: absolute;
+        top: 45%;
+        right: 1%;
+    }
+    .picl {
+        position: absolute;
+        top: 45%;
+        left: 1%;
+    }
+    .arrowup {
+        position: absolute;
+        left: 7.5%;
+        bottom: 120%;
+    }
+    .arrowdown {
+        /* background: #8DB1E3; */
+        position: absolute;
+        margin-top:-70px; 
+        /* margin-right: 100px; */
+        left: 6%;
+        top: 1000%;
+    }
+    .Robot{
+        width: 32%;
+        height: 250px;
+        float: left;
+        margin-top: 8%;
+        margin-left: 18%;
+    }
+}

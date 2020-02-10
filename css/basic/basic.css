@@ -1,0 +1,295 @@
+@media screen and (min-width: 981px) and (max-width: 1920px) { /*  981<X<1920 電腦尺寸 */
+    .box
+    {
+        height: 100%;
+        width: 100%;
+        position:absolute;  
+        background-color: #ffffff ;     
+    }
+    .out
+    {
+        width: 410px;
+        height: 469px;
+        overflow-y: scroll;
+        overflow-x:hidden;
+    }
+    .out::-webkit-scrollbar-track
+    {
+        border-radius: 12px;
+        background-color: #ffffff;
+    }
+
+    .out::-webkit-scrollbar
+    {
+        width: 10px;
+        height: 10px;
+        background-color: #ffffff;
+    }
+
+    .out::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        background-color: #BFBFBF;
+    }
+    .box1
+    {
+        position:absolute;
+        top: 3%;
+        left: 53%; 
+    }
+    .title1
+    {
+        width: 400px;
+        height: 40px;
+        background-color: #c6d8f0;
+        font-size: 26px;
+        text-align: center;
+        line-height: 40px
+    }
+    .td_title
+    {
+        background-color: #d8d8d8;
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_title1
+    {
+        background-color: #d8d8d8;
+        width: 220px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_title2
+    {
+        background-color: #d8d8d8;
+        width: 120px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_content1
+    {
+        background-color: #f2f2f2;
+        width: 220px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_content2
+    {
+        background-color: #f2f2f2;
+        width: 120px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint1
+    {
+        background-color: #d8d8d8;
+        width: 90px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint2
+    {
+        background-color: #d8d8d8;
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint3
+    {
+        background-color: #d8d8d8;
+        width: 70px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint4
+    {
+        background-color: #d8d8d8;
+        width: 52px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint5
+    {
+        background-color: #d8d8d8;
+        width: 70px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .Controller_title
+    {
+        background-color: #f2f2f2;
+        width: 150px;
+        height: 30px;
+        text-align: left;
+        border: 3px solid white;
+        padding-left: 10px
+    }
+    .Controller_title1
+    {
+        background-color: #f2f2f2;
+        width: 240px;
+        height: 30px;
+        text-align: left;
+        border: 3px solid white;
+        padding-left: 10px
+    }
+}
+@media screen and (min-width: 641px) and (max-width: 980px) { /*  641<X<980 平板尺寸 */
+    .box
+    {
+        height: 100%;
+        width: 100%;
+        position:absolute;  
+        background-color: #ffffff ;     
+    }
+    .out
+    {
+        width: 410px;
+        height: auto;
+        overflow-y: scroll;
+        overflow-x:hidden;
+    }
+
+    .out::-webkit-scrollbar-track
+    {
+        border-radius: 12px;
+        background-color: #ffffff;
+    }
+
+    .out::-webkit-scrollbar
+    {
+        width: 10px;
+        height: 10px;
+        background-color: #ffffff;
+    }
+
+    .out::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        background-color: #BFBFBF;
+    }
+    .box1
+    {
+        position:absolute;
+        top: 5%;
+        left: 40%; 
+    }
+    .title1
+    {
+        width: 400px;
+        height: 40px;
+        background-color: #c6d8f0;
+        font-size: 26px;
+        text-align: center;
+        line-height: 40px
+    }
+    .td_title
+    {
+        background-color: #d8d8d8;
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_title1
+    {
+        background-color: #d8d8d8;
+        width: 220px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_title2
+    {
+        background-color: #d8d8d8;
+        width: 120px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_content1
+    {
+        background-color: #f2f2f2;
+        width: 220px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_content2
+    {
+        background-color: #f2f2f2;
+        width: 120px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint1
+    {
+        background-color: #d8d8d8;
+        width: 90px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint2
+    {
+        background-color: #d8d8d8;
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint3
+    {
+        background-color: #d8d8d8;
+        width: 70px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint4
+    {
+        background-color: #d8d8d8;
+        width: 52px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .td_Joint5
+    {
+        background-color: #d8d8d8;
+        width: 70px;
+        height: 30px;
+        text-align: center;
+        border: 3px solid white;
+    }
+    .Controller_title
+    {
+        background-color: #f2f2f2;
+        width: 150px;
+        height: 30px;
+        text-align: left;
+        border: 3px solid white;
+        padding-left: 10px
+    }
+    .Controller_title1
+    {
+        background-color: #f2f2f2;
+        width: 240px;
+        height: 30px;
+        text-align: left;
+        border: 3px solid white;
+        padding-left: 10px
+    }
+}

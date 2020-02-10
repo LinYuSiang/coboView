@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/editor/editor.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+            <div class="leftcol" id="leftcontrol">
+                <div class="title">
+                    <img style="float:left;" src="./../img/pc_e.png" height="80" width="70">
+                    <div class="    _text">
+                        <label class="settext">PC</label><br>
+                        <label class="settext">(192.168.1.1)</label>
+                    </div>
+                </div>
+                <div class="common">
+                    <div class="title_text">
+                        <label class="common_text">-Global Point</label>
+                        <div style="margin-top: 5px; float: right;"><img src="./../img/add_e.png" width="30"></div>
+                    </div>
+                </div>
+                <div class="top" width="50" @click="top"><img src="./../img/top.png" width="50"></div>
+                <div class="project">
+                    <div class="project_extend">
+                        <img id="va" @click="clickJ5" class="project_addicon" width="35" height="35"
+                            src="./../img/collapse_e.png" />
+                        <input id="va_chbox" class="project_checkbar" type="checkbox" v-model="leftva"
+                            @change="leftcheckva">
+                        <label class="project_extend_label">VA</label>
+                    </div>
+                    <div id="projectVA">
+                        <div class="only_checkbar" :style="[vapr[0] ? bgblue : bgwhite]">
+                            <input id="project1_chbox" class="project_checkbar" style="margin-left:58px;"
+                                type="checkbox" v-model="vapr[0]">
+                            <label class="only_checkbar_label">Project1</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                        <div class="only_checkbar" :style="[vapr[1] ? bgblue : bgwhite]">
+                            <input id="pr3" class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="vapr[1]">
+                            <label class="only_checkbar_label">project2</label>
+                        </div>
+                    </div>
+                    <div class="project_extend" style="margin-top:10px; background-color:#BFBFBF  ">
+                        <img id="va2" @click="clickJ6" class="project_addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <input id="scara_chbox" class="project_checkbar" type="checkbox" v-model="SCARAch"
+                            @change="SCch">
+                        <label class="project_extend_label">SCARA</label>
+                    </div>
+                    <div id="SCARA">
+                        <div class="only_checkbar" :style="[SCARAch ? bgblue : bgwhite]">
+                            <input class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="smallSCch">
+                            <label class="only_checkbar_label">SCARA</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                    </div>
+
+                    <div class="project_extend" style="margin-top:10px; background-color:#BFBFBF  ">
+                        <img id="va3" @click="clickJ7" class="project_addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <input id="scara3_chbox" class="project_checkbar" type="checkbox" v-model="SCARAch3"
+                            @change="SCch3">
+                        <label class="project_extend_label">SCARA3</label>
+                    </div>
+                    <div id="SCARA3">
+                        <div class="only_checkbar" :style="[SCARAch3 ? bgblue : bgwhite]">
+                            <input class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="smallSCch3">
+                            <label class="only_checkbar_label">SCARA3</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                    </div>
+                    <div class="project_extend" style="margin-top:10px; background-color:#BFBFBF  ">
+                        <img id="va4" @click="clickJ8" class="project_addicon" width="35" height="35"
+                            src="./../img/open_e.png" />
+                        <input id="scara5_chbox" class="project_checkbar" type="checkbox" v-model="SCARAch5"
+                            @change="SCch5">
+                        <label class="project_extend_label">SCARA5</label>
+                    </div>
+                    <div id="SCARA5">
+                        <div class="only_checkbar" :style="[SCARAch5 ? bgblue : bgwhite]">
+                            <input class="project_checkbar" style="margin-left:58px;" type="checkbox"
+                                v-model="smallSCch5">
+                            <label class="only_checkbar_label">SCARA5</label>
+                        </div>
+                        <div class="project_common">
+                            <label class="project_common_label">- Local Ponint</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Main.lua</label>
+                        </div>
+
+                        <div class="project_common">
+                            <label class="project_common_label">- Libary.lua </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="bot" width="50" @click="bot"><img src="./../img/bot.png" width="50"></div>
+            </div>
+            <img class="bluebar" id="bar" width="30" height="550" src="./../img/bluebar.png" @click="bluebarright">
+            <img class="bluebar" id="bar2" width="30" height="550" src="./../img/bluebar.png" @click="bluebarleft">
+
+            <div class="blocky_box">
+                <div class="blocky_bar" id="blocky_bar">
+                    <div style="margin-top: 7px"><img src="./../img/quickGuide_e.png" width="45" @click="exp"></div>
+                    <div style=" writing-mode: vertical-lr;font-size: 25px; margin-left: 9px;" @click="exp">Quick Guide
+                    </div>
+                    <div style="margin-top: 7px"><img src="./../img/motion_e.png" width="45"
+                            onmouseover="myMoveFunction1()"></div>
+                    <div style="margin-top: 7px"><img src="./../img/parameter_e.png" width="45"
+                            onmouseover="myMoveFunction2()"></div>
+                    <div style="margin-top: 7px"><img src="./../img/variable_e.png" width="45"
+                            onmouseover="myMoveFunction3()"></div>
+                    <div style="margin-top: 7px"><img src="./../img/logic_e.png" width="45"
+                            onmouseover="myMoveFunction4()"></div>
+                </div>
+                <div class="blocky_inbar" id="blocky_inbar"> </div>
+                <div class="blocky">
+                    <div class="blocky_item">
+                        <div class="a7">
+                            <button class="a6_1" value="7">
+                                <div style="float: left;margin-top: 4px"><img src="./../img/save_e.png" width="25">
+                                </div>
+                                <div style="float: left;line-height: 34px"><span class="a8">save</span></div>
+                            </button>
+                        </div>
+                        <div class="a7">
+                            <button class="a6_1" value="7">
+                                <div style="float: left;margin-top: 4px"><img src="./../img/undo_e.png" width="25">
+                                </div>
+                                <div style="float: left;line-height: 34px"><span class="a8">{{ $t('message.Undo') }}</span></div>
+                            </button>
+                        </div>
+                        <div class="a7">
+                            <button class="a6_1" value="7">
+                                <div style="float: left;margin-top: 4px"><img src="./../img/redo_e.png" width="25">
+                                </div>
+                                <div style="float: left;line-height: 34px"><span class="a8">{{ $t('message.Redo') }}</span></div>
+                            </button>
+                        </div>
+                        <div class="a7">
+                            <button class="a6_1" value="7">
+                                <div style="float: left;margin-top: 4px"><img src="./../img/connectRL_e.png" width="25">
+                                </div>
+                                <div style="float: left;line-height: 34px"><span class="a8">{{ $t('message.Comment') }}</span></div>
+                            </button>
+                        </div>
+                        <div class="a7">
+                            <button class="a6_1" value="7">
+                                <div style="float: left;margin-top: 4px"><img src="./../img/connectRL_e.png" width="25">
+                                </div>
+                                <div style="float: left;line-height: 34px"><span class="a8">{{ $t('message.Uncomment') }}</span></div>
+                            </button>
+                        </div>
+                        <div class="a7">
+                            <button class="a6_1" value="7">
+                                <div style="float: left;margin-top: 4px"><img src="./../img/connectRL_e.png" width="25">
+                                </div>
+                                <div style="float: left;line-height: 34px"><span class="a8">{{ $t('message.Search') }}</span></div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="blocky_content">
+                        <iframe id="blockly" src="../blockly.html" width="100%" height="100%"></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+
+    <script>
+
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+
+        let vue = new Vue({
+            el: '#app',
+            i18n,
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: "",
+                leftva: false,
+                vapr: [false, false], // va project
+                SCARAch: false,
+                smallSCch: false, //小的
+                SCARAch3: false,
+                smallSCch3: false, //小的
+                SCARAch5: false,
+                smallSCch5: false, //小的
+                name: "",
+                x: "",
+                y: "",
+                z: "",
+                rx: "",
+                ry: "",
+                rz: "",
+                e: "",
+                l: "",
+                f: "",
+                user_id: "",
+                tool_id: "",
+                coord: "",
+                j4_jrc: "",
+                j6_jrc: "",
+                jrc_active: "",
+                bgwhite: {
+                    backgroundColor: 'white',
+                },
+                bgblue: {
+                    backgroundColor: '#C6D8F0',
+                },
+                expan: false,
+
+            }),
+
+            mounted() {
+                window.onresize = () => { //尺寸變動時
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        } else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })()
+                }
+            },
+
+            watch:
+            {
+                language(language) {
+                    i18n.locale = this.language;
+                },
+            },
+
+            methods: {
+                changed: function (value) {
+                    for (let i = 0; i < this.lists_content.length; i++) {
+                        console.log(this.lists_content.length);
+
+                        if (i == value) {
+                            document.getElementById("conte_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("edit_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("id_" + value).style.backgroundColor = "#5caceb"
+                        } else {
+                            console.log(123, this.lists_content.length);
+
+                            document.getElementById("conte_" + i).style.backgroundColor = "white"
+                            document.getElementById("edit_" + i).style.backgroundColor = "white"
+                            document.getElementById("id_" + i).style.backgroundColor = "white"
+                        }
+                    }
+                },
+                exp: function () {
+                    if (this.expan == false) {
+                        document.getElementById('blocky_inbar').style.display = "inline"
+                        document.getElementById('blocky_bar').style.marginLeft = "-150px"
+                        document.getElementById('blocky_inbar').style.marginLeft = "-100px"
+                        this.expan = true
+                        bluebarright();
+                        return;
+                    }
+                    if (this.expan == true) {
+                        document.getElementById('blocky_inbar').style.display = "none"
+                        document.getElementById('blocky_bar').style.marginLeft = "0px"
+                        // document.getElementById('blocky_inbar').style.marginLeft = "100px"
+                        this.expan = false
+                        return;
+                    }
+                },
+
+
+                top: function () {
+                    console.log("top");
+                },
+                right_top: function () {
+                    console.log("right_top");
+                },
+                bot: function () {
+                    console.log("bot");
+                },
+
+                leftcheckva: function () {
+                    if (this.leftva == false) {
+
+                        this.vapr[0] = false;
+                        this.vapr[1] = false;
+
+                    } else {
+
+                        this.vapr[0] = true;
+                        this.vapr[1] = true;
+                    }
+
+                },
+
+                SCch: function () {
+                    if (this.SCARAch == true) {
+                        this.smallSCch = true;
+                    } else {
+                        this.smallSCch = false;
+                    }
+                },
+                SCch3: function () {
+                    if (this.SCARAch3 == true) {
+                        this.smallSCch3 = true;
+                    } else {
+                        this.smallSCch3 = false;
+                    }
+                },
+                SCch5: function () {
+                    if (this.SCARAch5 == true) {
+                        this.smallSCch5 = true;
+                    } else {
+                        this.smallSCch5 = false;
+                    }
+                },
+
+                clickJ5: function () {
+                    let x = document.getElementById('va');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('projectVA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('projectVA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ6: function () {
+                    let x = document.getElementById('va2');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ7: function () {
+                    let x = document.getElementById('va3');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA3').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA3').style.display = 'none';
+
+                    }
+
+                },
+                clickJ8: function () {
+                    let x = document.getElementById('va4');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA5').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    } else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA5').style.display = 'none';
+
+                    }
+
+                },
+
+                bluebarright: function () {
+                    document.getElementById('bar').style.display = 'none';
+                    document.getElementById('bar2').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'none';
+                    document.getElementById('bar2').style.marginLeft = '50px';
+
+
+
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+
+
+                    }
+                },
+                bluebarleft: function () {
+                    document.getElementById('bar2').style.display = 'none';
+                    document.getElementById('bar').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'inline';
+
+
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+
+
+                    }
+                }
+
+
+            },
+
+        })
+
+        function myMoveFunction1() {
+            console.log(123);
+        }
+
+        function myMoveFunction2() {
+            console.log(123);
+        }
+
+        function myMoveFunction3() {
+            console.log(123);
+        }
+
+        function myMoveFunction4() {
+            console.log(123);
+        }
+
+        function bluebarright() {
+            document.getElementById('bar').style.display = 'none';
+            document.getElementById('bar2').style.display = 'inline';
+            document.getElementById('leftcontrol').style.display = 'none';
+            document.getElementById('bar2').style.marginLeft = '50px';
+        }
+
+        window.addEventListener('message', (event) => {
+            if (!isNaN(parseInt(event.data))) {
+                const message = event.data;
+                blockly.contentWindow.postMessage({
+                    command: message.command,
+                    result: message.result,
+                }, '*');
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    vue.language = event.data;
+                } else {
+                    vue.language = event.data.lang;
+                }
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>

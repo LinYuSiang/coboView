@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="./css/Roboto.css" rel="stylesheet">
+  <link href="./css/materialdesignicons.css" rel="stylesheet">
+  <link href="./css/vuetify.css" rel="stylesheet">
+  <link href="./css/MaterialIcons.css" rel="stylesheet">
+  <link href="./css/app/app.css" rel="stylesheet"> <!-- login的css -->
+  <link href="./css/login/login.css" rel="stylesheet">
+  <link href="./css/setting/setting.css" rel="stylesheet">
+  <link href="./css/page/menuTab.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<body>
+  <div id="app">
+    <v-app>
+      <v-card class="b1" tile v-if="showed">
+        <v-card class="b4" color="#91B0DE" tile flat>
+          <button @click="draw" class="reorder"><img src="./img/hamburger_e.png" style="float: left;"
+              width="30"></button>
+          <div class="space"></div>
+          <button class="Disconnect" @click="connectors"><img id="con" src="./img/connector_e.png" style="float: left;"
+              width="30">
+            <div class="b7_1">{{connector}}</div>
+          </button>
+          <button class="OFF" @click="ONOFFs"><img src="./img/ServoOn_e.png" style="float: left;" width="30">
+            <div class="b7_1">{{ONOFF}}</div>
+          </button>
+          <button class="Pause" @click="pauses"><img id="puas" src="./img/ProgramPause.png"
+              style="float: left;margin-right: 2px" height="30" width="30">
+            <div class="b7_1">{{Pause}}</div>
+          </button>
+          <button class="Auto" @click="autos"><img id="aut" src="./img/ModelStatus_e.png" style="float: left;"
+              width="30" height="32">
+            <div class="b7">{{Auto}}</div>
+          </button>
+          <button class="trans" @click="TUdialoges"><img src="./img/Soordinator_e.png" style="float: left;" width="30">
+            <div class="b7">T：0&nbsp;U：0</div>
+          </button>
+          <div class="speed"><img src="./img/speed_e.png" style="float: left; margin-left: -8px;" width="30"
+              height="30">
+            <div class="b7">S：{{slider}}％</div>
+            <v-slider v-model="slider" class="slide" :max="max" :min="min" hide-details>
+          </div>
+          <button class="person" @click.stop="dialog = true"><img src="./img/authority_e.png" style="float: left;"
+              width="30"></button>
+          <button class="setting" @click="show"><img src="./img/setting_e.png" style="float: left;" width="30"></button>
+        </v-card>
+        <v-card v-model="drawer" tile color="#91B0DE" class="hamburger_det" id="hamburger_det">
+          <button style="width: 100%;height: 38px;border-bottom: black solid 1.7px;" @click="jogtool">
+            <span class="det_tile">{{$t('message.jog_Tool') }}</span>
+          </button>
+          <button style="width: 100%;height: 38px;border-bottom: black solid 1.7px;" @click="pointtool">
+            <span class="det_tile">{{ $t('message.point_Tool') }}</span>
+          </button>
+          <button style="width: 100%;height: 38px;border-bottom: black solid 1.7px;" @click="Excutiontool">
+            <span class="det_tile">{{ $t('message.execution_Tool') }}</span>
+          </button>
+          <button style="width: 100%;height: 38px;border-bottom: black solid 1.7px;" @click="Monitortool">
+            <span class="det_tile">{{ $t('message.monitor_Tool') }}</span>
+          </button>
+          <button style="width: 100%;height: 38px;" @click="diotool">
+            <span class="det_tile">{{ $t('message.dio_Tool') }}</span>
+          </button>
+        </v-card>
+
+        <v-card v-model="setting" tile color="#91B0DE" class="setting_det" id="setting">
+          <button @click="dialog1" style="width: 100%;height: 38px;border-bottom: black solid 1.7px;">
+            <span class="det_tile">{{ $t('message.jog_Setting') }}</span>
+          </button>
+          <button @click="dialog2" style="width: 100%;height: 38px;border-bottom: black solid 1.7px;">
+            <span class="det_tile">{{ $t('message.robot_Setting') }}</span>
+          </button>
+          <button @click="dialog3" style="width: 100%;height: 38px;border-bottom: black solid 1.7px;">
+            <span class="det_tile">{{ $t('message.system_Setting') }}</span>
+          </button>
+          <button @click="dialog4" style="width: 100%;height: 38px;border-bottom: black solid 1.7px;">
+            <span class="det_tile">{{ $t('message.language_Setting') }}</span>
+          </button>
+          <button @click="dialog5" style="width: 100%;height: 38px;">
+            <span class="det_tile">{{ $t('message.Others') }}</span>
+          </button>
+        </v-card>
+
+        <div style="height: 50px; width: 100%; display: none;" id="frame5">
+          <iframe id="fram5" src="./Material/jogheader.html" height="50px" width="100%" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+        <div style="height: 50px; width: 100%; display: none;" id="frame6">
+          <iframe id="fram6" src="./Material/pointheader.html" height="50px" width="100%" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+        <div style="height: 50px; width: 100%; display: none;" id="frame7">
+          <iframe id="fram7" src="./Material/excheader.html" height="50px" width="100%" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+        <div style="height: 50px; width: 100%; display: none;" id="frame8">
+          <iframe id="fram8" src="./Material/monitorheader.html" height="50px" width="100%" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+        <div style="height: 50px; width: 100%; display: none;" id="frame9">
+          <iframe id="fram9" src="./Material/dioheader.html" height="50px" width="100%" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+        <div style="height: 50px; width: 100%;" id="frame">
+          <iframe id="fram" onload="appSecheader1Load()" src="./Material/secheader1.html" height="50px" width="100%"
+            frameborder="0" scrolling="no"></iframe>
+        </div>
+        <div style="height: 50px; width: 100%; display: none" id="frame2">
+          <iframe id="fram2" src="./Material/secheader2.html" height="50px" width="100%" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+        <div style="height: 50px; width: 100%; display: none" id="frame4">
+          <iframe id="fram4" src="./Material/secheader3.html" height="50px" width="100%" frameborder="0"
+            scrolling="no"></iframe>
+        </div>
+
+        <div id="robots" class="robot" style="z-index:-1">
+          <iframe id="robotGL" src="./robotGL.html" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+        </div>
+        <div id="carous">
+          <v-carousel hide-delimiters next-icon="keyboard_arrow_right" prev-icon="keyboard_arrow_left" height="580px"
+            class="v-image" v-model="model">
+            <v-carousel-item>
+              <iframe id="appServo" onload="appServoLoad()" src="./Material/appServo.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item id='itemHome'>
+              <iframe id="appHome" onload="appHomeLoad()" src="./Material/appHome.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item>
+              <iframe id="appJog" onload="appJogLoad()" src="./Material/appJog.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item v-if="appParaShowed">
+              <iframe onload="appParameterLoad()" src="./Material/appParameter.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+          </v-carousel>
+        </div>
+        <div id="carous2" style="display: none;">
+          <v-carousel hide-delimiters next-icon="keyboard_arrow_right" prev-icon="keyboard_arrow_left" height="580px"
+            class="v-image" v-model="model2">
+            <v-carousel-item>
+              <iframe id="appFiles" onload="appFilesLoad()" src="./Material/appFiles.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item>
+              <iframe id="appPoint" onload="appPointLoad()" src="./Material/appPoint.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item>
+              <iframe id="appEditor" onload="appEditorLoad()" src="./Material/appEditor.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+          </v-carousel>
+        </div>
+        <div id="carous3" style="display: none">
+          <v-carousel hide-delimiters next-icon="keyboard_arrow_right" prev-icon="keyboard_arrow_left" height="580px"
+            class="v-image" v-model="model3">
+            <v-carousel-item>
+              <iframe id="appBasic" src="./Material/appBasic.html" height="100%" width="100%" frameborder="0"
+                scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item>
+              <iframe id="appAlarm" onload="appAlarmLoad()" src="./Material/appAlarm.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item>
+              <iframe id="appHistory" onload="appHistoryLoad()" src="./Material/appHistory.html" height="100%"
+                width="100%" frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item>
+              <iframe id="appScope" onload="appScopeLoad()" src="./Material/appScope.html" height="100%" width="100%"
+                frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+            <v-carousel-item>
+              <iframe src="./Material/appMonitorIO.html" height="100%" width="100%" frameborder="0"
+                scrolling="no"></iframe>
+            </v-carousel-item>
+          </v-carousel>
+
+        </div>
+        <div id="carous4" style="display: none">
+          <v-carousel hide-delimiters next-icon="keyboard_arrow_right" prev-icon="keyboard_arrow_left" height="680px"
+            class="v-image"  v-model="model4">
+            <v-carousel-item>
+              <iframe src="./Material/drag.html" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+          </v-carousel>
+        </div>
+
+        <div id="carous5" style="display: none">
+          <v-carousel hide-delimiters  height="580px"
+            class="v-image" style="margin-top: 58px" v-model="model5">
+            <v-carousel-item>
+              <iframe src="./Material/drag.html" height="100%" width="100%" frameborder="0" scrolling="no"></iframe>
+            </v-carousel-item>
+          </v-carousel>
+        </div>
+        <v-card v-show="showNav" :value="activeBtn" horizontal color="#91B0DE" class="b3">
+          <div class="b8">
+            <button class="b8_1" @click="showNav = false">
+              <img src="./img/btuMenuCollapse_e.png" width="45">
+            </button>
+          </div>
+          <div class="b8" style="float: left;margin-top: 0.5%">
+            <img src="./img/btnMenuLeft_e.png" width="45">
+          </div>
+          <div class="b8">
+            <button class="b8_1" @click="MenuMonitor">
+              <img src="./img/btnMenuMonitor_e.png" width="45">
+            </button>
+          </div>
+
+          <div class="b8">
+            <button class="b8_1" @click="carproject">
+              <img src="./img/btnMenuProject_e.png" width="45">
+            </button>
+          </div>
+
+          <div class="b8">
+            <button class="b8_1" @click="carcontrol">
+              <img src="./img/btnMenuControl_e.png" width="45">
+            </button>
+          </div>
+
+          <div class="b8">
+            <button class="b8_1" @click="apps">
+              <img src="./img/btnMenuAp_e.png" width="45">
+            </button>
+          </div>
+
+          <div class="b8">
+            <button class="b8_1">
+              <img src="./img/btnMenuInfo_e.png" width="47">
+            </button>
+          </div>
+
+          <div class="b8">
+            <button class="b8_1">
+              <img src="./img/btnMenu3D_e.png" width="45">
+            </button>
+          </div>
+
+          <div class="b8">
+            <button class="b8_1">
+              <img src="./img/btuMenuAR_e.png" width="45">
+            </button>
+          </div>
+          <div class="b8" style="float: right;margin-top: 0.5%">
+            <img src="./img/btnMenuRight_e.png" width="45">
+          </div>
+        </v-card>
+      </v-card>
+
+      <v-card style="height: 100%; width: 100%; " v-if="logined">
+        <div style="text-align: center;margin-top: 13%;">
+          <img src="./img/logo.png" width="250px">
+        </div>
+        <div class="center">
+          <div id="icon_user">
+            <div class="input_boder">
+              <i id="icon" class="material-icons">
+                person_outline
+              </i>
+              <input id="btn_user" type="text" v-model="user" placeholder="Name"
+                oninput="value=value.replace(/[^a-zA-Z]/g,'')">
+            </div>
+
+            <div class="input_boder">
+              <i id="icon2" class="material-icons">
+                vpn_key
+              </i>
+              <input id="btn_userpassword" v-model="user_password" type="password" placeholder="******"
+                oninput="value=value.replace(/[^\d]/g,'')">
+            </div>
+
+            <button id="btn_center" @click="login">Sign In</button>
+          </div>
+        </div>
+      </v-card>
+      <v-dialog v-model="TUdialog" width="570px">
+        <v-card style="height: 600px;font-weight: 600 ;padding-top:20px">
+          <div class="div_label_title" style="width:520px;">
+            <label class="label_title">System Setting</label>
+          </div>
+
+          <div id="tabsF">
+            <ul>
+              <li><a href="javascript://" @click="loadTab(this,1);"><span class="toptag"
+                    id="L1">{{ $t('message.current_State') }}</span></a></li>
+              <li><a href="javascript://" @click="loadTab(this,2);"><span class="toptag"
+                    id="L2">{{ $t('message.tool_Frame') }}</span></a>
+              </li>
+              <li><a href="javascript://" @click="loadTab(this,3);"><span class="toptag"
+                    id="L3">{{ $t('message.user_Frame') }}</span></a>
+              </li>
+              <li><a href="javascript://" @click="loadTab(this,4);"><span class="toptag"
+                    id="L4">{{ $t('message.workspace_Frame') }}</span></a>
+              </li>
+            </ul>
+          </div>
+
+          <div id="tabsC">
+            <div id="S1" style="display:inline;">
+              <div style="margin-top: 20px; margin-left: 20px;">
+                <label class="item_label">{{ $t('message.tool_Frame_ID') }} :</label>
+                <input id="cutoolid" v-model="toolid" style="margin-left: 6px;" class="item_input"
+                  oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text">
+              </div>
+              <div style="margin-top: 20px; margin-left: 20px;">
+                <label class="item_label">{{ $t('message.user_Frame_ID') }} :</label>
+                <input id="cuuserid" v-model="userid" class="item_input"
+                  oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text">
+              </div>
+              <div style="margin-top: 20px; margin-left: 20px;">
+                <label class="item_label">{{ $t('message.Workspace') }} :</label>
+
+                <table class="item_table">
+                  <tr>
+                    <th style="border-right: 1px solid black;border-bottom: 1px solid black;" class="table_title"></th>
+                    <th style="border-right: 1px solid black;border-bottom: 1px solid black;" class="table_title">
+                      {{ $t('message.Type') }}
+                    </th>
+                    <th style="border-bottom: 1px solid black;" class="table_title">{{ $t('message.Area') }}</th>
+                  </tr>
+                  <tr v-for='(list,index) in lists' v-bind:key='index'>
+                    <td class="table_id">{{list.id}}</td>
+                    <td class="table_type" :id="Cutype+(index+1)">{{list.type}}</td>
+                    <td class="table_area" :id="Cuarea+(index+1)">{{list.area}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div id="S2" style="display:none; padding-left: 20px;">
+            <div style="margin-top: -430px; margin-left: 25px;">
+              <label class="item_label">{{ $t('message.ID') }} :</label>
+              <select id="tool_select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+              </select>
+            </div>
+            <table style="margin-top: 5px; margin-left: 25px;">
+              <tr>
+                <th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">
+                  {{ $t('message.Width') }}(mm)</th>
+                <th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">
+                  {{ $t('message.Height') }}(mm) </th>
+                <th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">
+                  {{ $t('message.Angle') }}(deg.)</th>
+              </tr>
+              <tr>
+                <th>
+                  <input id="toolwidth" v-model="widthmm" style="width: 96px;" class="tool_input"
+                    oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number">
+                </th>
+                <th>
+                  <input id="toolheight" v-model="heightmm" style="width: 99px;" class="tool_input"
+                    oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number">
+                </th>
+                <th>
+                  <input id="toolangle" v-model="angle" style="width: 98px;" class="tool_input"
+                    oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number">
+                </th>
+
+              </tr>
+              <tr>
+                <th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">
+                  {{ $t('message.Roll') }}(RX)</th>
+                <th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">
+                  {{ $t('message.Pitch') }}(RY) </th>
+                <th style="border: 1px solid #7f7f7f; background-color:#D5DFEB ;" class="table_title">
+                  {{ $t('message.Yaw') }}(RZ)</th>
+              </tr>
+              <tr>
+                <th>
+                  <input id="toolroll" v-model="roll" style="width: 96px;" class="tool_input"
+                    oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number">
+                </th>
+                <th>
+                  <input id="toolpitch" v-model="pitch" style="width: 99px;" class="tool_input"
+                    oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number">
+                </th>
+                <th>
+                  <input id="toolyaw" v-model="yaw" style="width: 98px;" class="tool_input"
+                    oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="number">
+                </th>
+              </tr>
+            </table>
+            <button id="toolget" @click="getnumber" class="item_btn"
+              style="margin-left: 220px;margin-top: 5px;">{{ $t('message.Get') }}</button>
+            <button id="toolset" @click="setnumber" class="item_btn"
+              style="margin-left: 10px;">{{ $t('message.Set') }}</button>
+            <br>
+            <label class="item_label" style="margin-left: 20px;">{{ $t('message.tool_Calculate') }}</label>
+            <br>
+            <div class="tool_scroll">
+              <table style="margin-top: 5px; margin-left: 25px; border:solid 1px black;">
+                <tr>
+                  <th style=" background-color:#D5DFEB ;" class="table_title">Index</th>
+                  <th style=" background-color:#D5DFEB ;" class="table_title">X</th>
+                  <th style=" background-color:#D5DFEB ;" class="table_title">Y</th>
+                  <th style=" background-color:#D5DFEB ;" class="table_title">Z</th>
+                  <th style=" background-color:#D5DFEB ;" class="table_title">{{ $t('message.Error') }}</th>
+                  <th style=" background-color:#D5DFEB ;" class="table_title">{{ $t('message.Select') }}</th>
+                </tr>
+                <tr v-for='(item,index) in calculation' v-bind:key='index'>
+                  <td style=" background-color:white ;" class="table_title">{{item.id}}</td>
+                  <th style=" background-color:white ;" class="table_title">
+                    <input v-model="item.X" :id="X+(index+1)" class="tool_calculation_input"
+                      oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text">
+                  </th>
+                  <th style=" background-color:white ;" class="table_title">
+                    <input v-model="item.Y" :id="Y+(index+1)" class="tool_calculation_input"
+                      oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text">
+                  </th>
+                  <th style=" background-color:white ;" class="table_title">
+                    <input v-model="item.Z" :id="Z+(index+1)" class="tool_calculation_input"
+                      oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text">
+                  </th>
+                  <th style=" background-color:white ;" class="table_title">
+                    <input v-model="item.Error" :id="Error+(index+1)" class="tool_calculation_input"
+                      oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text">
+                  </th>
+                  <th style=" background-color:white ;" class="table_title"><input :id="Select+(index+1)"
+                      v-model="item.Select" style="transform: scale(1.8);" class="project_checkbar" type="checkbox">
+                  </th>
+                </tr>
+              </table>
+            </div>
+            <button id="toolteach" @click="getteach" class="item_btn"
+              style="margin-left: 190px; margin-top: 15px; width: 60px; background-color: #C4D6A0;">{{ $t('message.Teach') }}</button>
+            <button id="toolgetcal" @click="getcal" class="item_btn"
+              style="margin-left: 10px;  width: 60px;">Calcu</button>
+            <button id="toolsetcal" @click="setcal" class="item_btn"
+              style="margin-left: 10px;">{{ $t('message.Set') }}</button>
+          </div>
+          <div id="S3" style="display:none;padding-left: 20px;">
+            <div style="margin-top: -430px; margin-left: 25px;">
+              <label class="item_label">{{ $t('message.ID') }} :</label>
+              <select id="user_select_id" v-model="user_select_id">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+              </select>
+              <br>
+              <div style="margin-top: 20px;">
+                <label class="item_label">Type :</label>
+                <select id="user_select_orth" class="user_select_type" v-model="user_select_orth">
+                  <option>Orthogonal</option>
+                  <option>Non Orthogonal</option>
+                </select>
+                <select id="user_select_incl" class="user_select_type" v-model="user_select_incl" style="width:120px;">
+                  <option>NonInclined</option>
+                  <option>Inclined</option>
+                </select>
+                <table style="margin-top: 30px; margin-left: 25px; border:solid 1px black; width: 340px;">
+                  <tr>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;"></th>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;">X</th>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;">Y</th>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;">Z</th>
+                  </tr>
+                  <tr>
+                    <th style=" background-color:white ;">Origin</th>
+
+                    <th style=" background-color:white ;">
+                      <input id="OriginX" v-model="OriginX" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+
+                    <th style=" background-color:white ;">
+                      <input id="OriginY" v-model="OriginY" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+
+                    <th style=" background-color:white ;">
+                      <input id="OriginZ" v-model="OriginZ" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th style=" background-color:white ;">+Xaxis</th>
+                    <th style=" background-color:white ;">
+                      <input id="axisX" v-model="axisX" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="axisY" v-model="axisY" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="axisZ" v-model="axisZ" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th style=" background-color:white ;">XY</th>
+                    <th style=" background-color:white ;">
+                      <input id="XYX" v-model="XYX" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="XYY" v-model="XYY" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="XYZ" v-model="XYZ" class="user_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                  </tr>
+
+                </table>
+              </div>
+              <button id="user_teach" @click="user_write" class="user_btn"
+                style="margin-left: 70px; margin-top: 20px; background-color:#C4D6A0 ;border:1.5px solid #7f7f7f ;">{{ $t('message.Teach') }}</button>
+              <button id="user_get" @click="user_getnumber" class="user_btn"
+                style="margin-left: 10px;">{{ $t('message.Get') }}</button>
+              <button id="user_set" @click="user_setnumber" class="user_btn"
+                style="margin-left: 10px;">{{ $t('message.Set') }}</button>
+              <button id="user_clear" @click="user_clearnumber" class="user_btn"
+                style="margin-left: 10px;">Clear</button>
+            </div>
+          </div>
+          <div id="S4" style="display:none;padding-left: 20px;">
+            <div style="margin-top: -430px; margin-left: 25px;">
+              <label class="item_label">{{ $t('message.ID') }} :</label>
+              <select id="work_select_id" v-model="work_select_id">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+              </select>
+              <br>
+              <div style="margin-top: 20px;">
+                <label class="item_label">{{ $t('message.Type') }} :</label>
+                <select id="work_select_shape" class="user_select_type" style="width:100px" v-model="work_select_shape">
+                  <option>Rectangle</option>
+                  <option>Cylinder</option>
+                </select>
+                <select id="work_select_area" class="user_select_type" style="width:150px;" v-model="work_select_area">
+                  <option>Restricted Area</option>
+                  <option>Working Area</option>
+                </select>
+                <table style="margin-top: 30px;  border:solid 1px black; width: 365px;">
+                  <tr>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;"></th>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;">X</th>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;">Y</th>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;">Z</th>
+                    <th style=" background-color:#D5DFEB ;" class="table_title" style="width: 80px;">Tool ID</th>
+
+                  </tr>
+                  <tr>
+                    <th style=" background-color:white ;">PO</th>
+                    <th style=" background-color:white ;">
+                      <input id="POX" class="workspace_input" v-model="POX"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="POY" class="workspace_input" v-model="POY"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="POZ" class="workspace_input" v-model="POZ"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="POtool" class="workspace_input" v-model="POtool"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th style=" background-color:white ;">PX</th>
+                    <th style=" background-color:white ;">
+                      <input id="PXX" class="workspace_input" v-model="PXX"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="PXY" class="workspace_input" v-model="PXY"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="PXZ" class="workspace_input" v-model="PXZ"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="PXtool" class="workspace_input" v-model="PXtool"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th style=" background-color:white ;">PY</th>
+                    <th style=" background-color:white ;">
+                      <input id="PYX" class="workspace_input" v-model="PYX"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="PYY" class="workspace_input" v-model="PYY"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="PYZ" class="workspace_input" v-model="PYZ"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0.000>
+                    </th>
+                    <th style=" background-color:white ;">
+                      <input id="PYtool" class="workspace_input" v-model="PYtool"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" type="text" value=0>
+                    </th>
+                  </tr>
+                </table>
+              </div>
+              <button @click="work_write" class="user_btn"
+                style="margin-left: 144px; margin-top: 20px; background-color:#C4D6A0 ;border:1.5px solid #7f7f7f ;">{{ $t('message.Teach') }}</button>
+              <button @click="work_getnumber" class="user_btn"
+                style="margin-left: 10px;">{{ $t('message.Get') }}</button>
+              <button @click="work_setnumber" class="user_btn"
+                style="margin-left: 10px;">{{ $t('message.Set') }}</button>
+            </div>
+          </div>
+        </v-card>
+      </v-dialog>
+
+      <div id="Jogsetting" style="display: none">
+        <v-dialog persistent v-model="d1" width="500">
+          <v-card style=" padding-top: 15px;">
+            <div class="div_label_title" style="width: 450px;">
+              <label class="label_title">Jog Setting</label>
+            </div>
+
+            <div style="width:400px; margin-left: 25px;">
+              <div style="margin-top:40px;">
+                <label class="label_size">{{ $t('message.Distance') }} :</label>
+                <input id="jog_distance" oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"
+                  style="margin-left: 55px;" type="text" class="jog_input">
+                <label class="label_size">mm</label>
+              </div>
+              <br>
+              <div style="margin-top:20px;">
+                <label class="label_size">{{ $t('message.Speed') }} :</label>
+                <input id="jog_speed" oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')"
+                  style="margin-left: 75px;" type="text" class="jog_input">
+                <label class="label_size">%</label>
+              </div>
+              <br>
+            </div>
+            <div style="height: 300px;">
+            </div>
+            <v-card-text>
+            </v-card-text>
+            <button style="margin-left:375px;" class="btn_finsh" @click="d1 = false" id="jogok">OK</button>
+            <v-card-actions>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+
+      <div id="systemsetting" style="display: none">
+        <v-dialog persistent v-model="d2" width="563px">
+          <v-card style=" padding-top: 15px;">
+            <div class="div_label_title" style="width:513px;">
+              <label class="label_title">System Setting</label>
+            </div>
+
+
+            <div style="width:400px; margin-left: 25px;">
+              <div id="tabsFF" style="margin-top:-44px;">
+                <ul>
+                  <li><a href="javascript://" @click="loadTabb(this,1);"><span class="toptag" id="L1"
+                        style="background-color: #C6D8F0;">Ethernet IP</span></a></li>
+                  <li><a href="javascript://" @click="loadTabb(this,2);"><span class="toptag"
+                        id="L2">RS232/485</span></a></li>
+                </ul>
+              </div>
+              <div id="tabsC" style="margin-left: 6px">
+                <div id="S1" style="display:inline;">
+                  <div style="margin-top:20px; margin-left: 5px;">
+                    <label class="label_size">IP</label>
+                    <div style="float:right;margin-right:10px;">
+                      <input id="ip1" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="ip2" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="ip3" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="ip4" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                    </div>
+                  </div>
+                  <br>
+                  <div style="margin-top:10px; margin-left: 5px;">
+                    <label class="label_size">{{ $t('message.subNet_Mask') }}</label>
+                    <div style="float:right;margin-right:10px;">
+                      <input id="mask1" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="mask2" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="mask3" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="mask4" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                    </div>
+                  </div>
+                  <br>
+                  <div style="margin-top:10px; margin-left: 5px;">
+                    <label class="label_size">{{ $t('message.default_Gateway') }}</label>
+                    <div style="float:right;margin-right:10px;">
+                      <input id="getway1" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="getway2" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="getway3" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                      .
+                      <input id="getway4" class="system_input"
+                        oninput="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')">
+                    </div>
+                  </div>
+                  <br>
+                  <div style="float: right;margin-top: 175px;">
+                    <button class="btn_finsh" id="eternetset" @click="eternet_setting">{{ $t('message.Set') }}</button>
+                  </div>
+                </div>
+                <div id="S2" style="display:none;">
+
+                  <div class="system_border">
+                    <div class="system_text">
+                      <label class="label_size">{{ $t('message.Set') }}</label>
+                    </div>
+                    <div style="margin-left:10px;">
+                      <label class="label_size">Transmission Mode :</label>
+                      <select class="system_select" id="set_trmode" style="width: 140px;margin-left: 43px;">
+                        <option class="system_item">RS232</option>
+                        <option class="system_item">RS485</option>
+                      </select>
+                      <div style="margin-top: 10px;">
+                        <label class="label_size">Transmission Rate :</label>
+                        <select class="system_select" id="set_trrate" style="width: 140px; margin-left: 52px;">
+                          <option class="system_item">4800</option>
+                          <option class="system_item">9600</option>
+                          <option class="system_item">19200</option>
+                          <option class="system_item">38400</option>
+                          <option class="system_item">57600</option>
+                          <option class="system_item">115200</option>
+                        </select>
+                      </div>
+                      <div style="margin-top: 10px;">
+                        <label class="label_size">Protocol :</label>
+                        <select class="system_select" id="set_proto" style="width: 260px; margin-left: 15px;">
+                          <option class="system_item">7，N，29(6M0O0DBUS，ASCII)</option>
+                          <option class="system_item">7，E，1 (MODBUS，ASCII)</option>
+                          <option class="system_item">7，O，1 (MODBUS，ASCII)</option>
+                          <option class="system_item">8，N，2 (MODBUS，ASCII)</option>
+                          <option class="system_item">8，E，1 (MODBUS，ASCII)</option>
+                          <option class="system_item">8，O，1 (MODBUS，ASCII)</option>
+                          <option class="system_item">8，N，2 (MODBUS，RTU) </option>
+                          <option class="system_item">8，E，1 (MODBUS，RTU)</option>
+                          <option class="system_item">8，O，1 (MODBUS，RTU)</option>
+                        </select>
+                      </div>
+                      <button style="margin-left:285px;margin-top:10px;" class="btn_finsh" id="set_transmission"
+                        @click="set_trdata">{{ $t('message.Set') }}</button>
+                    </div>
+                  </div>
+                  <div class="system_border">
+                    <div class="system_text">
+                      <label class="label_size">{{ $t('message.Get') }}</label>
+                    </div>
+                    <div style="margin-left:10px;">
+                      <div style="margin-top: 5px;">
+                        <label class="label_size">Transmission Mode :</label>
+                        <input id="get_trmode" class="transmission_input" style="margin-left: 42px;" type="text">
+                      </div>
+                      <div style="margin-top: 10px;">
+                        <label class="label_size">Transmission Rate :</label>
+                        <input id="get_trrate" class="transmission_input" style="margin-left: 52px;" type="text">
+                      </div>
+                      <div style="margin-top: 10px;">
+                        <label class="label_size">Protocol :</label>
+                        <input id="get_proto" class="transmission_input" style="margin-left: 14px;width: 260px;"
+                          type="text">
+                      </div>
+                    </div>
+                    <button style="margin-left:285px;margin-top:10px;" class="btn_finsh" id="get_transmission"
+                      @click="get_trdata">{{ $t('message.Get') }}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <v-card-text>
+            </v-card-text>
+            <button style="margin-left:400px;" class="btn_finsh" @click="d2 = false" id="systemok">OK</button>
+            <v-card-actions>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+
+      <div id="robotsetting" style="display: none">
+        <v-dialog persistent v-model="d3" width="500">
+          <v-card style=" padding-top: 15px;">
+            <div class="div_label_title" style="width: 450px;">
+              <label class="label_title">Robot Setting</label>
+            </div>
+            <div style="height: 440px;">
+            </div>
+            <v-card-text>
+            </v-card-text>
+            <button style="margin-left:375px;" class="btn_finsh" @click="d3 = false" id="robotok">OK</button>
+            <v-card-actions>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+      <div id="language" style="display: none">
+        <v-dialog persistent v-model="d4" width="500">
+          <v-card style=" padding-top: 15px;">
+            <div class="div_label_title" style="width: 450px;">
+              <label class="label_title">Language</label>
+            </div>
+            <div style="width:400px; margin-left: 25px;">
+              <div style="margin-top:40px;">
+                <select @change="language_change" v-model="language" class="system_select" id="language_set"
+                  style="width: 200px;margin-left: 125px;">
+                  <option class="system_item">English</option>
+                  <option class="system_item">Traditional_Chinese</option>
+                  <option class="system_item">Simplified Chinese</option>
+                  <option class="system_item">Japenese</option>
+                  <option class="system_item">Korean</option>
+                  <option class="system_item">Spanish</option>
+                  <option class="system_item">Portuguese</option>
+                </select>
+              </div>
+            </div>
+            <div style="height: 370px;">
+            </div>
+            <v-card-text>
+            </v-card-text>
+            <button style="margin-left:375px;" class="btn_finsh" @click="d4 = false" id="robotok">OK</button>
+
+            <v-card-actions>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+
+      <div id="other" style="display: none">
+        <v-dialog persistent v-model="d5" width="500">
+          <v-card style=" padding-top: 15px;">
+            <div class="div_label_title" style="width: 450px;">
+              <label class="label_title">Other</label>
+            </div>
+            <div style="width:450px; margin-left: 25px;">
+              <div style="margin-top: 40px;">
+                <label class="label_size">{{ $t('message.JRC_Operate') }} :</label>
+                <select @change="other_change" class="system_select" id="other_set" style="width: 300px;">
+                  <option class="system_item">{{ $t('message.JRC_Inactive') }}</option>
+                  <option class="system_item">{{ $t('message.JRC_Active') }}</option>
+                  <option class="system_item">{{ $t('message.select_Near_Path') }}</option>
+                  <option class="system_item">{{ $t('message.select_Near_Path_Avoid_Joint_Limit') }}</option>
+                  <option class="system_item">{{ $t('message.directly_motion_by_value') }}</option>
+                </select>
+              </div>
+            </div>
+            <div style="height: 365px;">
+            </div>
+            <v-card-text>
+            </v-card-text>
+            <button style="margin-left:375px;" class="btn_finsh" @click="d5 = false" id="otherok">OK</button>
+            <v-card-actions>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+
+      <v-dialog v-model="dialog" max-width="600px">
+        <v-card style="height: 650px; ">
+          <img src="./img/logo.png" style="margin: 29%;" width="250px">
+          <div class="center">
+            <div id="icon_user">
+              <button id="btn_center" @click="logout">Logout</button>
+            </div>
+          </div>
+        </v-card>
+      </v-dialog>
+
+      <v-dialog v-model="loading" persistent width="300">
+        <v-card color="primary" dark>
+          <v-card-text>
+            Loading ......
+            <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </v-app>
+  </div>
+
+  <script src="./js/vue.js"></script>
+  <script src="./js/vuetify.js"></script>
+  <script src="./js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+  <script src="./js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+  <script>
+    const i18n = new VueI18n({
+      locale: 'English', // locale後方對應的就是語系名稱
+      messages,//整包翻譯
+    })
+
+    var text;
+    let vue = new Vue({
+      i18n,
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: () => ({
+        language: "English",
+        activeBtn: 3,
+        drawer: false,
+        num: "2",
+        slider: 80,
+        max: 100,
+        min: 0,
+        dialog: false,
+        loading: false,
+        appParaShowed: true,
+        user: "",
+        user_password: "",
+        connector: "Disconnect",
+        servo: true,
+        setting: false,
+        showNav: true,
+        Pause: "Pause",
+        ONOFF: "OFF",
+        Auto: "Auto",
+        logined: true,
+        showed: false,
+        model: 0,
+        model2: 0,
+        model3: 0,
+        model4: 0,
+        model5: false,
+        frame: false,
+        d1: false,
+        d2: false,
+        d3: false,
+        d4: false,
+        d5: false,
+        jogtools: false,
+        pointtools: false,
+        exctools: false,
+        Monitortools: false,
+        diotools: false,
+        TUdialog: false,
+        toolid: 1,
+        userid: 1,
+        widthmm: 0,
+        heightmm: 0,
+        angle: 0,
+        roll: 0,
+        pitch: 0,
+        yaw: 0,
+        Cutype: 'Cutype',
+        Cuarea: 'Cuarea',
+        X: 'X', //給ID用
+        Y: 'Y',
+        Z: 'Z',
+        Error: 'Error',
+        Select: 'Select',
+        lists: [{
+          id: 1,
+          type: 'Rectangle',
+          area: 'Restricted Area',
+        },
+        {
+          id: 2,
+          type: 'Rectangle',
+          area: 'Working Area',
+        },
+        {
+          id: 3,
+          type: '',
+          area: '',
+        },
+        {
+          id: 5,
+          type: '',
+          area: '',
+        },
+        {
+          id: 6,
+          type: '',
+          area: '',
+        },
+        {
+          id: 7,
+          type: '',
+          area: '',
+        },
+        {
+          id: 8,
+          type: '',
+          area: '',
+        },
+        {
+          id: 9,
+          type: '',
+          area: '',
+        },
+        ],
+        calculation: [{
+          id: 1,
+          X: '1.00',
+          Y: '1.000',
+          Z: '1.000',
+          Error: '1.000',
+          Select: true,
+        },
+        {
+          id: 2,
+          X: '2.000',
+          Y: '2.000',
+          Z: '2.000',
+          Error: '2.000',
+          Select: true,
+        },
+        {
+          id: 3,
+          X: '3.000',
+          Y: '3.000',
+          Z: '3.000',
+          Error: '3.000',
+          Select: true,
+        },
+        {
+          id: 4,
+          X: '0.000',
+          Y: '0.000',
+          Z: '0.000',
+          Error: '0.000',
+          Select: false,
+        },
+        {
+          id: 5,
+          X: '5.000',
+          Y: '5.000',
+          Z: '5.000',
+          Error: '5.000',
+          Select: false,
+        },
+        {
+          id: 6,
+          X: '6.000',
+          Y: '6.000',
+          Z: '6.000',
+          Error: '6.000',
+          Select: false,
+        },
+        {
+          id: 7,
+          X: '7.000',
+          Y: '7.000',
+          Z: '7.000',
+          Error: '7.000',
+          Select: false,
+        },
+        {
+          id: 8,
+          X: '0.000',
+          Y: '0.000',
+          Z: '0.000',
+          Error: '0.000',
+          Select: false,
+        },
+        {
+          id: 9,
+          X: '0.000',
+          Y: '0.000',
+          Z: '0.000',
+          Error: '0.000',
+          Select: false,
+        },
+        ],
+        OriginX: 0,
+        OriginY: 0,
+        OriginZ: 0,
+        axisX: 0,
+        axisY: 0,
+        axisZ: 0,
+        XYX: 0,
+        XYY: 0,
+        XYZ: 0,
+        user_select_orth: "Orthogonal",
+        user_select_incl: "NonInclined",
+        user_select_id: 1,
+        work_select_id: 1,
+        work_select_shape: "Rectangle",
+        work_select_area: "Restricted Area",
+        POX: 0.000,
+        POY: 0.000,
+        POZ: 0.000,
+        POtool: 0,
+        PXX: 0.000,
+        PXY: 0.000,
+        PXZ: 0.000,
+        PXtool: 0,
+        PYX: 0.000,
+        PYY: 0.000,
+        PYZ: 0.000,
+        PYtool: 0,
+      }),
+      watch: {
+        model(model) {
+          if (this.model == 3) {
+            document.getElementById("robots").style.zIndex = "-1";
+          } else {
+            document.getElementById("robots").style.zIndex = "1";
+          }
+          if (this.model >= 0) {
+            document.getElementById("frame").style.display = "inline";
+          }
+          if (this.model == 0) {
+            var myframe = document.getElementById('fram');
+            console.log(myframe);
+            myframe.contentWindow.postMessage(0, '*');
+          }
+          if (this.model == 1) {
+            var myframe = document.getElementById('fram');
+            console.log(myframe);
+            myframe.contentWindow.postMessage(1, '*');
+          }
+          if (this.model == 2) {
+            var myframe = document.getElementById('fram');
+            console.log(myframe);
+            myframe.contentWindow.postMessage(2, '*');
+          }
+        },
+        model2(model2) {
+          var myframe3 = document.getElementById('appPoint');
+          myframe3.contentWindow.postMessage(this.model2, '*');
+
+          if (this.model2 == 0) {
+            var myframe2 = document.getElementById('fram2');
+            console.log(123);
+            myframe2.contentWindow.postMessage(0, '*');
+          }
+          if (this.model2 == 1) {
+            var myframe2 = document.getElementById('fram2');
+            console.log(123);
+            myframe2.contentWindow.postMessage(1, '*');
+
+          }
+          if (this.model2 == 2) {
+            var myframe2 = document.getElementById('fram2');
+            console.log(123);
+            myframe2.contentWindow.postMessage(2, '*');
+          }
+        },
+        model3(model3) {
+          if (this.model3 == 0) {
+            var myframe3 = document.getElementById('fram4');
+            document.getElementById("robots").style.zIndex = "1";
+            console.log(123);
+            myframe3.contentWindow.postMessage(0, '*');
+          }
+          if (this.model3 == 1) {
+            var myframe3 = document.getElementById('fram4');
+            document.getElementById("robots").style.zIndex = "-1";
+            console.log(123);
+            myframe3.contentWindow.postMessage(1, '*');
+          }
+          if (this.model3 == 2) {
+            var myframe3 = document.getElementById('fram4');
+            document.getElementById("robots").style.zIndex = "-1";
+            console.log(123);
+            myframe3.contentWindow.postMessage(2, '*');
+          }
+          if (this.model3 == 3) {
+            var myframe3 = document.getElementById('fram4');
+            document.getElementById("robots").style.zIndex = "-1";
+            console.log(123);
+            myframe3.contentWindow.postMessage(3, '*');
+          }
+          if (this.model3 == 4) {
+            var myframe3 = document.getElementById('fram4');
+            document.getElementById("robots").style.zIndex = "-1";
+            console.log(123);
+            myframe3.contentWindow.postMessage(4, '*');
+          }
+        },
+        model5(model5) {
+          console.log(123);
+
+          document.getElementById("carous2").style.display = "none";
+          document.getElementById("carous3").style.display = "none";
+          document.getElementById("carous4").style.display = "none";
+          document.getElementById("carous5").style.display = "block";
+          document.getElementById("carous").style.display = "none";
+          document.getElementById("robots").style.zIndex = "-1";
+          document.getElementById("frame2").style.display = "none";
+
+          document.getElementById("frame").style.display = "none";
+          document.getElementById("frame4").style.display = "none";
+        }
+      },
+
+      methods: {
+        jogtool: function () {
+          if (this.jogtools == false) {
+            document.getElementById("frame5").style.display = "block"
+            document.getElementById("frame5").style.zIndex = "1"
+            document.getElementById("frame6").style.display = "none"
+            document.getElementById("frame7").style.display = "none"
+            document.getElementById("frame8").style.display = "none"
+            document.getElementById("frame9").style.display = "none"
+
+            console.log(document.getElementById("frame2"), "159753");
+
+            this.jogtools = true
+            this.pointtools = false
+            this.exctools = false
+            this.Monitortools = false
+            this.diotools = false
+            document.getElementById("hamburger_det").style.display = "none";
+            this.drawer = false
+            return
+          }
+          if (this.jogtools == true) {
+            document.getElementById("frame5").style.display = "none"
+
+            this.jogtools = false
+            return
+          }
+        },
+        pointtool: function () {
+          if (this.pointtools == false) {
+            document.getElementById("frame6").style.display = "block"
+            document.getElementById("frame6").style.zIndex = "1"
+            document.getElementById("frame5").style.display = "none"
+            document.getElementById("frame7").style.display = "none"
+            document.getElementById("frame8").style.display = "none"
+            document.getElementById("frame9").style.display = "none"
+            this.pointtools = true
+            this.jogtools = false
+            this.exctools = false
+            this.Monitortools = false
+            this.diotools = false
+            document.getElementById("hamburger_det").style.display = "none";
+            this.drawer = false
+            return
+          }
+          if (this.pointtools == true) {
+            document.getElementById("frame6").style.display = "none"
+            this.pointtools = false
+            return
+          }
+        },
+        Excutiontool: function () {
+          if (this.exctools == false) {
+            document.getElementById("frame7").style.display = "block"
+            document.getElementById("frame7").style.zIndex = "1"
+            document.getElementById("frame6").style.display = "none"
+            document.getElementById("frame5").style.display = "none"
+            document.getElementById("frame8").style.display = "none"
+            document.getElementById("frame9").style.display = "none"
+            this.exctools = true
+            this.jogtools = false
+            this.pointtools = false
+            this.Monitortools = false
+            this.diotools = false
+            document.getElementById("hamburger_det").style.display = "none";
+            this.drawer = false
+            return
+          }
+          if (this.exctools == true) {
+            document.getElementById("frame7").style.display = "none"
+            this.exctools = false
+            return
+          }
+        },
+        Monitortool: function () {
+          if (this.Monitortools == false) {
+            document.getElementById("frame8").style.display = "block"
+            document.getElementById("frame8").style.zIndex = "1"
+            document.getElementById("frame7").style.display = "none"
+            document.getElementById("frame6").style.display = "none"
+            document.getElementById("frame5").style.display = "none"
+            document.getElementById("frame9").style.display = "none"
+            this.exctools = false
+            this.jogtools = false
+            this.pointtools = false
+            this.Monitortools = true
+            this.diotools = false
+            document.getElementById("hamburger_det").style.display = "none";
+            this.drawer = false
+            return
+          }
+          if (this.Monitortools == true) {
+            document.getElementById("frame8").style.display = "none"
+            this.Monitortools = false
+            return
+          }
+        },
+        diotool: function () {
+          if (this.diotools == false) {
+            document.getElementById("frame9").style.display = "block"
+            document.getElementById("frame9").style.zIndex = "1"
+            document.getElementById("frame7").style.display = "none"
+            document.getElementById("frame6").style.display = "none"
+            document.getElementById("frame5").style.display = "none"
+            document.getElementById("frame8").style.display = "none"
+            this.exctools = false
+            this.jogtools = false
+            this.pointtools = false
+            this.diotools = true
+            this.Monitortools = false
+            document.getElementById("hamburger_det").style.display = "none";
+            this.drawer = false
+            return
+          }
+          if (this.diotools == true) {
+            document.getElementById("frame9").style.display = "none"
+            this.diotools = false
+            return
+          }
+        },
+
+        carproject: function () {
+          document.getElementById("carous").style.display = "none";
+          document.getElementById("carous2").style.display = "block";
+          document.getElementById("robots").style.zIndex = "-1";
+          document.getElementById("frame").style.display = "none";
+          document.getElementById("frame2").style.display = "block";
+          document.getElementById("carous3").style.display = "none";
+          document.getElementById("frame4").style.display = "none";
+          document.getElementById("carous4").style.display = "none";
+
+        },
+        carcontrol: function () {
+          document.getElementById("carous2").style.display = "none";
+          document.getElementById("carous").style.display = "block";
+
+          document.getElementById("frame2").style.display = "none";
+          document.getElementById("frame").style.display = "block";
+          document.getElementById("carous3").style.display = "none";
+          document.getElementById("frame4").style.display = "none";
+          document.getElementById("carous4").style.display = "none";
+
+        },
+        MenuMonitor: function () {
+          document.getElementById("carous2").style.display = "none";
+          document.getElementById("carous3").style.display = "block";
+          document.getElementById("carous").style.display = "none";
+          document.getElementById("robots").style.zIndex = "-1";
+          document.getElementById("frame2").style.display = "none";
+          document.getElementById("frame").style.display = "none";
+          document.getElementById("frame4").style.display = "block";
+          document.getElementById("carous4").style.display = "none";
+
+        },
+        apps: function () {
+          document.getElementById("carous2").style.display = "none";
+          document.getElementById("carous3").style.display = "none";
+          document.getElementById("carous4").style.display = "block";
+          document.getElementById("carous").style.display = "none";
+          document.getElementById("robots").style.zIndex = "-1";
+          document.getElementById("frame2").style.display = "none";
+          document.getElementById("frame").style.display = "none";
+          document.getElementById("frame4").style.display = "none";
+
+        },
+        connectors: function () {
+          console.log("123");
+          let x = document.getElementById('con');
+          let aa = x.src.split("/");
+          if (this.connector == "Disconnect" || this.connector == "斷線") {
+            this.connector = "Connect";
+            this.connector = this.$t('message.connect');
+            command('pathTranslate', {
+              id: 'con',
+              path: 'img/Connect.png'
+            });
+            return;
+          }
+          if (this.connector == "Connect" || this.connector == "連線") {
+            this.connector = "Disconnect";
+            this.connector = this.$t('message.disconnect');
+            command('pathTranslate', {
+              id: 'con',
+              path: 'img/connector_e.png'
+            });
+            return;
+          }
+        },
+        ONOFFs: function () {
+          if (this.ONOFF == "OFF" || this.ONOFF == "關閉") {
+            this.ONOFF = "ON";
+            this.ONOFF = this.$t('message.ON');
+            return
+          }
+          if (this.ONOFF == "ON" || this.ONOFF == "開啟") {
+            this.ONOFF = "OFF";
+            this.ONOFF = this.$t('message.OFF');
+            console.log(456);
+            return
+          }
+        },
+        pauses: function () {
+          let x = document.getElementById('puas');
+          let aa = x.src.split("/");
+          if (this.Pause == "Pause" || this.Pause == "暫停") {
+            this.Pause = "Run";
+            this.Pause = this.$t('message.Run');
+            command('pathTranslate', {
+              id: 'puas',
+              path: 'img/ProgramRun.png'
+            });
+            return;
+          }
+          if (this.Pause == "Run" || this.Pause == "運行") {
+            this.Pause = "Stop";
+            this.Pause = this.$t('message.Stop');
+            command('pathTranslate', {
+              id: 'puas',
+              path: 'img/ProgramStop.png'
+            });
+            return;
+          }
+          if (this.Pause == "Stop" || this.Pause == "停止") {
+            this.Pause = "Pause";
+            this.Pause = this.$t('message.Pause');
+            command('pathTranslate', {
+              id: 'puas',
+              path: 'img/ProgramPause.png'
+            });
+            return;
+          }
+        },
+        autos: function () {
+          console.log("123");
+          let x = document.getElementById('aut');
+          let aa = x.src.split("/");
+          if (this.Auto == "Auto") {
+            this.Auto = "T1";
+            command('pathTranslate', {
+              id: 'aut',
+              path: 'img/ModeT1.png'
+            });
+            document.getElementById("aut").style.marginRight = "4px";
+            return;
+          }
+          if (this.Auto == "T1") {
+            this.Auto = "T2";
+            command('pathTranslate', {
+              id: 'aut',
+              path: 'img/ModeT2.png'
+            });
+            return;
+          }
+          if (this.Auto == "T2") {
+            this.Auto = "Auto";
+            command('pathTranslate', {
+              id: 'aut',
+              path: 'img/ModelStatus_e.png'
+            });
+            document.getElementById("aut").style.marginRight = "0px";
+            return;
+          }
+        },
+        draw: function () {
+          this.drawer = !this.drawer;
+          console.log(this.drawer, "200");
+          if (this.drawer == false) {
+            document.getElementById("hamburger_det").style.display = "none";
+          }
+          if (this.drawer == true) {
+            document.getElementById("hamburger_det").style.display = "inline";
+          }
+        },
+        show: function () {
+          this.setting = !this.setting;
+          console.log(this.setting);
+          if (this.setting == false) {
+            document.getElementById("setting").style.display = "none";
+          }
+          if (this.setting == true) {
+            document.getElementById("setting").style.display = "inline";
+          }
+        },
+        login: function () {
+          this.logined = false;
+          this.showed = true;
+          this.model = 0;
+          // this.loading = true;
+          // command('login', {
+          //   name: this.user,
+          //   pwd: this.user_password
+          // });
+        },
+        logout: function () {
+          this.showed = false;
+          this.dialog = false;
+          this.logined = true;
+        },
+        ass: function () {
+          document.getElementById("frame").style.display = "none";
+          document.getElementById("frame2").style.display = "inline";
+        },
+        TUdialoges: function () {
+          this.TUdialog = true;
+          console.log(123);
+        },
+        loadTab: function (obj, n) {
+          var layer, bgcolor;
+          layer = "S" + n;
+          bgcolor = "L" + n;
+          //將 Tab 標籤樣式設成 Blur 型態
+          var tabsF = document.getElementById('tabsF').getElementsByTagName('li'); //拿到底下的li
+          for (var i = 0; i < tabsF.length; i++) {
+            if (document.getElementById("L" + (i + 1)).id == bgcolor) {
+              document.getElementById(bgcolor).style.backgroundColor = "#C6D8F0";
+              document.getElementById(layer).style.display = 'block'; //出現按到的
+            } else {
+              document.getElementById("S" + (i + 1)).style.display = 'none';
+              document.getElementById("L" + (i + 1)).style.backgroundColor = "#D8D8D8";
+            }
+          }
+        },
+        getnumber: function () {
+          parseInt(document.getElementById("tool_select").value, 10);
+          this.widthmm = parseInt(this.widthmm, 10); //要轉成數字再存進去
+          this.heightmm = parseInt(this.heightmm, 10);
+          this.angle = parseInt(this.angle, 10);
+          this.roll = parseInt(this.roll, 10);
+          this.pitch = parseInt(this.pitch, 10);
+          this.yaw = parseInt(this.yaw, 10);
+          console.log('讀回設定數值', parseInt(document.getElementById("tool_select").value, 10), this.widthmm, this
+            .heightmm, this.angle, this.roll, this.pitch, this.yaw);
+        },
+        setnumber: function () {
+          console.log('設定數值sadas');
+        },
+        getteach: function () {
+          this.calculation.map(function (item, index) {
+            if (item.Select == true) {
+              item.X = parseFloat(item.X);
+              item.Y = parseFloat(item.Y);
+              item.Z = parseFloat(item.Z);
+              item.Error = parseFloat(item.Error);
+              console.log('有打勾的話才顯示資料: ', item.X, item.Y, item.Z, item.Error);
+            }
+          })
+        },
+        getcal: function () {
+          console.log('進行校正演算');
+        },
+        setcal: function () {
+          console.log('設定至控制器');
+        },
+        user_write: function () {
+          console.log('user 點位寫入表格中');
+        },
+        user_getnumber: function () {
+          console.log('XY: ', parseFloat(this.XYX), parseFloat(this.XYY), parseFloat(this.XYZ));
+          console.log(parseInt(this.user_select_id),
+            this.user_select_orth, this.user_select_incl);
+        },
+        user_setnumber: function () {
+          console.log('user 設定數值');
+
+        },
+        user_clearnumber: function () {
+          console.log('user 清除設定');
+          this.OriginX = 0.000;
+          this.OriginY = 0.000;
+          this.OriginZ = 0.000;
+          this.axisX = 0.000;
+          this.axisY = 0.000;
+          this.axisZ = 0.000;
+          this.XYX = 0.000;
+          this.XYY = 0.000;
+          this.XYZ = 0.000;
+        },
+        work_write: function () {
+          console.log('work 點位寫入表格中');
+
+        },
+
+        work_getnumber: function () {
+          console.log('PO: ', parseFloat(this.POX), parseFloat(this.POY), parseFloat(this.POZ), parseFloat(this
+            .POtool));
+          console.log(parseInt(this.work_select_id),
+            this.work_select_shape, this.work_select_area);
+        },
+        work_setnumber: function () {
+          console.log('work 設定數值');
+        },
+        loadTabb: function (obj, n) {
+          var layer, bgcolor;
+          layer = "S" + n;
+          bgcolor = "L" + n;
+          //將 Tab 標籤樣式設成 Blur 型態
+          var tabsFF = document.getElementById('tabsFF').getElementsByTagName('li'); //拿到底下的li
+          for (var i = 0; i < tabsFF.length; i++) {
+            // tabsF[i].setAttribute('id',null);//每個ID變為空值
+            // tabsF[i].setAttribute('id','Link'+(i+1) );//更改每個的切換的ID值
+            document.getElementById("S" + (i + 1)).style.display = 'none';
+            document.getElementById("L" + (i + 1)).style.backgroundColor = "#D8D8D8";
+          }
+
+          //變更分頁標題樣式
+          // obj.parentNode.setAttribute('id','current');
+          document.getElementById(bgcolor).style.backgroundColor = "#C6D8F0";
+          document.getElementById(layer).style.display = 'inline'; //出現按到的
+        },
+        eternet_setting: function () {
+          console.log(
+            "ip: ",
+            document.getElementById("ip1").value,
+            document.getElementById("ip2").value,
+            document.getElementById("ip3").value,
+            document.getElementById("ip4").value,
+            "mask: ",
+            document.getElementById("mask1").value,
+            document.getElementById("mask2").value,
+            document.getElementById("mask3").value,
+            document.getElementById("mask4").value,
+            "getway: ",
+            document.getElementById("getway1").value,
+            document.getElementById("getway2").value,
+            document.getElementById("getway3").value,
+            document.getElementById("getway4").value,
+          );
+
+        },
+        set_trdata: function () { //RS232/485 的set功能
+          console.log(
+            "set_trdata :",
+            document.getElementById("set_trmode").value,
+            document.getElementById("set_trrate").value,
+            document.getElementById("set_proto").value
+          );
+
+        },
+        get_trdata: function () { //RS232/485 的get功能
+          console.log(
+            "get_trdata :",
+            document.getElementById("get_trmode").value,
+            document.getElementById("get_trrate").value,
+            document.getElementById("get_proto").value
+          );
+
+        },
+        language_change: function () { //language_change 功能
+          console.log
+            (
+              document.getElementById("language_set").value,
+            );
+
+          i18n.locale = this.language;
+
+          var langframe = document.getElementById('fram');
+          langframe.contentWindow.postMessage(this.language, '*');
+
+          var langframe2 = document.getElementById('fram2');
+          langframe2.contentWindow.postMessage(this.language, '*');
+
+          var langframe3 = document.getElementById('fram4');
+          langframe3.contentWindow.postMessage(this.language, '*');
+
+          var langframe4 = document.getElementById('fram5');
+          langframe4.contentWindow.postMessage(this.language, '*');
+
+          var langframe5 = document.getElementById('fram6');
+          langframe5.contentWindow.postMessage(this.language, '*');
+
+          var langframe6 = document.getElementById('fram7');
+          langframe6.contentWindow.postMessage(this.language, '*');
+
+          var langframe7 = document.getElementById('fram8');
+          langframe7.contentWindow.postMessage(this.language, '*');
+
+          var langframe8 = document.getElementById('fram9');
+          langframe8.contentWindow.postMessage(this.language, '*');
+
+          var langframe9 = document.getElementById('appServo');
+          langframe9.contentWindow.postMessage(this.language, '*');
+
+          var langframe10 = document.getElementById('appHome');
+          if (langframe10 != null) {
+            langframe10.contentWindow.postMessage(this.language, '*');
+          }
+
+          var langframe11 = document.getElementById('appJog');
+          if (langframe11 != null) {
+            langframe11.contentWindow.postMessage(this.language, '*');
+          }
+
+          var langframe12 = document.getElementById('appFiles');
+          if (langframe12 != null) {
+            langframe12.contentWindow.postMessage(this.language, '*');
+          }
+
+          var langframe13 = document.getElementById('appPoint');
+          if (langframe13 != null) {
+            langframe13.contentWindow.postMessage(this.language, '*');
+          }
+
+          var langframe14 = document.getElementById('appEditor');
+          if (langframe14 != null) {
+            langframe14.contentWindow.postMessage(this.language, '*');
+          }
+          var langframe15 = document.getElementById('appBasic');
+          if (langframe15 != null) {
+            langframe15.contentWindow.postMessage(this.language, '*');
+          }
+          var langframe16 = document.getElementById('appAlarm');
+          if (langframe16 != null) {
+            langframe16.contentWindow.postMessage(this.language, '*');
+          }
+
+          var langframe17 = document.getElementById('appHistory');
+          if (langframe17 != null) {
+            langframe17.contentWindow.postMessage(this.language, '*');
+          }
+
+          var langframe18 = document.getElementById('appScope');
+          if (langframe18 != null) {
+            langframe18.contentWindow.postMessage(this.language, '*');
+          }
+
+          this.connector = this.$t('message.disconnect');
+          this.ONOFF = this.$t('message.OFF');
+          this.Pause = this.$t('message.Pause');
+        },
+        other_change: function () { //language_change 功能
+          console.log(
+            document.getElementById("other_set").value,
+          );
+        },
+        dialog1: function () {
+          // console.log("dialog1");
+          document.getElementById("Jogsetting").style.display = "";
+          this.d1 = true;
+          document.getElementById("setting").style.display = "none";
+          this.setting = false
+        },
+        dialog2: function () {
+          // console.log("dialog2");
+          document.getElementById("systemsetting").style.display = "";
+          this.d2 = true;
+          document.getElementById("setting").style.display = "none";
+          this.setting = false
+        },
+        dialog3: function () {
+          // console.log("dialog3");
+          document.getElementById("robotsetting").style.display = "";
+          this.d3 = true;
+          document.getElementById("setting").style.display = "none";
+          this.setting = false
+        },
+        dialog4: function () {
+          // console.log("dialog4");               
+          document.getElementById("language").style.display = "";
+          this.d4 = true;
+          document.getElementById("setting").style.display = "none";
+          this.setting = false
+
+        },
+        dialog5: function () {
+          // console.log("dialog5");
+          document.getElementById("other").style.display = "";
+          this.d5 = true;
+          document.getElementById("setting").style.display = "none";
+          this.setting = false
+        },
+
+      },
+    })
+
+    const vscode = acquireVsCodeApi();
+    function appJogLoad() {
+      appJog.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function appFilesLoad() {
+      appFiles.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function appPointLoad() {
+      appPoint.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function appEditorLoad() {
+      appEditor.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function appAlarmLoad() {
+      appAlarm.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function appHistoryLoad() {
+      appHistory.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+    function appScopeLoad() {
+      appScope.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function appHomeLoad() {
+      if (vue.user_password == '168') {
+        appHome.contentWindow.postMessage({
+          command: 'FAE'
+        }, '*');
+      } else if (vue.user_password == '2222') {
+        appHome.contentWindow.postMessage({
+          command: 'USER'
+        }, '*');
+      }
+
+      appHome.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function appSecheader1Load() {
+      if (vue.user_password == '168') {
+        appParameter.contentWindow.postMessage({
+          command: 'FAE'
+        }, '*');
+      } else if (vue.user_password == '2222') {
+        appParameter.contentWindow.postMessage({
+          command: 'USER'
+        }, '*');
+      }
+    }
+
+    function appServoLoad() {
+      console.log('appServo');
+      appServo.contentWindow.postMessage({
+        lang: vue.language
+      }, '*');
+    }
+
+    function command(cmd, args) {
+      if (!cmd) {
+        return;
+      }
+      vscode.postMessage({
+        command: cmd,
+        args: args
+      });
+    }
+
+    window.addEventListener('message', (e) => {
+      const message = e.data;
+
+      if (message.type === 'frontEnd') {
+        switch (message.page) {
+          case 'appServo':
+            command(message.command, message.args);
+            break;
+          case 'appJog':
+            command(message.command, message.args);
+            break;
+          case 'appHome':
+            command(message.command, message.args);
+            break;
+          case 'blockly':
+            command(message.command, message.args);
+            break;
+          case 'appFiles':
+            command(message.command, message.args);
+            break;
+          case 'appAlarm':
+            command(message.command, message.args);
+            break;
+          case 'appBasic':
+            command(message.command, message.args);
+            break;
+          case 'appPoint':
+            command(message.command, message.args);
+            break;
+          default:
+            break;
+        }
+      }
+
+      if (message.type === 'backEnd') {
+        switch (message.command) {
+          case 'login':
+            if (message.args.pass == true) {
+              vue.logined = false;
+              vue.showed = true;
+              vue.model = 0;
+              vue.loading = false;
+            } else {
+              vue.user = '';
+              user.user_password = '';
+              vue.loading = false;
+            }
+            break;
+          case 'axisOn':
+            break;
+          case 'pathTranslate':
+            switch (message.args.id) {
+              case 'con':
+                document.getElementById('con').src = message.args.path;
+                break;
+              case 'puas':
+                document.getElementById('puas').src = message.args.path;
+                break;
+              case 'aut':
+                document.getElementById('aut').src = message.args.path;
+                break;
+            }
+            break;
+          case 'robotDeg':
+            robotGL.contentWindow.postMessage({
+              args: message.args.deg
+            }, '*'); // pass data to robotGL
+            break;
+          case 'projectList':
+            appFiles.contentWindow.postMessage({
+              command: 'list',
+              args: message.args.list
+            }, '*');
+            break;
+          case 'servoState':
+            appServo.contentWindow.postMessage({
+              command: 'servoState',
+              args: message.args
+            }, '*');
+          case 'alarmState':
+            appAlarm.contentWindow.postMessage({
+              command: 'alarmState',
+              args: message.args
+            }, '*');
+            break;
+          case 'cartPosInfo':
+            appBasic.contentWindow.postMessage({
+              command: 'cartPosInfo',
+              args: message.args
+            }, '*');
+            break;
+          case 'jogCartJointPosInfo':
+            appJog.contentWindow.postMessage({
+              command: 'jogCartJointPosInfo',
+              args: message.args
+            }, '*');
+            break;
+          case 'pointLPInfo':
+            appPoint.contentWindow.postMessage({
+              command: 'teachGPRawdata',
+              args: message.args
+            }, '*');
+            break;
+          case 'getVersion':
+            appBasic.contentWindow.postMessage({
+              command: 'getVersion',
+              args: message.args
+            }, '*');
+            break;
+          default:
+            break;
+        }
+      }
+
+      if (message.type === 'promptResult') {
+        appEditor.contentWindow.postMessage({
+          command: 'promptResult',
+          result: message.result,
+        }, '*');
+      }
+
+      if (message.type === 'confirmResult') {
+        appEditor.contentWindow.postMessage({
+          command: 'confirmResult',
+          result: message.result,
+        }, '*');
+      }
+
+      if (message.type === undefined) {
+        text = parseInt(event.data);
+        if (text > 4 && text <= 7) {
+          if (text == 5) {
+            vue.model2 = parseInt(0);
+          }
+          if (text == 6) {
+            vue.model2 = parseInt(1);
+          }
+          if (text == 7) {
+            vue.model2 = parseInt(2);
+          }
+        } else if (text > 7 && text < 13) {
+          if (text == 8) {
+            vue.model3 = parseInt(0);
+          }
+          if (text == 9) {
+            vue.model3 = parseInt(1);
+          }
+          if (text == 10) {
+            vue.model3 = parseInt(2);
+          }
+          if (text == 11) {
+            vue.model3 = parseInt(3);
+          }
+          if (text == 12) {
+            vue.model3 = parseInt(4);
+          }
+        } else if (text == 22) {
+          if (text == 22) {
+            vue.model5 = parseInt(0);
+            console.log(test1231232);
+          }
+        } else {
+          vue.model = text
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

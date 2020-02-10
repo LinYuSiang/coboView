@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <!-- <script var myVar=setInterval(function () { getCartPos() }, 5000)></script> -->
+
+    <style>
+        @media screen and (min-width: 981px) and (max-width: 1920px) {
+
+            /*  981<X<1920*/
+            .box {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                background-color: #ffffff;
+            }
+
+            .out {
+                width: 410px;
+                height: 469px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
+
+            .out::-webkit-scrollbar-track {
+                border-radius: 12px;
+                background-color: #ffffff;
+            }
+
+            .out::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+                background-color: #ffffff;
+            }
+
+            .out::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: #BFBFBF;
+            }
+
+            .box1 {
+                position: absolute;
+                top: 3%;
+                left: 53%;
+            }
+
+            .title1 {
+                width: 400px;
+                height: 40px;
+                background-color: #c6d8f0;
+                font-size: 20px;
+                text-align: center;
+                line-height: 40px
+            }
+
+            .td_title {
+                background-color: #d8d8d8;
+                width: 50px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_title1 {
+                background-color: #d8d8d8;
+                width: 220px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_title2 {
+                background-color: #d8d8d8;
+                width: 120px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_content1 {
+                background-color: #f2f2f2;
+                width: 220px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_content2 {
+                background-color: #f2f2f2;
+                width: 120px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint1 {
+                background-color: #d8d8d8;
+                width: 90px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint2 {
+                background-color: #d8d8d8;
+                width: 50px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint3 {
+                background-color: #d8d8d8;
+                width: 70px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint4 {
+                background-color: #d8d8d8;
+                width: 52px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint5 {
+                background-color: #d8d8d8;
+                width: 70px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .Controller_title {
+                background-color: #f2f2f2;
+                width: 150px;
+                height: 30px;
+                text-align: left;
+                border: 3px solid white;
+                padding-left: 10px
+            }
+
+            .Controller_title1 {
+                background-color: #f2f2f2;
+                width: 240px;
+                height: 30px;
+                text-align: left;
+                border: 3px solid white;
+                padding-left: 10px
+            }
+        }
+
+        @media screen and (min-width: 641px) and (max-width: 980px) {
+
+            /*  641<X<980 平板尺寸 */
+            .box {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                background-color: #ffffff;
+            }
+
+            .out {
+                width: 410px;
+                height: auto;
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
+
+            .out::-webkit-scrollbar-track {
+                border-radius: 12px;
+                background-color: #ffffff;
+            }
+
+            .out::-webkit-scrollbar {
+                width: 10px;
+                height: 10px;
+                background-color: #ffffff;
+            }
+
+            .out::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: #BFBFBF;
+            }
+
+            .box1 {
+                position: absolute;
+                top: 5%;
+                left: 40%;
+            }
+
+            .title1 {
+                width: 400px;
+                height: 40px;
+                background-color: #c6d8f0;
+                font-size: 20px;
+                text-align: center;
+                line-height: 40px
+            }
+
+            .td_title {
+                background-color: #d8d8d8;
+                width: 50px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_title1 {
+                background-color: #d8d8d8;
+                width: 220px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_title2 {
+                background-color: #d8d8d8;
+                width: 120px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_content1 {
+                background-color: #f2f2f2;
+                width: 220px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_content2 {
+                background-color: #f2f2f2;
+                width: 120px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint1 {
+                background-color: #d8d8d8;
+                width: 90px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint2 {
+                background-color: #d8d8d8;
+                width: 50px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint3 {
+                background-color: #d8d8d8;
+                width: 70px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint4 {
+                background-color: #d8d8d8;
+                width: 52px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .td_Joint5 {
+                background-color: #d8d8d8;
+                width: 70px;
+                height: 30px;
+                text-align: center;
+                border: 3px solid white;
+            }
+
+            .Controller_title {
+                background-color: #f2f2f2;
+                width: 150px;
+                height: 30px;
+                text-align: left;
+                border: 3px solid white;
+                padding-left: 10px
+            }
+
+            .Controller_title1 {
+                background-color: #f2f2f2;
+                width: 240px;
+                height: 30px;
+                text-align: left;
+                border: 3px solid white;
+                padding-left: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box" id="box" style="font-family: Roboto,sans-serif;font-weight:bold">
+            <div class="box1">
+                <div id="top" width="50" @click="top" style="text-align:center;margin-bottom: 10px"><img
+                        src="./../img/top.png" width="50"></div>
+                <div id="out" class="out">
+                    <div class="title1">{{ $t('message.Cartesian') }}</div>
+
+                    <table>
+                        <tr>
+                            <td class="td_title" style="background-color: white"></td>
+                            <td class="td_title1">{{ $t('message.mm') }}</td>
+                            <td class="td_title2">{{ $t('message.Vel') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title" style="background-color: #f2f2f2">X</td>
+                            <td class="td_content1">{{xmm}}</td>
+                            <td class="td_content2" rowspan="6">{{xvel}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title">Y</td>
+                            <td class="td_title1">{{ymm}}</td>
+                            <!-- <td class="td_title2">{{yvel}}</td> -->
+                        </tr>
+                        <tr>
+                            <td class="td_title" style="background-color: #f2f2f2">Z</td>
+                            <td class="td_content1">{{zmm}}</td>
+                            <!-- <td class="td_content2">{{zvel}}</td> -->
+                        </tr>
+                        <tr>
+                            <td class="td_title">RX</td>
+                            <td class="td_title1">{{rxmm}}</td>
+                            <!-- <td class="td_title2">{{rxvel}}</td> -->
+                        </tr>
+                        <tr>
+                            <td class="td_title" style="background-color: #f2f2f2">RY</td>
+                            <td class="td_content1">{{rymm}}</td>
+                            <!-- <td class="td_content2">{{ryvel}}</td> -->
+                        </tr>
+                        <tr>
+                            <td class="td_title">RZ</td>
+                            <td class="td_title1">{{rzmm}}</td>
+                            <!-- <td class="td_title2">{{rzvel}}</td> -->
+                        </tr>
+                    </table>
+                    <div class="title1">{{ $t('message.Joint') }}</div>
+                    <table>
+                        <tr>
+                            <td class="td_title" style="background-color: white"></td>
+                            <td class="td_Joint1">PUU</td>
+                            <td class="td_Joint2">Deg</td>
+                            <td class="td_Joint3">RPM</td>
+                            <td class="td_Joint4">Trq.</td>
+                            <td class="td_Joint5">Temp.</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title" style="background-color: #f2f2f2">J1</td>
+                            <td class="td_Joint1" style="background-color: #f2f2f2">{{j1puu}}</td>
+                            <td class="td_Joint2" style="background-color: #f2f2f2">{{j1deg}}</td>
+                            <td class="td_Joint3" style="background-color: #f2f2f2">{{j1rpm}}</td>
+                            <td class="td_Joint4" style="background-color: #f2f2f2">{{j1trq}}</td>
+                            <td class="td_Joint5" style="background-color: #f2f2f2">{{j1temp}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title">J2</td>
+                            <td class="td_Joint1">{{j2puu}}</td>
+                            <td class="td_Joint2">{{j2deg}}</td>
+                            <td class="td_Joint3">{{j2rpm}}</td>
+                            <td class="td_Joint4">{{j2trq}}</td>
+                            <td class="td_Joint5">{{j2temp}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title" style="background-color: #f2f2f2">J3</td>
+                            <td class="td_Joint1" style="background-color: #f2f2f2">{{j3puu}}</td>
+                            <td class="td_Joint2" style="background-color: #f2f2f2">{{j3deg}}</td>
+                            <td class="td_Joint3" style="background-color: #f2f2f2">{{j3rpm}}</td>
+                            <td class="td_Joint4" style="background-color: #f2f2f2">{{j3trq}}</td>
+                            <td class="td_Joint5" style="background-color: #f2f2f2">{{j3temp}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title">J4</td>
+                            <td class="td_Joint1">{{j4puu}}</td>
+                            <td class="td_Joint2">{{j4deg}}</td>
+                            <td class="td_Joint3">{{j4rpm}}</td>
+                            <td class="td_Joint4">{{j4trq}}</td>
+                            <td class="td_Joint5">{{j4temp}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title" style="background-color: #f2f2f2">J5</td>
+                            <td class="td_Joint1" style="background-color: #f2f2f2">{{j5puu}}</td>
+                            <td class="td_Joint2" style="background-color: #f2f2f2">{{j5deg}}</td>
+                            <td class="td_Joint3" style="background-color: #f2f2f2">{{j5rpm}}</td>
+                            <td class="td_Joint4" style="background-color: #f2f2f2">{{j5trq}}</td>
+                            <td class="td_Joint5" style="background-color: #f2f2f2">{{j5temp}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td_title">J6</td>
+                            <td class="td_Joint1">{{j6puu}}</td>
+                            <td class="td_Joint2">{{j6deg}}</td>
+                            <td class="td_Joint3">{{j6rpm}}</td>
+                            <td class="td_Joint4">{{j6trq}}</td>
+                            <td class="td_Joint5">{{j6temp}}</td>
+                        </tr>
+                    </table>
+                    <div class="title1">{{ $t('message.controller_Information') }}</div>
+                    <table>
+                        <tr>
+                            <td class="Controller_title">{{ $t('message.Version') }}</td>
+                            <td class="Controller_title1">{{Version}}</td>
+                        </tr>
+                        <tr>
+                            <td class="Controller_title">{{ $t('message.release_Date') }}</td>
+                            <td class="Controller_title1">{{releaseDate}}</td>
+                        </tr>
+                        <tr>
+                            <td class="Controller_title">IPC</td>
+                            <td class="Controller_title1">{{ipc}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="top" width="50" @click="bot" style="text-align:center;margin-top: 10px"><img
+                        src="./../img/bot.png" width="50"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+
+    <script>
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+        let vue;
+        vue = new Vue({
+            i18n,
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+                language:"",
+                Version: "",
+                releaseDate: "",
+                ipc: "X86",
+                xmm: "",
+                xvel: "",
+                ymm: "",
+                yvel: "",
+                zmm: "",
+                zvel: "",
+                rxmm: "",
+                rxvel: "",
+                rymm: "",
+                ryvel: "",
+                rzmm: "",
+                rzvel: "",
+                j1puu: "",
+                j1deg: "",
+                j1rpm: "",
+                j1trq: "",
+                j1temp: "",
+                j2puu: "",
+                j2deg: "",
+                j2rpm: "",
+                j2trq: "",
+                j2temp: "",
+                j3puu: "",
+                j3deg: "",
+                j3rpm: "",
+                j3trq: "",
+                j3temp: "",
+                j4puu: "",
+                j4deg: "",
+                j4rpm: "",
+                j4trq: "",
+                j4temp: "",
+                j5puu: "",
+                j5deg: "",
+                j5rpm: "",
+                j5trq: "",
+                j5temp: "",
+                j6puu: "",
+                j6deg: "",
+                j6rpm: "",
+                j6trq: "",
+                j6temp: "",
+            }),
+
+            beforeDestroy() {
+                clearInterval(this.interval)
+            },
+            mounted() {
+                window.onresize = () => {
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box');
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        } else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    });
+                }
+
+                this.interval = setInterval(() => {
+                    this.getCartPos();
+                }, 2000);
+
+                parent.postMessage({
+                    type: 'frontEnd',
+                    page: 'appBasic',
+                    command: 'getVersion'
+                }, '*');
+            },
+            watch:
+            {
+                language(language) {
+                    i18n.locale = this.language;
+                },
+            },
+            methods: {
+                top: function () {
+                    var step = 50;
+                    document.getElementById('out').scrollTop -= step;
+                    console.log(document.getElementById('out').scrollTop);
+
+                },
+                bot: function () {
+                    var step = 50;
+                    document.getElementById('out').scrollTop += step;
+                    console.log(document.getElementById('out').scrollTop);
+
+                },
+                getCartPos: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appBasic',
+                        command: 'getBasicCartJointInfo',
+                    }, '*');
+
+                },
+                stopInterval: function () {
+                    clearInterval(this.interval);
+                }
+            }
+        });
+
+        window.addEventListener('message', (e) => {
+            const message = e.data;
+            if (!isNaN(parseInt(event.data))) {
+                switch (message.command) {
+                    case 'cartPosInfo':
+                        vue.xmm = message.args[0][0];
+                        vue.ymm = message.args[0][1];
+                        vue.zmm = message.args[0][2];
+                        vue.rxmm = message.args[0][3];
+                        vue.rymm = message.args[0][4];
+                        vue.rzmm = message.args[0][5];
+                        // console.log('e.data CartPosInfo _Rx' + message.args[0][3])
+                        // console.log('e.data CartPosInfo _Ry' + message.args[0][4])
+                        // console.log('e.data CartPosInfo _RZ' + message.args[0][5])
+
+                        vue.xvel = message.args[1][0];
+
+                        vue.j1puu = message.args[2][0];
+                        vue.j2puu = message.args[2][1];
+                        vue.j3puu = message.args[2][2];
+                        vue.j4puu = message.args[2][3];
+                        vue.j5puu = message.args[2][4];
+                        vue.j6puu = message.args[2][5];
+
+                        vue.j1deg = message.args[3][0];
+                        vue.j2deg = message.args[3][1];
+                        vue.j3deg = message.args[3][2];
+                        vue.j4deg = message.args[3][3];
+                        vue.j5deg = message.args[3][4];
+                        vue.j6deg = message.args[3][5];
+
+                        vue.j1rpm = 0;
+                        vue.j2rpm = 0;
+                        vue.j3rpm = 0;
+                        vue.j4rpm = 0;
+                        vue.j5rpm = 0;
+                        vue.j6rpm = 0;
+
+                        vue.j1trq = 0;
+                        vue.j2trq = 0;
+                        vue.j3trq = 0;
+                        vue.j4trq = 0;
+                        vue.j5trq = 0;
+                        vue.j6trq = 0;
+
+                        vue.j1temp = 0;
+                        vue.j2temp = 0;
+                        vue.j3temp = 0;
+                        vue.j4temp = 0;
+                        vue.j5temp = 0;
+                        vue.j6temp = 0;
+
+                        // vue.j1rpm = message.args[4][0];
+                        // vue.j2rpm = message.args[4][1];
+                        // vue.j3rpm = message.args[4][2];
+                        // vue.j4rpm = message.args[4][3];
+                        // vue.j5rpm = message.args[4][4];
+                        // vue.j6rpm = message.args[4][5];
+
+                        // vue.j1trq = message.args[5][0];
+                        // vue.j2trq = message.args[5][1];
+                        // vue.j3trq = message.args[5][2];
+                        // vue.j4trq = message.args[5][3];
+                        // vue.j5trq = message.args[5][4];
+                        // vue.j6trq = message.args[5][5];
+
+                        // vue.j1temp = message.args[6][0];
+                        // vue.j2temp = message.args[6][1];
+                        // vue.j3temp = message.args[6][2];
+                        // vue.j4temp = message.args[6][3];
+                        // vue.j5temp = message.args[6][4];
+                        // vue.j6temp = message.args[6][5];
+                        break;
+                    case 'getVersion':
+                        vue.Version = message.args.controller;
+                        vue.releaseDate = message.args.date;
+                        break;
+                }
+            }
+            else {
+                vue.language = event.data;
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

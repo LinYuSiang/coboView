@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <link href="./../css/vuetify.css" rel="stylesheet">
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/login/login.css" rel="stylesheet"> <!-- login的css -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body>
+  <div id="secheader" style="font-family: Roboto,sans-serif; font-weight:bold">
+   
+        <v-card class="a1" color="#91B0DE" tile >
+        <div class="a2">
+            <span class="a3">Project</span>
+        </div>
+        <div class="a4">
+          <v-text-field
+            label="Solo"
+            solo
+            single-line
+          ></v-text-field>
+        </div>
+        <div class="a5">
+          <div class="a7">
+            <button class="a6"><v-icon class="icon">play_arrow</v-icon><span class="a8">Start</span></button>
+          </div>
+          <div class="a7">
+            <button class="a6"><v-icon class="icon">pause</v-icon><span class="a8">pause</span></button>
+          </div>
+          <div class="a7">
+            <button class="a6"><v-icon class="icon">stop</v-icon><span class="a8">stop</span></button>
+          </div>
+        </div >
+      </v-card>
+  
+  </div>
+</body>
+  <style>
+  .a1
+  {
+    border-bottom: 1.7px solid black !important;
+    border-right: 1.7px solid black !important;
+    border-left: 1.7px solid black !important;
+    background-color:#91B0DE;
+    width: 100%;
+    height: 58px  ;
+  }
+  .a2
+  {
+    width: 17%;
+    height: 100%;
+    text-align: center;
+    float: left;
+  }
+  .a4
+  {
+    width: 44%;
+    height: 100%;
+    float: left;
+    padding-top: 0.4%
+  }
+  .a5
+  {
+    width: 39%;
+    height: 100%;
+    float: left;
+  }
+  .a3
+  {
+      color: white;
+      font-size: 23px;
+      line-height: 55px;
+    
+  }
+  .a6
+  {
+    border: 1.7px solid black !important;
+    background-color:rgb(175, 203, 245);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  .a7
+  {
+    width: 33%;
+    height: 100%;
+    padding: 2%;
+    float: left;
+  }
+  .icon
+  {
+    float: left;
+    margin-left: 8%
+  }
+  .a8
+  {
+    margin-left:-18%;
+    font-size: 18px;
+
+  }
+  </style>
+  <script src="./../js/vue.js"></script>
+  <script src="./../js/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#secheader',
+      vuetify: new Vuetify(),
+      data: () => ({
+    activeBtn: 3,
+    drawer:false,
+    slider:80,
+    max:100,
+    min:0,
+  }),
+
+    })
+  </script>
+</html>

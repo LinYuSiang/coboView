@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="google" value="notranslate"> -->
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/blockly/blockly_compressed.js"></script>
+  <script src="./js/blockly/blocks_compressed.js"></script>
+  <script src="./js/blockly/javascript_compressed.js"></script>
+  <script src="./js/blockly/lua_compressed.js"></script>
+  <script src="./js/blockly/code.js"></script>
+  <script src="./js/blockly/modal.js"></script>
+  <script src="./js/blockly/message.js"></script>
+</head>
+
+<body>
+    <button onclick="call()">CCCC</button>
+  <table width="100%" height="100%">
+    <tr>
+      <td>
+        <h1 hidden>
+          <span id="title">...</span>
+        </h1>
+      </td>
+      <td class="farSide" hidden>
+        <select id="languageMenu"></select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2>
+        <table width="100%">
+          <tr id="tabRow" height="1em">
+            <td id="tab_blocks" class="tabon">...</td>
+            <td id="tab_javascript" class="taboff" hidden>JavaScript</td>
+            <td id="tab_python" class="taboff" hidden>Python</td>
+            <td id="tab_php" class="taboff" hidden>PHP</td>
+            <td id="tab_lua" class="taboff">Lua</td>
+            <td id="tab_dart" class="taboff" hidden>Dart</td>
+            <td id="tab_xml" class="taboff">XML</td>
+            <td class="tabmax">
+              <button id="trashButton" class="notext" title="..." hidden>
+                <img src='../../media/1x1.gif' class="trash icon21">
+              </button>
+              <button id="linkButton" class="notext" title="..." hidden>
+                <img src='../../media/1x1.gif' class="link icon21">
+              </button>
+              <button id="runButton" class="notext primary" title="..." hidden>
+                <img src='../../media/1x1.gif' class="run icon21">
+              </button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="99%" colspan=2 id="content_area">
+      </td>
+    </tr>
+  </table>
+  <div id="content_blocks" class="content"></div>
+  <pre id="content_javascript" class="content prettyprint lang-js"></pre>
+  <pre id="content_python" class="content prettyprint lang-py"></pre>
+  <pre id="content_php" class="content prettyprint lang-php"></pre>
+  <pre id="content_lua" class="content prettyprint lang-lua"></pre>
+  <pre id="content_dart" class="content prettyprint lang-dart"></pre>
+  <textarea id="content_xml" class="content" wrap="off"></textarea>
+
+  <xml id="toolbox" style="display: none">
+    <category name="%{BKY_CATLOGIC}" colour="%{BKY_LOGIC_HUE}">
+      <block type="controls_if"></block>
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
+    <category name="%{BKY_CATLOOPS}" colour="%{BKY_LOOPS_HUE}">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_whileUntil"></block>
+      <block type="controls_for">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="BY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_forEach"></block>
+      <block type="controls_flow_statements"></block>
+    </category>
+    <category name="%{BKY_CATMATH}" colour="%{BKY_MATH_HUE}">
+      <block type="math_number">
+        <field name="NUM">123</field>
+      </block>
+      <block type="math_arithmetic">
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_single">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_trig">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">45</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constant"></block>
+      <block type="math_number_property">
+        <value name="NUMBER_TO_CHECK">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_round">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">3.1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_on_list"></block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <shadow type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+        </value>
+        <value name="DIVISOR">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="LOW">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HIGH">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+      <block type="math_atan2">
+        <value name="X">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="Y">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="%{BKY_CATTEXT}" colour="%{BKY_TEXTS_HUE}">
+      <block type="text"></block>
+      <block type="text_join"></block>
+      <block type="text_append">
+        <value name="TEXT">
+          <shadow type="text"></shadow>
+        </value>
+      </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR">{textVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_trim">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_prompt_ext">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="%{BKY_CATLISTS}" colour="%{BKY_LISTS_HUE}">
+      <block type="lists_create_with">
+        <mutation items="0"></mutation>
+      </block>
+      <block type="lists_create_with"></block>
+      <block type="lists_repeat">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">5</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_length"></block>
+      <block type="lists_isEmpty"></block>
+      <block type="lists_indexOf">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getIndex">
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_setIndex">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_getSublist">
+        <value name="LIST">
+          <block type="variables_get">
+            <field name="VAR">{listVariable}</field>
+          </block>
+        </value>
+      </block>
+      <block type="lists_split">
+        <value name="DELIM">
+          <shadow type="text">
+            <field name="TEXT">,</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="lists_sort"></block>
+    </category>
+    <category name="%{BKY_CATCOLOUR}" colour="%{BKY_COLOUR_HUE}">
+      <block type="colour_picker"></block>
+      <block type="colour_random"></block>
+      <block type="colour_rgb">
+        <value name="RED">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+        <value name="GREEN">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="BLUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="colour_blend">
+        <value name="COLOUR1">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#ff0000</field>
+          </shadow>
+        </value>
+        <value name="COLOUR2">
+          <shadow type="colour_picker">
+            <field name="COLOUR">#3333ff</field>
+          </shadow>
+        </value>
+        <value name="RATIO">
+          <shadow type="math_number">
+            <field name="NUM">0.5</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <sep></sep>
+
+    <category name="RLVariables" colour="5b67a5">
+      <block type="point_offset">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="point_robot_x"></block>
+      <block type="point_robot_y"></block>
+      <block type="point_robot_z"></block>
+      <block type="point_robot_rz"></block>
+      <block type="point_robot_hand"></block>
+      <block type="point_copy_point">
+        <value name="POINT1">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="POINT2">
+          <shadow type="math_number">
+            <field name="NUM">1002</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="point_write_point">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="point_read_point">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="system_delay">
+        <value name="DELAY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="system_pause"></block>
+      <block type="system_stop"></block>
+      <block type="point_set_global_point">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+
+    <category name="Motion" colour="#5b67a5">
+      <block type="motion_movj">
+        <value name="AXIS">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="ANGLE">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_movp">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_movpr">
+        <value name="DIST">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_movl">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_movlr">
+        <value name="DIST">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_marc">
+        <value name="POINT1">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="POINT2">
+          <shadow type="math_number">
+            <field name="NUM">1002</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_mcircle">
+        <value name="POINT1">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="POINT2">
+          <shadow type="math_number">
+            <field name="NUM">1002</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_marchp">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="H1">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="H2">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="H3">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_marchl">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="H1">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="H2">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="H3">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_lift">
+        <value name="POINT">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="ANGLE">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HEIGHT">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="DIRECTION">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="system_servoon"></block>
+      <block type="system_servooff"></block>
+      <block type="system_setuf">
+        <value name="FRAME">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="POINT_ORIGIN">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="POINT_X_AXIS">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+        <value name="POINT_Y_AXIS">
+          <shadow type="math_number">
+            <field name="NUM">1001</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="system_settf">
+        <value name="FRAME">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="HEIGHT">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="WIDTH">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="ANGLE">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="system_changeuf">
+        <value name="FRAME">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="system_changetf">
+        <value name="FRAME">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="system_safetymode">
+        <value name="MODE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+
+    <category name="IO" colour="#5b67a5">
+      <block type="motion_spdj">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_accj">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_decj">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_spdl">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_accl">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_decl">
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="motion_accur">
+      </block>
+      <block type="io_di">
+        <value name="PORT">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="io_do">
+        <value name="PORT">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="io_do_delay">
+        <value name="PORT">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="DELAY">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="io_readmodbus"></block>
+      <block type="io_writemodbus">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+
+
+    <sep></sep>
+    <category name="%{BKY_CATVARIABLES}" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+    <category name="%{BKY_CATFUNCTIONS}" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+  </xml>
+  <script>
+    // window.addEventListener('message', (event) => {
+    //   const message = event.data;
+    //   parent.postMessage({
+    //     command: message.command,
+    //     result: document.getElementById('content_lua'),
+    //   }, '*');
+    // });
+    function call() {
+      console.log(document.getElementById('content_lua').innerText);
+    }
+  </script>
+
+</body>
+
+</html>

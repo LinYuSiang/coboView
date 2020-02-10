@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/jog/jog.css" rel="stylesheet">
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<style>
+    /*let panel can't use copy event*/
+    html {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div class="box1"  style="font-family: Roboto,sans-serif;font-weight:bold">
+            <div class="Robot">
+            </div>
+            <div class="center">
+                <div id="top" width="50" @click="topbtn"><img src="./../img/top.png" width="50"></div>
+                <div id="icon_user">
+                    <div id="joint" class="funct">
+                        <div style="margin-top:20px; " class="title" style="background-color: #b8cbe6">
+                            <p>Joint (PUU)</p>
+                        </div>
+                        <div class="input_boder">
+                            <div class="inut_text_joint">J1</div>
+                            <button id="continueJog1N" class="contiNegtive"><img src="./../img/contiNegtive_e.png"
+                                    width="40"></button>
+                            <button id="stepJog1N" class="jogNegtive"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div id='inputJ1Value' class="input"><input oninput="value=value.replace(/[^\d]/g,'')"
+                                    class="btn_input" type="text" v-model="J1" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button id="stepJog1P" class="add"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueJog1P" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <div class="inut_text_joint">J2</div>
+                            <button id="continueJog2N" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button class="jogNegtive" id="stepJog2N"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="J2" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button class="add" id="stepJog2P"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueJog2P" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <div class="inut_text_joint">J3</div>
+                            <button id="continueJog3N" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button class="jogNegtive" id="stepJog3N"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="J3" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button class="add" id="stepJog3P"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueJog3P" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <div class="inut_text_joint">J4</div>
+                            <button id="continueJog4N" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button class="jogNegtive" id="stepJog4N"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="J4" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button class="add" id="stepJog4P"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueJog4P" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <div class="inut_text_joint">J5</div>
+                            <button id="continueJog5N" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button class="jogNegtive" id="stepJog5N"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="J5" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button class="add" id="stepJog5P"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueJog5P" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <div class="inut_text_joint">J6</div>
+                            <button id="continueJog6N" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button class="jogNegtive" id="stepJog6N"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="J6" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button class="add" id="stepJog6P"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueJog6P" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+                    </div>
+
+                    <div id="cart" class="funct">
+                        <div style="margin-top:20px; " class="title" style="background-color: #b8cbe6">
+                            <p>{{ $t('message.Cart') }} (mm)</p>
+                        </div>
+
+                        <div class="input_boder">
+                            <label class="inut_text_1">X</label>
+                            <button id="continueCartXN" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button id="stepCartXN" class="jogNegtive"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="X" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button id="stepCartXP" class="add"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueCartXP" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <label class="inut_text_1">Y</label>
+                            <button id="continueCartYN" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button id="stepCartYN" class="jogNegtive"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="Y" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button id="stepCartYP" class="add"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueCartYP" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <label class="inut_text_1">Z</label>
+                            <button id="continueCartZN" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button id="stepCartZN" class="jogNegtive"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="Z" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button id="stepCartZP" class="add"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueCartZP" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <label class="inut_text">RX</label>
+                            <button id="continueCartRXN" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button id="stepCartRXN" class="jogNegtive"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="RX" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button id="stepCartRXP" class="add"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueCartRXP" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <label class="inut_text">RY</label>
+                            <button id="continueCartRYN" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button id="stepCartRYN" class="jogNegtive"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="RY" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button id="stepCartRYP" class="add"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueCartRYP" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+
+                        <div class="input_boder">
+                            <label class="inut_text">RZ</label>
+                            <button id="continueCartRZN" class="contiNegtive"><img src="./../img\contiNegtive_e.png"
+                                    width="40"></button>
+                            <button id="stepCartRZN" class="jogNegtive"><img src="./../img/jogNegtive_e.png"
+                                    width="30"></button>
+                            <div class="input"><input oninput="value=value.replace(/[^\d]/g,'')" class="btn_input"
+                                    type="text" v-model="RZ" placeholder="1000"></div>
+                            <!-- <button class="add"><img src="./../img/MoveToDestination_e.png" width="30"></button> -->
+                            <button id="stepCartRZP" class="add"><img src="./../img/jogPositive_e.png"
+                                    width="30"></button>
+                            <button id="continueCartRZP" class="add"><img src="./../img/contiPositive_e.png"
+                                    width="37"></button>
+                        </div>
+                    </div>
+
+                    <div id="degree" class="funct">
+                        <div style="margin-top:20px; " class="title" style="background-color: #b8cbe6">
+                            <p>Joint ({{ $t('message.Degree') }})</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="bot" width="50" @click="botbtn"><img src="./../img/bot.png" width="50"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+
+    <script>
+
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+
+        let vue = new Vue({
+            el: '#app',
+            i18n,
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: "",
+                i: 0,
+                J1: 1000,
+                oldJ1: 0,
+                J2: 1000,
+                oldJ2: 0,
+                J3: 1000,
+                oldJ3: 0,
+                J4: 1000,
+                oldJ4: 0,
+                J5: 1000,
+                oldJ5: 0,
+                J6: 1000,
+                oldJ6: 0,
+                X: 400,
+                oldX: 0,
+                Y: 300,
+                oldY: 0,
+                Z: 200,
+                oldZ: 0,
+                RX: 0,
+                oldRX: 0,
+                RY: 0,
+                oldRY: 0,
+                RZ: 0,
+                oldRZ: 0,
+            }),
+
+            beforeDestroy() {
+                clearInterval(this.interval)
+            },
+
+
+            mounted() {
+
+                window.onresize = () => {
+                    return (() => {
+                        let x = document.getElementsByClassName('funct');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            for (let s = 0; s < x.length; s++) {
+                                x[s].style.display = "inline";
+                            }
+
+                        } else {
+                            this.i = 0;
+                            x[this.i].style.display = "inline";
+                        
+                        }
+                    })()
+                }
+
+                this.interval = setInterval(() => {
+                    this.getCartPos();
+                }, 3000)
+
+            },
+            watch:
+            {
+                language(language) {
+                    i18n.locale = this.language;
+                },
+            },
+            methods: {
+                jogStop: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stop',
+                    }, '*');
+                },
+
+                contiJogJ1Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 0,
+                            direction: false,
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                stepJogJ1Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 0,
+                            direction: false,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                stepJogJ1Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 0,
+                            direction: true,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                contiJogJ1Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 0,
+                            direction: true,
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiJogJ2Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 1,
+                            direction: false,
+                            speed: 50,
+                        }
+                    }, '*');
+
+                },
+
+                stepJogJ2Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 1,
+                            direction: false,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                stepJogJ2Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 1,
+                            direction: true,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                contiJogJ2Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 1,
+                            direction: true,
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiJogJ3Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 2,
+                            direction: false,
+                            speed: 50,
+                        }
+                    }, '*');
+
+                },
+
+                stepJogJ3Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 2,
+                            direction: false,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                stepJogJ3Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 2,
+                            direction: true,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                contiJogJ3Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 2,
+                            direction: true,
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiJogJ4Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 3,
+                            direction: false,
+                            speed: 50,
+                        }
+                    }, '*');
+
+                },
+
+                stepJogJ4Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 3,
+                            direction: false,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                stepJogJ4Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 3,
+                            direction: true,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                contiJogJ4Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 3,
+                            direction: true,
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiJogJ5Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 4,
+                            direction: false,
+                            speed: 50,
+                        }
+                    }, '*');
+
+                },
+
+                stepJogJ5Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 4,
+                            direction: false,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                stepJogJ5Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 4,
+                            direction: true,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                contiJogJ5Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 4,
+                            direction: true,
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiJogJ6Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 5,
+                            direction: false,
+                            speed: 50,
+                        }
+                    }, '*');
+
+                },
+
+                stepJogJ6Minus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 5,
+                            direction: false,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                stepJogJ6Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepJog',
+                        args: {
+                            index: 5,
+                            direction: true,
+                            speed: 50,
+                            distance: 12500
+                        }
+                    }, '*');
+                },
+
+                contiJogJ6Plus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueJog',
+                        args: {
+                            index: 5,
+                            direction: true,
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                //=============  Cartesian  ========================
+                contiCartXMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'xn',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                stepCartXMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'x',
+                            direction: false,
+                        }
+                    }, '*');
+                },
+
+                stepCartXPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'x',
+                            direction: true,
+                        }
+                    }, '*');
+                },
+
+                contiCartXPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'xp',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiCartYMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'yn',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                stepCartYMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'y',
+                            direction: false,
+                        }
+                    }, '*');
+                },
+
+                stepCartYPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'y',
+                            direction: true,
+                        }
+                    }, '*');
+                },
+
+                contiCartYPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'yp',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiCartZMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'zn',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                stepCartZMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'z',
+                            direction: false,
+                        }
+                    }, '*');
+                },
+
+                stepCartZPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'z',
+                            direction: true,
+                        }
+                    }, '*');
+                },
+
+                contiCartZPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'zp',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiCartRXMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'rxn',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                stepCartRXMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'rx',
+                            direction: false,
+                        }
+                    }, '*');
+                },
+
+                stepCartRXPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'rx',
+                            direction: true,
+                        }
+                    }, '*');
+                },
+
+                contiCartRXPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'rxp',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiCartRYMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'ryn',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                stepCartRYMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'ry',
+                            direction: false,
+                        }
+                    }, '*');
+                },
+
+                stepCartRYPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'ry',
+                            direction: true,
+                        }
+                    }, '*');
+                },
+
+                contiCartRYPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'ryp',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                contiCartRZMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'rzn',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                stepCartRZMinus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'rz',
+                            direction: false,
+                        }
+                    }, '*');
+                },
+
+                stepCartRZPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'stepCart',
+                        args: {
+                            cart: 'rz',
+                            direction: true,
+                        }
+                    }, '*');
+                },
+
+                contiCartRZPlus: function () {
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'continueCart',
+                        args: {
+                            direction: 'rzp',
+                            speed: 50,
+                        }
+                    }, '*');
+                },
+
+                getCartPos: function () {
+                    // console.log('App Jog Post getCartPos')
+
+                    parent.postMessage({
+                        type: 'frontEnd',
+                        page: 'appJog',
+                        command: 'getJogCartJointInfo',
+                    }, '*');
+
+                },
+
+
+                topbtn: function () {
+                    var step = 50;
+                    document.getElementById('icon_user').scrollTop -= step;
+
+                },
+                botbtn: function () {
+                    var step = 50;
+                    document.getElementById('icon_user').scrollTop += step;
+                },
+                next: function () {
+                },
+                prev: function () {
+                },
+            }
+        });
+
+        var outDiv = document.getElementById('icon_user');
+        outDiv.onwheel = function (event) {
+            //禁止事件默认行为（此处�?止�??��?轮�?为关?�到"屏�?滚动?��?下移??行为�? 
+            event.preventDefault();
+            //设置鼠�?滚轮滚动?��?幕�??�条?�移?�步?? 
+            var step = 50;
+            if (event.deltaY < 0) {
+                //?��?滚动鼠�?滚轮，�?幕�??�条左移  
+                this.scrollTop -= step;
+            } else {
+                //?��?滚动鼠�?滚轮，�?幕�??�条?�移  
+                this.scrollTop += step;
+            }
+        }
+
+        $(document).ready(() => {
+            $("#continueJog1N").on("taphold", function (e) {
+                vue.contiJogJ1Minus();
+            });
+            $("#continueJog1N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog1N").on("taphold", function (e) {
+                vue.stepJogJ1Minus();
+            });
+            $("#stepJog1N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog1P").on("taphold", function (e) {
+                vue.stepJogJ1Plus();
+            });
+            $("#stepJog1P").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueJog1P").on("taphold", function (e) {
+                vue.contiJogJ1Plus();
+            });
+            $("#continueJog1P").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueJog2N").on("taphold", function (e) {
+                vue.contiJogJ2Minus();
+            });
+            $("#continueJog2N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog2N").on("taphold", function (e) {
+                vue.stepJogJ2Minus();
+            });
+            $("#stepJog2N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog2P").on("taphold", function (e) {
+                vue.stepJogJ2Plus();
+            });
+            $("#stepJog2P").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueJog2P").on("taphold", function (e) {
+                vue.contiJogJ2Plus();
+            });
+            $("#continueJog2P").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueJog3N").on("taphold", function (e) {
+                vue.contiJogJ3Minus();
+            });
+            $("#continueJog3N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog3N").on("taphold", function (e) {
+                vue.stepJogJ3Minus();
+            });
+            $("#stepJog3N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog3P").on("taphold", function (e) {
+                vue.stepJogJ3Plus();
+            });
+            $("#stepJog3P").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueJog3P").on("taphold", function (e) {
+                vue.contiJogJ3Plus();
+            });
+            $("#continueJog3P").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueJog4N").on("taphold", function (e) {
+                vue.contiJogJ4Minus();
+            });
+            $("#continueJog4N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog4N").on("taphold", function (e) {
+                vue.stepJogJ4Minus();
+            });
+            $("#stepJog4N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog4P").on("taphold", function (e) {
+                vue.stepJogJ4Plus();
+            });
+            $("#stepJog4P").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueJog4P").on("taphold", function (e) {
+                vue.contiJogJ4Plus();
+            });
+            $("#continueJog4P").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueJog5N").on("taphold", function (e) {
+                vue.contiJogJ5Minus();
+            });
+            $("#continueJog5N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog5N").on("taphold", function (e) {
+                vue.stepJogJ5Minus();
+            });
+            $("#stepJog5N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog5P").on("taphold", function (e) {
+                vue.stepJogJ5Plus();
+            });
+            $("#stepJog5P").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueJog5P").on("taphold", function (e) {
+                vue.contiJogJ5Plus();
+            });
+            $("#continueJog5P").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueJog6N").on("taphold", function (e) {
+                vue.contiJogJ6Minus();
+            });
+            $("#continueJog6N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog6N").on("taphold", function (e) {
+                vue.stepJogJ6Minus();
+            });
+            $("#stepJog6N").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepJog6P").on("taphold", function (e) {
+                vue.stepJogJ6Plus();
+            });
+            $("#stepJog6P").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueJog6P").on("taphold", function (e) {
+                vue.contiJogJ6Plus();
+            });
+            $("#continueJog6P").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+
+
+            $("#continueCartXN").on("taphold", function (e) {
+                vue.contiCartXMinus();
+            });
+            $("#continueCartXN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartXN").on("taphold", function (e) {
+                vue.stepCartXMinus();
+            });
+            $("#stepCartXN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueCartXP").on("taphold", function (e) {
+                vue.contiCartXPlus();
+            });
+            $("#continueCartXP").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartXP").on("taphold", function (e) {
+                vue.stepCartXPlus();
+            });
+            $("#stepCartXP").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueCartYN").on("taphold", function (e) {
+                vue.contiCartYMinus();
+            });
+            $("#continueCartYN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartYN").on("taphold", function (e) {
+                vue.stepCartYMinus();
+            });
+            $("#stepCartYN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueCartYP").on("taphold", function (e) {
+                vue.contiCartYPlus();
+            });
+            $("#continueCartYP").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartYP").on("taphold", function (e) {
+                vue.stepCartYPlus();
+            });
+            $("#stepCartYP").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueCartZN").on("taphold", function (e) {
+                vue.contiCartZMinus();
+            });
+            $("#continueCartZN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartZN").on("taphold", function (e) {
+                vue.stepCartZMinus();
+            });
+            $("#stepCartZN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueCartZP").on("taphold", function (e) {
+                vue.contiCartZPlus();
+            });
+            $("#continueCartZP").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartZP").on("taphold", function (e) {
+                vue.stepCartZPlus();
+            });
+            $("#stepCartZP").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueCartRXN").on("taphold", function (e) {
+                vue.contiCartRXMinus();
+            });
+            $("#continueCartRXN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartRXN").on("taphold", function (e) {
+                vue.stepCartRXMinus();
+            });
+            $("#stepCartRXN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueCartRXP").on("taphold", function (e) {
+                vue.contiCartRXPlus();
+            });
+            $("#continueCartRXP").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartRXP").on("taphold", function (e) {
+                vue.stepCartRXPlus();
+            });
+            $("#stepCartRXP").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueCartRYN").on("taphold", function (e) {
+                vue.contiCartRYMinus();
+            });
+            $("#continueCartRYN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartRYN").on("taphold", function (e) {
+                vue.stepCartRYMinus();
+            });
+            $("#stepCartRYN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueCartRYP").on("taphold", function (e) {
+                vue.contiCartRYPlus();
+            });
+            $("#continueCartRYP").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartRYP").on("taphold", function (e) {
+                vue.stepCartRYPlus();
+            });
+            $("#stepCartRYP").on("tap", function (e) {
+                vue.jogStop();
+            });
+
+            $("#continueCartRZN").on("taphold", function (e) {
+                vue.contiCartRZMinus();
+            });
+            $("#continueCartRZN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartRZN").on("taphold", function (e) {
+                vue.stepCartRZMinus();
+            });
+            $("#stepCartRZN").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#continueCartRZP").on("taphold", function (e) {
+                vue.contiCartRZPlus();
+            });
+            $("#continueCartRZP").on("tap", function (e) {
+                vue.jogStop();
+            });
+            $("#stepCartRZP").on("taphold", function (e) {
+                vue.stepCartRZPlus();
+            });
+            $("#stepCartRZP").on("tap", function (e) {
+                vue.jogStop();
+            });
+        });
+
+
+        window.addEventListener('message', (e) => {
+            const message = e.data;
+
+            if (!isNaN(parseInt(event.data))) {
+                switch (message.command) {
+                    case 'jogCartJointPosInfo':
+                        vue.X = message.args[0][0];
+                        vue.Y = message.args[0][1];
+                        vue.Z = message.args[0][2];
+                        vue.RX = message.args[0][3];
+                        vue.RY = message.args[0][4];
+                        vue.RZ = message.args[0][5];
+
+                        vue.J1 = message.args[1][0];
+                        vue.J2 = message.args[1][1];
+                        vue.J3 = message.args[1][2];
+                        vue.J4 = message.args[1][3];
+                        vue.J5 = message.args[1][4];
+                        vue.J6 = message.args[1][5];
+
+
+                        break;
+
+
+
+                }
+
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    vue.language = event.data;
+                } else {
+                    vue.language = event.data.lang;
+                }
+            }
+            // console.log('Home  --> appJog :' + message.command)
+
+
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <link href="./../css/vuetify.css" rel="stylesheet">
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/login/login.css" rel="stylesheet"> <!-- login的css -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+  <div id="secheader" style="font-family: Roboto,sans-serif;font-weight:bold">
+
+    <v-card class="a1" color="#91B0DE" tile>
+      <div class="a2">
+        <img src="./../img/btnMenuProject_e.png" class="a3_1" height="40px">
+        <div class="a3">Project</div>
+      </div>
+      <div class="a10" @click="left"><img src="./../img/top.png" width="30"></div>
+      <div class="a4">
+        <div class="a5" id="out">
+          <div class="a7">
+            <button class="a6" @click="model1" id="mod1" value="5" style="background-color: #5caceb"><span
+                class="a8">{{ $t('message.Files') }} </span></button>
+          </div>
+          <div class="a7">
+            <button class="a6" @click="model2" id="mod2" value="6"><span class="a8">{{ $t('message.Point') }}
+              </span></button>
+          </div>
+          <div class="a7">
+            <button class="a6" @click="model3" id="mod3" value="7"><span class="a8">{{ $t('message.Editor') }}
+              </span></button>
+          </div>
+
+        </div>
+      </div>
+      <div class="a11" @click="right"><img src="./../img/top.png" width="30" click="rig"></div>
+    </v-card>
+
+  </div>
+</body>
+<style>
+  .a1 {
+    border-bottom: 1.7px solid black !important;
+    border-right: 1.7px solid black !important;
+    border-left: 1.7px solid black !important;
+    background-color: #91B0DE;
+    width: 100%;
+    height: 50px;
+
+  }
+
+  .a2 {
+    width: auto;
+    height: 100%;
+    text-align: center;
+    float: left;
+  }
+
+  .a5 {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding-top: 7px;
+  }
+
+  .a5::-webkit-scrollbar {
+    display: none
+  }
+
+  .a4 {
+    width: 79%;
+    height: 100%;
+    /* position: absolute;
+    left: 15%; */
+    float: left;
+    /* margin-top: -6px */
+
+  }
+
+  .a3 {
+    font-size: 28px;
+    line-height: 50px;
+    float: left;
+  }
+
+  .a3_1 {
+    float: left;
+    margin-top: 2%;
+
+  }
+
+  .a6 {
+
+    background-color: #BFBFBF;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .a6_1 {
+
+    background-color: #c4d6a0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .a7 {
+    width: auto;
+    height: 35px;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  .icon {
+    float: left;
+    margin-left: 8%
+  }
+
+  .a8 {
+    margin-left: 0%;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 33px;
+    float: left;
+  }
+
+  .a9 {
+    font-size: 40px;
+    margin-top: -11px;
+    margin-right: 5px;
+    border-radius: 50%;
+    border: 1.7px solid black !important;
+    background-color: rgb(175, 203, 245);
+    padding: 2px
+  }
+
+  .a10 {
+    float: left;
+    line-height: 50px;
+    transform: rotate(270deg);
+  }
+
+  .a11 {
+    float: left;
+    line-height: 50px;
+    transform: rotate(90deg);
+    /* position: absolute;
+    right: 14%; */
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 1023px)
+
+  /*  600<X<1024平板尺寸 */
+    {
+    .a5 {
+      width: 550px;
+      height: 100%;
+      display: inline-block;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      white-space: nowrap;
+      padding-top: 7px;
+    }
+
+    .a5::-webkit-scrollbar {
+      display: none
+    }
+
+    .a4 {
+      width: 560px;
+      height: 100%;
+      /* position: absolute;
+    left: 15%; */
+      float: left;
+
+    }
+  }
+</style>
+<script src="./../js/vue.js"></script>
+<script src="./../js/vuetify.js"></script>
+<script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+<script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+<script>
+  var text1;
+  const i18n = new VueI18n({
+    locale: 'English', // locale後方對應的就是語系名稱
+    messages,//整包翻譯
+  })
+  window.addEventListener("message", function (event) {
+
+    if (!isNaN(parseInt(event.data))) {
+      text1 = parseInt(event.data);
+
+      test1.model = text1
+    }
+    else {
+      test1.language = event.data;
+    }
+  }, false);
+
+
+  test1 = new Vue({
+    el: '#secheader',
+    i18n,
+    vuetify: new Vuetify(),
+    data: () => ({
+      activeBtn: 3,
+      language: '',
+      drawer: false,
+      slider: 80,
+      max: 100,
+      min: 0,
+      buttonColor: 0,
+      model: 0,
+    }),
+    watch: {
+      language(language) {
+
+        i18n.locale = this.language;
+      },
+      model(model) {
+        if (this.model == 0) {
+          document.getElementById("mod1").style.backgroundColor = "#5caceb"
+          document.getElementById("mod2").style.backgroundColor = "#BFBFBF"
+          document.getElementById("mod3").style.backgroundColor = "#BFBFBF"
+
+        }
+        if (this.model == 1) {
+          document.getElementById("mod2").style.backgroundColor = "#5caceb"
+          document.getElementById("mod1").style.backgroundColor = "#BFBFBF"
+          document.getElementById("mod3").style.backgroundColor = "#BFBFBF"
+
+        }
+        if (this.model == 2) {
+          document.getElementById("mod3").style.backgroundColor = "#5caceb"
+          document.getElementById("mod2").style.backgroundColor = "#BFBFBF"
+          document.getElementById("mod1").style.backgroundColor = "#BFBFBF"
+
+        }
+      }
+    },
+    methods: {
+      model1: function () {
+        var x = document.getElementById("mod1").value
+        window.parent.postMessage(parseInt(x), '*');
+        document.getElementById("mod1").style.backgroundColor = "#5caceb"
+        document.getElementById("mod2").style.backgroundColor = "#BFBFBF"
+        document.getElementById("mod3").style.backgroundColor = "#BFBFBF"
+
+        console.log(parseInt(x));
+
+      },
+      model2: function () {
+        var x = document.getElementById("mod2").value
+        window.parent.postMessage(parseInt(x), '*');
+        document.getElementById("mod2").style.backgroundColor = "#5caceb"
+        document.getElementById("mod1").style.backgroundColor = "#BFBFBF"
+        document.getElementById("mod3").style.backgroundColor = "#BFBFBF"
+
+        console.log(parseInt(x));
+
+      },
+      model3: function () {
+        var x = document.getElementById("mod3").value
+        window.parent.postMessage(parseInt(x), '*');
+        document.getElementById("mod3").style.backgroundColor = "#5caceb"
+        document.getElementById("mod2").style.backgroundColor = "#BFBFBF"
+        document.getElementById("mod1").style.backgroundColor = "#BFBFBF"
+
+        console.log(parseInt(x));
+
+      },
+
+      right: function () {
+        var step = 50;
+        document.getElementById('out').scrollLeft += step;
+        console.log(document.getElementById('out').scrollLeft);
+
+      },
+      left: function () {
+        var step = 50;
+        document.getElementById('out').scrollLeft -= step;
+        console.log(document.getElementById('out').scrollLeft);
+
+      }
+    }
+
+  })
+  var outDiv = document.getElementById('out');
+  outDiv.onwheel = function (event) {
+    //禁止事件默认行为（此处禁止鼠标滚轮行为关联到"屏幕滚动条上下移动"行为）  
+    event.preventDefault();
+    //设置鼠标滚轮滚动时屏幕滚动条的移动步长  
+    var step = 50;
+    if (event.deltaY < 0) {
+      //向上滚动鼠标滚轮，屏幕滚动条左移  
+      this.scrollLeft -= step;
+    } else {
+      //向下滚动鼠标滚轮，屏幕滚动条右移  
+      this.scrollLeft += step;
+    }
+  }
+
+
+</script>
+
+</html>

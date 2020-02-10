@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <link href="./../css/vuetify.css" rel="stylesheet">
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/login/login.css" rel="stylesheet"> <!-- login的css -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+  <div id="app" style="font-size: 20px">
+    <div id="box1"></div>
+    <div id="secheader" style="font-family: Roboto,sans-serif;font-weight:bold">
+
+      <v-card class="a1" color="#ffffff" tile>
+
+        <div class="a4">
+
+          <div class="a7">
+            <button class="a6">
+              <div style="float: left"><img src="./../img/scope_start_e.png" width="25" height="25" alt=""></div>
+              <div class="a2"><span>{{ $t('message.Start') }}</span></div>
+            </button>
+          </div>
+
+          <div class="a7">
+            <button class="a6">
+              <div style="float: left"><img src="./../img/scope_pause_e.png" width="25" height="25" alt=""></div>
+              <div class="a2"><span>{{ $t('message.Pause') }}</span></div>
+            </button>
+          </div>
+
+          <div class="a7">
+            <button class="a6">
+              <div style="float: left"><img src="./../img/scope_stop_e.png" width="25" height="25" alt=""></div>
+              <div class="a2"><span>{{ $t('message.Stop') }}</span></div>
+            </button>
+          </div>
+
+          <div class="a7">
+            <button class="a6">
+              <div style="float: left"><img src="./../img/scope_save_e.png" width="25" height="25" alt=""></div>
+              <div class="a2"><span>{{ $t('message.Save') }}</span></div>
+            </button>
+          </div>
+
+          <div class="a7">
+            <button class="a6">
+              <div style="float: left"><img src="./../img/scope_load_e.png" width="25" height="25" alt=""></div>
+              <div class="a2"><span>{{ $t('message.Load') }}</span></div>
+            </button>
+          </div>
+
+          <div class="a7">
+            <button class="a6">
+              <div style="float: left"><img src="./../img/scope_clear_e.png" width="25" height="25" alt=""></div>
+              <div class="a2"><span>{{ $t('message.Clear') }}</span></div>
+            </button>
+          </div>
+
+
+          <div style="float: right; margin-right:20px;font-size: 20px;margin-top: 13px">{{ $t('message.Interval') }}:<input type="text"
+              style="width:50px" v-model="Interval"></div>
+        </div>
+      </v-card>
+
+      <div class="scope" id="scope"></div>
+      <div><img id="expand_bar" class="expand_bar" width="30" height="550" src="./../img/bluebar.png" @click="expand">
+      </div>
+      <div class="scope_bar" id="scope_bar">
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch1"></div>
+          <div style="float: left;height: 100%"><label>CH1</label></div>
+          <div style="float: left;height: 100%"><input type="text"
+              oninput="value=value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')" class="item_input" v-model="ch1"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch1" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch2"></div>
+          <div style="float: left;height: 100%"><label>CH2</label></div>
+          <div style="float: left;height: 100%"><input type="text" class="item_input" v-model="ch2"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch2" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch3"></div>
+          <div style="float: left;height: 100%"><label>CH3</label></div>
+          <div style="float: left;height: 100%"><input type="text" class="item_input" v-model="ch3"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch3" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch4"></div>
+          <div style="float: left;height: 100%"><label>CH4</label></div>
+          <div style="float: left;height: 100%"><input type="text" class="item_input" v-model="ch4"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch4" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch5"></div>
+          <div style="float: left;height: 100%"><label>CH5</label></div>
+          <div style="float: left;height: 100%"><input type="text" class="item_input" v-model="ch5"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch5" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch6"></div>
+          <div style="float: left;height: 100%"><label>CH6</label></div>
+          <div style="float: left;height: 100%"><input type="text" class="item_input" v-model="ch6"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch6" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch7"></div>
+          <div style="float: left;height: 100%"><label>CH7</label></div>
+          <div style="float: left;height: 100%"><input type="text" class="item_input" v-model="ch7"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch7" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch8"></div>
+          <div style="float: left;height: 100%"><label>CH8</label></div>
+          <div style="float: left;height: 100%"><input type="text" class="item_input" v-model="ch8"></div>
+          <div style="float: left;height: 100%;">
+            <input type="color" style="width: 176%;" name="favcolor" v-model="colorch8" value="#ff0000"
+              class="expand_scope_bar_item">
+          </div>
+        </div>
+      </div>
+
+      <div class="expand_scope_bar" id="expand_scope_bar" style="display: none">
+        <div class="expand_scope_bar_title">
+          <div style="height: 100%;width: 19%;font-size: 20px;line-height: 62px;text-align: center;float: left;">Enable
+          </div>
+          <div style="height: 100%;width: 19%;font-size: 20px;line-height: 62px;text-align: center;float: left;">Value
+          </div>
+          <div style="height: 100%;width: 13%;font-size: 20px;line-height: 62px;text-align: center;float: left;">Color
+          </div>
+          <div style="height: 100%;width: 9%;font-size: 20px;line-height: 62px;text-align: center;float: left;">Axis
+          </div>
+          <div style="height: 100%;width: 37%;font-size: 20px;line-height: 62px;text-align: center;float: left;">Data
+            Type</div>
+        </div>
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch1"></div>
+          <div style="float: left;height: 100%"><label>CH1</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch1"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch1" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch2"></div>
+          <div style="float: left;height: 100%"><label>CH2</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch2"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch2" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch3"></div>
+          <div style="float: left;height: 100%"><label>CH3</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch3"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch3" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch4"></div>
+          <div style="float: left;height: 100%"><label>CH4</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch4"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch4" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch5"></div>
+          <div style="float: left;height: 100%"><label>CH5</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch5"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch5" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch6"></div>
+          <div style="float: left;height: 100%"><label>CH6</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch6"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch6" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch7"></div>
+          <div style="float: left;height: 100%"><label>CH7</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch7"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch7" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="scope_bar_item">
+          <div style="float: left;height: 100%"><input type="checkbox" class="item_checkbox" v-model="checkch8"></div>
+          <div style="float: left;height: 100%"><label>CH8</label></div>
+          <div style="float: left;height: 100%;width: 22%;"><input type="text" class="item_input" v-model="ch8"></div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <input type="color" name="favcolor" v-model="colorch8" value="#ff0000" class="expand_scope_bar_item">
+          </div>
+          <div style="float: left;height: 100%;width: 10%;">
+            <select class="expand_scope_bar_item2">
+              <option :value="one.opt" v-for='(one , index) in number' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+          <div style="float: left;height: 100%; width: 32%;">
+            <select class="expand_scope_bar_item3">
+              <option :value="one.opt" v-for='(one , index) in textnumber' v-bind:key='index'>{{one.opt}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<style>
+  #box1 {
+    width: 100%;
+    height: 100%;
+  }
+
+  .expand_scope_bar_item {
+    width: 75%;
+    height: 33px;
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding: 3px;
+    margin-left: 8px;
+    background-color: white;
+  }
+
+  .expand_scope_bar_item2 {
+    width: 70%;
+    height: 33px;
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding-left: 13px;
+    margin-left: 8px;
+    background-color: white;
+    padding-left: 36%;
+  }
+
+  .expand_scope_bar_item3 {
+    width: 115%;
+    height: 33px;
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding-right: 13px;
+    margin-left: 8px;
+    background-color: white;
+    padding-left: 12px;
+  }
+
+  .expand_scope_bar_title {
+    width: 100%;
+    height: 68px;
+    border-bottom: solid 2px;
+    background-color: #bfcfe2
+  }
+
+  .expand_scope_bar {
+    height: 516px;
+    width: 50%;
+    position: absolute;
+    top: 11%;
+    border: #404343 solid 2px;
+    left: 44%;
+    background-color: #f2f2f2
+  }
+
+  .expand_bar {
+    position: absolute;
+    top: 10%;
+    left: 61%;
+    width: 30px;
+    height: 550px;
+  }
+
+  .item_input {
+    height: 75%;
+    width: 100px;
+    border: solid 2.5px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-left: 8px;
+    text-align: right;
+    padding-right: 3px;
+    background-color: white;
+  }
+
+  .item_checkbox {
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+    margin-right: 5px;
+  }
+
+  .scope_bar_item {
+    width: 100%;
+    height: 55.5px;
+    border-bottom: 1px solid;
+    padding-top: 10px;
+  }
+
+  .scope {
+    width: 55%;
+    height: 516px;
+    background-color: gray;
+    position: absolute;
+    top: 11%;
+    left: 6%;
+  }
+
+  .scope_bar {
+    width: 25%;
+    height: 448px;
+    background-color: white;
+    position: absolute;
+    top: 21%;
+    left: 64%;
+  }
+
+  .a1 {
+    border-bottom: 1.7px solid black !important;
+    border-right: 1.7px solid black !important;
+    border-left: 1.7px solid black !important;
+    background-color: #91B0DE;
+    width: 100%;
+    height: 50px;
+
+  }
+
+  .a2 {
+    float: left;
+    margin-top: 1.5px;
+    margin-left: 4px
+  }
+
+  .a5 {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+
+  }
+
+  .a4 {
+    width: 100%;
+    height: 100%;
+    /* position: absolute;
+    left: 15%; */
+    float: left;
+    /* margin-top: -6px */
+
+  }
+
+  .a6 {
+
+    background-color: #BFBFBF;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px
+  }
+
+  .a7 {
+    width: auto;
+    height: 100%;
+    padding: 0.5%;
+    display: inline-block
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 1023px)
+  /*  600<X<1024平板尺寸 */
+
+    {
+    .expand_scope_bar_item {
+      width: 75%;
+      height: 33px;
+      border: solid 2.5px;
+      border-radius: 8px;
+      padding: 3px;
+      margin-left: 8px;
+      background-color: white;
+    }
+
+    .expand_scope_bar_item2 {
+      width: 70%;
+      height: 33px;
+      border: solid 2.5px;
+      border-radius: 8px;
+      padding-left: 13px;
+      margin-left: 8px;
+      background-color: white;
+      padding-left: 36%;
+    }
+
+    .expand_scope_bar_item3 {
+      width: 115%;
+      height: 33px;
+      border: solid 2.5px;
+      border-radius: 8px;
+      padding-right: 13px;
+      margin-left: 8px;
+      background-color: white;
+      padding-left: 12px;
+    }
+
+    .expand_scope_bar_title {
+      width: 100%;
+      height: 68px;
+      border-bottom: solid 2px;
+      background-color: #bfcfe2
+    }
+
+    .expand_scope_bar {
+      height: 516px;
+      width: 50%;
+      position: absolute;
+      top: 11%;
+      border: #404343 solid 2px;
+      left: 44%;
+      background-color: #f2f2f2
+    }
+
+    .expand_bar {
+      position: absolute;
+      top: 13%;
+      left: 55%;
+      width: 30px;
+      height: 804px;
+    }
+
+    .item_input {
+      height: 75%;
+      width: 100px;
+      border: solid 2.5px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-left: 8px;
+      text-align: right;
+      padding-right: 3px;
+      background-color: white;
+    }
+
+    .item_checkbox {
+      width: 30px;
+      height: 30px;
+      margin-left: 8px;
+      margin-right: 5px;
+    }
+
+    .scope_bar_item {
+      width: 100%;
+      height: 55.5px;
+      border-bottom: 1px solid;
+      padding-top: 10px;
+    }
+
+    .scope {
+      width: 47%;
+      height: 804px;
+      background-color: gray;
+      position: absolute;
+      top: 13%;
+      left: 8%;
+    }
+
+    .scope_bar {
+      width: 32%;
+      height: 448px;
+      background-color: white;
+      position: absolute;
+      top: 27%;
+      left: 59%;
+    }
+
+    .a5 {
+      width: 550px;
+      height: 100%;
+      display: inline-block;
+
+    }
+
+    .a4 {
+      width: 100%;
+      height: 100%;
+      /* position: absolute;
+    left: 15%; */
+      float: left;
+
+    }
+
+    .a6 {
+
+      background-color: #BFBFBF;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 8px
+    }
+
+    .a7 {
+      width: auto;
+      height: 100%;
+      padding: 0.5%;
+      display: inline-block
+    }
+  }
+</style>
+<script src="./../js/vue.js"></script>
+<script src="./../js/vuetify.js"></script>
+<script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+<script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+<script>
+  var text1;
+
+  window.addEventListener("message", function (event) {
+    if (!isNaN(parseInt(event.data))) {
+      test1.model = event.data
+
+    }
+    else {
+      if (event.data.lang === undefined) {
+        test1.language = event.data;
+      } else {
+        test1.language = event.data.lang;
+      }
+    }
+
+  }, false);
+
+  const i18n = new VueI18n({
+    locale: 'English', // locale後方對應的就是語系名稱
+    messages,//整包翻譯
+  })
+  test1 = new Vue({
+    el: '#app',
+    i18n,
+    vuetify: new Vuetify(),
+    data: () => ({
+      language: "",
+      activeBtn: 3,
+      drawer: false,
+      slider: 80,
+      max: 100,
+      min: 0,
+      buttonColor: 0,
+      model: 0,
+      Interval: 100,
+      ch1: 30.12,  //紀錄input數值
+      ch2: 40.12,
+      ch3: 30.12,
+      ch4: 30.12,
+      ch5: 30.12,
+      ch6: 30.12,
+      ch7: 30.12,
+      ch8: 30.12,
+      checkch1: true,  //紀錄checkbox
+      checkch2: true,
+      checkch3: true,
+      checkch4: true,
+      checkch5: true,
+      checkch6: true,
+      checkch7: true,
+      checkch8: true,
+      number: [
+        { opt: 1 },
+        { opt: 2 },
+        { opt: 3 },
+        { opt: 4 },
+        { opt: 5 },
+        { opt: 6 },
+      ],
+      textnumber: [
+        { opt: "Travel time 0" },
+        { opt: "Axis OD6041" },
+        { opt: "Axis pos feedback" },
+        { opt: "Joint acc feedback" },
+      ],
+      expand_number: 0,
+      colorch1: "#ff0000",  //紀錄顏色
+      colorch2: "#ff0000",
+      colorch3: "#ff0000",
+      colorch4: "#ff0000",
+      colorch5: "#ff0000",
+      colorch6: "#ff0000",
+      colorch7: "#ff0000",
+      colorch8: "#ff0000",
+    }),
+    mounted() { //等於js onload
+
+      window.onresize = () => { //尺寸變動時
+        return (() => {
+          console.log('resize');
+          let x = document.getElementById('box1');
+
+          if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+            if (this.expand_number == 0) {
+              document.getElementById("expand_bar").style.left = "55%"
+              document.getElementById("scope").style.width = "47%"
+            }
+            else {
+              document.getElementById("expand_bar").style.left = "25%"
+              document.getElementById("scope").style.width = "17%"
+              document.getElementById("expand_scope_bar").style.width = "65%"
+              document.getElementById("expand_scope_bar").style.left = "29%"
+              document.getElementById("expand_scope_bar").style.top = "23%"
+              document.getElementById("scope_bar").style.left = "21%"
+
+            }
+
+          }
+          else {
+            x.style.display = "inline";
+            x.style.height = "580px"
+            if (this.expand_number == 0) {
+              document.getElementById("expand_bar").style.left = "61%"
+              document.getElementById("scope").style.width = "55%"
+            }
+            else {
+              document.getElementById("expand_bar").style.left = "41%"
+              document.getElementById("scope").style.width = "35%"
+              document.getElementById("expand_scope_bar").style.width = "50%"
+              document.getElementById("expand_scope_bar").style.left = "44%"
+              document.getElementById("expand_scope_bar").style.top = "11%"
+              document.getElementById("expand_bar").style.left = "41%"
+            }
+          }
+        })()
+      }
+    },
+    watch: {
+      language(language) {
+        i18n.locale = this.language;
+      },
+    },  
+
+    methods:
+    {
+      expand: function () {
+        if (document.body.clientWidth < 1920 && document.body.clientWidth > 1023) {
+          if (this.expand_number == 0) { //開
+            document.getElementById("expand_bar").style.left = "41%"
+            document.getElementById("scope").style.width = "35%"
+            document.getElementById("expand_scope_bar").style.display = "block"
+            document.getElementById("scope_bar").style.display = "none"
+            document.getElementById("expand_scope_bar").style.width = "50%"
+            document.getElementById("expand_scope_bar").style.left = "44%"
+            document.getElementById("expand_scope_bar").style.top = "11%"
+            this.expand_number = 1;
+            return
+          }
+          if (this.expand_number == 1) {  //關
+            document.getElementById("expand_bar").style.left = "61%"
+            document.getElementById("scope").style.width = "55%"
+            document.getElementById("expand_scope_bar").style.display = "none"
+            document.getElementById("scope_bar").style.display = "block"
+            this.expand_number = 0
+            return
+          }
+        }
+        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+          if (this.expand_number == 0) {
+            document.getElementById("expand_bar").style.left = "25%"
+            document.getElementById("scope").style.width = "17%"
+            document.getElementById("expand_scope_bar").style.display = "block"
+            document.getElementById("scope_bar").style.display = "none"
+            document.getElementById("expand_scope_bar").style.width = "65%"
+            document.getElementById("expand_scope_bar").style.left = "29%"
+            document.getElementById("expand_scope_bar").style.top = "23%"
+            this.expand_number = 1;
+            return
+          }
+          if (this.expand_number == 1) {
+            document.getElementById("expand_bar").style.left = "55%"
+            document.getElementById("expand_scope_bar").style.display = "none"
+            document.getElementById("scope_bar").style.display = "block"
+            document.getElementById("scope").style.width = "47%"
+            this.expand_number = 0
+            return
+          }
+        }
+      }
+    }
+  })
+  var outDiv = document.getElementById('out');
+  outDiv = function (event) {
+    //禁止事件默认行为（此处禁止鼠标滚轮行为关联到"屏幕滚动条上下移动"行为）  
+    event.preventDefault();
+    //设置鼠标滚轮滚动时屏幕滚动条的移动步长  
+    var step = 50;
+    if (event.deltaY < 0) {
+      //向上滚动鼠标滚轮，屏幕滚动条左移  
+      this.scrollLeft -= step;
+    } else {
+      //向下滚动鼠标滚轮，屏幕滚动条右移  
+      this.scrollLeft += step;
+    }
+  }
+
+
+</script>
+
+</html>

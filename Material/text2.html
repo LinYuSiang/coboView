@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/MaterialIcons.css" rel="stylesheet">
+    <link href="./../css/point/point.css" rel="stylesheet">
+    <link href="./../css/page/menuTab.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+
+<body>
+    <div id="app">
+
+
+        <div class="box1" id="box1" style="font-family: Roboto,sans-serif;font-weight:bold">
+
+    
+
+                <div id="tabsF">
+                    <ul>
+                        <li><a href="javascript://" @click="loadTab(this,1);"><span class="toptag" id="L1">Current
+                                    State</span></a></li>
+                        <li><a href="javascript://" @click="loadTab(this,2);"><span class="toptag" id="L2">Tool
+                                    Frame</span></a></li>
+
+                    </ul>
+                </div>
+
+             
+                    <div id="S1" style="display:inline;">
+                     
+                    </div>
+                    <div id="S2" style="display:none;">
+                      
+                    </div>
+               
+
+         
+          
+            <v-dialog v-model="delete_alert" width="450">
+
+                <v-card style=" padding-top: 25px;">
+                    <div
+                        style="width:400px; margin-left: 25px;text-align: center;background-color: cornflowerblue;font-size: 22px;">
+                        <label class="project_label_title">Delete</label>
+                    </div>
+
+                    <v-card-text>
+                        <div style="margin-top:20px; ">
+                            <div style=" margin-bottom:20px;"><img class="delete_icon" src="./../img/trashcan_e.png"
+                                    width="50"><label style="color:#404343; margin-left:10px; font-size: 20px ">Do you
+                                    want to delete this process?</label></div>
+                        </div>
+                    </v-card-text>
+
+                    <v-card-actions>
+                        <button style="margin-left:240px;  " class="btn_finsh" @click="deleteed">Yes</button>
+                        <button class="btn_finsh" @click="delete_alert = false">No</button>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </div>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+    <script>
+        var text1;
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+
+        window.addEventListener("message", function (event) {
+            text1 = event.data;
+
+            console.log(text1, "postmessage");
+
+            if (!isNaN(parseInt(event.data))) {
+
+                test1.model = text1
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    text1.language = event.data;
+                } else {
+                    text1.language = event.data.lang;
+                }
+            }
+        }, false);
+
+
+
+        test1 = new Vue({
+            el: '#app',
+            i18n,
+            vuetify: new Vuetify(),
+            data: () => ({
+                language: '',
+                leftva: false,
+                vapr: [false, false],// va project
+                SCARAch: false,
+                smallSCch: false,//小的
+                SCARAch3: false,
+                smallSCch3: false,//小的
+                SCARAch5: false,
+                smallSCch5: false,//小的
+                delete_edit: "",
+                delete_alert: false,
+                name: "",
+                x: "",
+                y: "",
+                z: "",
+                rx: "",
+                ry: "",
+                rz: "",
+                e: "",
+                l: "",
+                f: "",
+                user_id: "",
+                tool_id: "",
+                coord: "",
+                j4_jrc: "",
+                j6_jrc: "",
+                jrc_active: "",
+                bgwhite: {
+                    backgroundColor: 'white',
+                },
+                bgblue: {
+                    backgroundColor: '#C6D8F0',
+                },
+                lists_id: [
+                    { id: "id_0", name: 1000 },
+                    { id: "id_1", name: 1001 }
+                ],
+                lists_edit: [
+                    { id: "edit_0" },
+                    { id: "edit_1" }
+                ],
+                lists_content: [
+                    {
+                        id: "conte_0",
+                        test: [
+                            { id: 0, name: "name", content: '3' },
+                            { id: 1, name: "x", content: '1' },
+                            { id: 2, name: "y", content: '2' },
+                            { id: 3, name: "z", content: '3' },
+                            { id: 4, name: "rx", content: '1' },
+                            { id: 5, name: "ry", content: '2' },
+                            { id: 6, name: "rz", content: '3' },
+                            { id: 7, name: "e", content: '3' },
+                            { id: 8, name: "l", content: '1' },
+                            { id: 9, name: "f", content: '2' },
+                            { id: 10, name: "user_id", content: '1' },
+                            { id: 11, name: "tool_id", content: '2' },
+                            { id: 12, name: "coord", content: '3' },
+                            { id: 13, name: "j4_jrc", content: '1' },
+                            { id: 14, name: "j6_jrc", content: '2' },
+                            { id: 15, name: "jrc_active", content: '2' },
+                        ]
+                    },
+                    {
+                        id: "conte_1",
+                        test: [
+                            { id: 0, name: "name", content: '3' },
+                            { id: 1, name: "x", content: '1' },
+                            { id: 2, name: "y", content: '2' },
+                            { id: 3, name: "z", content: '3' },
+                            { id: 4, name: "rx", content: '1' },
+                            { id: 5, name: "ry", content: '2' },
+                            { id: 6, name: "rz", content: '3' },
+                            { id: 7, name: "e", content: '3' },
+                            { id: 8, name: "l", content: '1' },
+                            { id: 9, name: "f", content: '2' },
+                            { id: 10, name: "user_id", content: '1' },
+                            { id: 11, name: "tool_id", content: '2' },
+                            { id: 12, name: "coord", content: '3' },
+                            { id: 13, name: "j4_jrc", content: '1' },
+                            { id: 14, name: "j6_jrc", content: '2' },
+                            { id: 15, name: "jrc_active", content: '2' },
+                        ]
+                    },
+                ],
+            }),
+
+            mounted() {
+                // //等於js onload
+                // for (let i= 0; i <   this.lists_content.length; i++) {
+                //      document.getElementById('conte').id += i
+
+                //   }
+                console.log(this.lists_content);
+                window.onresize = () => { //尺寸變動時
+                    return (() => {
+                        console.log('resize');
+                        let x = document.getElementById('box1');
+
+                        if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                            console.log('平板:document.body.clientWidth', document.body.clientWidth);
+                        }
+                        else {
+                            x.style.display = "inline";
+                            x.style.height = "580px"
+                        }
+                    })()
+                }
+            },
+            watch:
+            {
+                language(language) {
+                    console.log(this.language, "model");
+
+                    i18n.locale = this.language;
+                },
+            },
+
+            methods: {
+                changed: function (value) {
+                    for (let i = 0; i < this.lists_content.length; i++) {
+                        console.log(this.lists_content.length);
+
+                        if (i == value) {
+                            document.getElementById("conte_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("edit_" + value).style.backgroundColor = "#5caceb"
+                            document.getElementById("id_" + value).style.backgroundColor = "#5caceb"
+                        }
+                        else {
+                            console.log(123, this.lists_content.length);
+
+                            document.getElementById("conte_" + i).style.backgroundColor = "white"
+                            document.getElementById("edit_" + i).style.backgroundColor = "white"
+                            document.getElementById("id_" + i).style.backgroundColor = "white"
+                        }
+                    }
+                },
+                created: function () { //創建
+
+                    this.lists_content.push({
+                        id: "conte_" + this.lists_content.length,
+                        test:
+                            [
+                                { id: 0, name: document.getElementById('name').value, content: this.name },
+                                { id: 1, name: document.getElementById('x').value, content: this.x },
+                                { id: 2, name: document.getElementById('y').value, content: this.y },
+                                { id: 3, name: document.getElementById('z').value, content: this.z },
+                                { id: 4, name: document.getElementById('rx').value, content: this.rx },
+                                { id: 5, name: document.getElementById('ry').value, content: this.ry },
+                                { id: 6, name: document.getElementById('rz').value, content: this.rz },
+                                { id: 7, name: document.getElementById('e').value, content: this.e },
+                                { id: 8, name: document.getElementById('l').value, content: this.l },
+                                { id: 9, name: document.getElementById('f').value, content: this.f },
+                                { id: 10, name: document.getElementById('user_id').value, content: this.user_id },
+                                { id: 11, name: document.getElementById('tool_id').value, content: this.tool_id },
+                                { id: 12, name: document.getElementById('coord').value, content: this.coord },
+                                { id: 13, name: document.getElementById('j4_jrc').value, content: this.j4_jrc },
+                                { id: 14, name: document.getElementById('j6_jrc').value, content: this.J6_jrc },
+                                { id: 15, name: document.getElementById('jrc_active').value, content: this.jrc_active },
+                            ]
+                    })
+
+                    this.lists_id.push({
+                        id: "id_" + this.lists_id.length,
+                        name: parseInt(1000) + parseInt(this.lists_id.length)
+                    })
+                    console.log(this.lists_id)
+                    this.lists_edit.push({
+                        id: "edit_" + this.lists_edit.length,
+                    })
+                    console.log(this.lists_edit);
+                },
+                deleted: function (edit_index) {
+                    this.delete_edit = edit_index;
+                    this.delete_alert = true;
+                },
+                deleteed: function () {
+                    this.lists_edit.splice(this.delete_edit, 1);
+                    this.lists_edit.map(function (item, index) {
+                        if (item.id != "edit_" + index) {
+                            item.id = "edit_" + index;
+                        }
+
+
+                    })
+                    this.lists_id.splice(this.delete_edit, 1);
+                    this.lists_id.map(function (item, index) {
+                        if (item.id != "id_" + index) {
+                            item.id = "id_" + index;
+                        }
+                        if (item.name != parseInt(1000) + parseInt(index)) {
+                            item.name = parseInt(1000) + parseInt(index);
+                        }
+
+                    })
+                    this.lists_content.splice(this.delete_edit, 1);
+                    this.lists_content.map(function (item, index) {
+                        if (item.id != "conte_" + index) {
+                            item.id = "conte_" + index;
+                        }
+                    })
+                    this.delete_alert = false;
+                },
+                top: function () {
+                    console.log("top");
+                },
+                right_top: function () {
+                    console.log("right_top");
+                },
+                bot: function () {
+                    console.log("bot");
+                },
+
+                leftcheckva: function () {
+                    if (this.leftva == false) {
+
+                        this.vapr[0] = false;
+                        this.vapr[1] = false;
+
+                    }
+                    else {
+
+                        this.vapr[0] = true;
+                        this.vapr[1] = true;
+                    }
+
+                },
+
+                SCch: function () {
+                    if (this.SCARAch == true) {
+                        this.smallSCch = true;
+                    } else {
+                        this.smallSCch = false;
+                    }
+                },
+                SCch3: function () {
+                    if (this.SCARAch3 == true) {
+                        this.smallSCch3 = true;
+                    } else {
+                        this.smallSCch3 = false;
+                    }
+                },
+                SCch5: function () {
+                    if (this.SCARAch5 == true) {
+                        this.smallSCch5 = true;
+                    } else {
+                        this.smallSCch5 = false;
+                    }
+                },
+
+                clickJ5: function () {
+                    let x = document.getElementById('va');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('projectVA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('projectVA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ6: function () {
+                    let x = document.getElementById('va2');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA').style.display = 'none';
+
+                    }
+
+                },
+                clickJ7: function () {
+                    let x = document.getElementById('va3');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA3').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA3').style.display = 'none';
+
+                    }
+
+                },
+                    TUdialoges : function()
+        {
+            this.TUdialog = true;
+            console.log(123);
+            
+        },
+			setting : function()
+			{
+				console.log(123);
+				
+			},
+			
+			loadTab:function(obj,n){
+				var layer,bgcolor;
+				layer = "S"+n;
+				bgcolor = "L"+n; 		
+				//將 Tab 標籤樣式設成 Blur 型態
+				var tabsF=document.getElementById('tabsF').getElementsByTagName('li');//拿到底下的li
+				for (var i=0;i<tabsF.length;i++){
+					if (document.getElementById("L"+(i+1)).id == bgcolor) {
+						document.getElementById(bgcolor).style.backgroundColor  = "#C6D8F0"; 
+						document.getElementById(layer).style.display='block'; //出現按到的
+					}
+					else
+					{
+
+					// tabsF[i].setAttribute('id',null);//每個ID變為空值
+					// tabsF[i].setAttribute('id','Link'+(i+1) );//更改每個的切換的ID值
+					document.getElementById("S"+(i+1)).style.display='none';
+					document.getElementById("L"+(i+1)).style.backgroundColor  = "#D8D8D8"; 
+					}
+				}
+			
+				//變更分頁標題樣式
+				// obj.parentNode.setAttribute('id','current');
+				
+			},
+            
+			getnumber:function(){
+				parseInt(document.getElementById("tool_select").value,10);
+				this.widthmm = parseInt(this.widthmm,10); //要轉成數字再存進去
+				this.heightmm = parseInt(this.heightmm,10);
+				this.angle = parseInt(this.angle,10);
+				this.roll = parseInt(this.roll,10);
+				this.pitch = parseInt(this.pitch,10);
+				this.yaw = parseInt(this.yaw,10);
+				console.log('讀回設定數值',parseInt(document.getElementById("tool_select").value,10),this.widthmm,this.heightmm,this.angle,this.roll,this.pitch,this.yaw);
+
+			},
+			setnumber:function(){
+				console.log('設定數值sadas');
+				
+			},
+			getteach:function(){
+				
+				this.calculation.map(function(item,index){
+					if( item.Select == true){
+						item.X = parseFloat(item.X); //把字串重新轉成福點數再存入
+						item.Y = parseFloat(item.Y);
+						item.Z = parseFloat(item.Z);
+						item.Error = parseFloat(item.Error); 
+						console.log('有打勾的話才顯示資料: ',item.X,item.Y,item.Z,item.Error);
+					}
+				})
+				
+			},
+			getcal:function(){
+				console.log('進行校正演算');
+				
+			},
+			setcal:function(){
+				console.log('設定至控制器');
+				
+			},
+            user_write : function() {
+                console.log('user 點位寫入表格中');
+                
+            },
+                clickJ8: function () {
+                    let x = document.getElementById('va4');
+                    let aa = x.src.split("/");
+                    if (aa[aa.length - 1] == 'open_e.png') {
+                        document.getElementById('SCARA5').style.display = 'block';
+                        x.src = './../img/collapse_e.png';
+                    }
+                    else {
+                        x.src = './../img/open_e.png';
+                        document.getElementById('SCARA5').style.display = 'none';
+
+                    }
+
+                },
+
+                bluebarright: function () {
+                    document.getElementById('bar').style.display = 'none';
+                    document.getElementById('bar2').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'none';
+                    document.getElementById('bar2').style.marginLeft = '50px';
+                    document.getElementById('right_project').style.left = "25%";
+
+
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+
+
+                    }
+                },
+                bluebarleft: function () {
+                    document.getElementById('bar2').style.display = 'none';
+                    document.getElementById('bar').style.display = 'inline';
+                    document.getElementById('leftcontrol').style.display = 'inline';
+                    document.getElementById('right_project').style.left = '43%'
+
+
+                    if (document.body.clientWidth < 980 && document.body.clientWidth > 640) {
+                        // console.log('平板:document.body.clientWidth',document.body.clientWidth);
+
+
+                    }
+                }
+
+
+            },
+
+        })
+        var box1 = document.getElementById('project_item_cont')
+        var box2 = document.getElementById('project_item')
+        var box3 = document.getElementById('project_id_cont')
+        var box4 = document.getElementById('create')
+        var box5 = document.getElementById('project_edit_cont')
+
+        onwheel = function (event) {
+
+            var step = 50;
+            if (event.deltaY < 0) {
+                //向上滚动鼠标滚轮，屏幕滚动条左移  
+                document.getElementById('project_item_cont').scrollTop -= step;
+                document.getElementById('project_id_cont').scrollTop -= step;
+                document.getElementById('project_edit_cont').scrollTop -= step;
+
+            } else {
+                //向下滚动鼠标滚轮，屏幕滚动条右移  
+                box1.scrollTop += step;
+                box3.scrollTop += step;
+                box5.scrollTop += step;
+
+            }
+        }
+
+        box1.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box2.scrollLeft = box1.scrollLeft
+            box4.scrollLeft = box1.scrollLeft
+        })
+
+        box2.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box4.scrollLeft = box2.scrollLeft
+            box1.scrollLeft = box2.scrollLeft
+        })
+        box4.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box2.scrollLeft = box4.scrollLeft
+            box1.scrollLeft = box4.scrollLeft
+        })
+
+        box1.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box3.scrollTop = box1.scrollTop
+            box5.scrollTop = box1.scrollTop
+        })
+
+        box3.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box1.scrollTop = box3.scrollTop
+            box5.scrollTop = box3.scrollTop
+        })
+
+        box5.addEventListener('scroll', function () {
+            // box1.scrollLeft += step;  
+            box1.scrollTop = box5.scrollTop
+            box3.scrollTop = box5.scrollTop
+        })
+
+    </script>
+</body>
+<style>
+    .a7 {
+        float: right;
+        width: auto;
+        height: 40px;
+        padding: 1%;
+        margin-top: 5px
+    }
+
+    .a6_1 {
+
+        background-color: #c4d6a0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        line-height: 30px
+    }
+</style>
+
+</html>

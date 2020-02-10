@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="./../css/Roboto.css" rel="stylesheet">
+  <link href="./../css/materialdesignicons.css" rel="stylesheet">
+  <link href="./../css/vuetify.css" rel="stylesheet">
+  <link href="./../css/MaterialIcons.css" rel="stylesheet">
+  <link href="./../css/app/app.css" rel="stylesheet"> <!-- login的css -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  
+</head>
+<body>
+  <div id="app">
+      
+    <v-app>
+      
+      <v-card class="b1" tile   >
+        <v-card class="b4" color="#91B0DE" tile flat>
+            <button @click.stop="drawer = !drawer" class="reorder" ><v-icon dark x-large>reorder</v-icon></button>
+            <div class="space"></div>
+            <button class="Disconnect" ><v-icon dark large>reorder</v-icon><span class="b7_1" @click.stop="dialog = true">Disconnect</span></button>
+            <button class="OFF" ><v-icon dark large>power_settings_new</v-icon><span class="b7_1">OFF</span></button>
+            <button class="Pause" ><v-icon dark large>autorenew</v-icon><span class="b7_1">Pause</span></button>
+            <button class="Auto" ><v-icon dark large>autorenew</v-icon><span class="b7">Auto</span></button>
+            <button class="trans" ><v-icon dark large>autorenew</v-icon><span class="b7">T：0  </span><span class="b7">U：0</span></button>
+            <div class="speed"><v-icon dark large>shutter_speed</v-icon><span class="b7">S：{{slider}}％</span>
+              <v-slider
+              v-model="slider"
+              class="slide"
+              :max="max"
+              :min="min"
+              hide-details
+            ></div>
+            <button class="person" onclick="location.href='./login.html'" ><v-icon dark large>person</v-icon></button>
+            <button class="setting" ><v-icon dark large>settings</v-icon></button>
+        </v-card>
+        <v-dialog
+          v-model="dialog"
+          max-width="290"
+        >
+        <v-card>
+          <v-card-title class="headline">Use Google's location service?</v-card-title>
+  
+          <v-progress-circular
+            :size="70"
+            :width="7"
+            color="purple"
+            indeterminate
+            style="margin-left: 30%"
+          ></v-progress-circular>
+          <v-card-actions>
+            <div class="flex-grow-1"></div>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="dialog = false"
+            >
+              Disagree
+            </v-btn>
+            <v-btn
+              color="green darken-1"
+              text
+              @click="dialog = false"
+            >
+              Agree
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+        <v-navigation-drawer
+          v-model="drawer"
+          absolute
+          temporary
+        >
+          <v-list
+            nav
+            dense
+          >
+            <v-list-item-group
+              active-class="deep-purple--text text--accent-4"
+            >
+              <v-list-item>
+                <v-list-item-title>Foo</v-list-item-title>
+              </v-list-item>
+    
+              <v-list-item>
+                <v-list-item-title>Bar</v-list-item-title>
+              </v-list-item>
+    
+              <v-list-item>
+                <v-list-item-title>Fizz</v-list-item-title>
+              </v-list-item>
+    
+              <v-list-item>
+                <v-list-item-title>Buzz</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-navigation-drawer>
+        <v-card        
+         v-show="showNav"
+          :value="activeBtn"
+          horizontal
+          color="#91B0DE"
+          class="b3"
+        >
+        <div class="b8">
+          <v-btn fab small  class="b2">
+            <v-icon>history</v-icon>
+          </v-btn>
+        </div>
+        
+        <div class="b8">
+          <v-btn fab small  class="b2">
+            <v-icon>history</v-icon>
+          </v-btn>
+        </div>
+
+        <div class="b8">
+          <v-btn fab small  class="b2">
+            <v-icon>history</v-icon>
+          </v-btn>
+        </div>
+        
+        <div class="b8">
+            <v-btn fab small  class="b2">
+            <v-icon>history</v-icon>
+          </v-btn>
+        </div>
+
+        <div class="b8">
+          <v-btn fab small  class="b2">
+            <v-icon>history</v-icon>
+          </v-btn>
+        </div>
+
+        <div class="b8">
+          <v-btn fab small  class="b2">
+            <v-icon>history</v-icon>
+          </v-btn>
+        </div>
+
+        <div class="b8">
+          <v-btn fab small  class="b2">
+            <v-icon>history</v-icon>
+          </v-btn>
+        </div>
+        </v-card>
+      </v-card>
+    </v-app>
+  </div>
+ 
+
+  <script src="./../js/vue.js"></script>
+  <script src="./../js/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: () => ({
+    activeBtn: 3,
+    showNav: true,
+    drawer:false,
+    num:"2",
+    slider:80,
+    max:100,
+    min:0,
+    dialog: false,
+  }),
+
+    })
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./../css/Roboto.css" rel="stylesheet">
+    <link href="./../css/materialdesignicons.css" rel="stylesheet">
+    <link href="./../css/vuetify.css" rel="stylesheet">
+    <link href="./../css/servo/Servo.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <div id="app">
+        <v-app>
+            <div class="box1">
+                <div class="Robot">
+                </div>
+                <div class="center">
+                    <div class="servo">
+                        <div @click="top"><img src="./../img/top.png" width="50"></div>
+                        <div style="background-color: #b8cbe6">
+                            <p style="font-size:26px">Servo</p>
+                        </div>
+                        <div style="margin-top: 5px">
+                            <div>
+                                <div class="left">
+                                    <p class="left1">{{ $t('message.servo_All_Joint') }}</p>
+                                    <v-switch v-model="allswitch " @change="allswitchs" class="right"></v-switch>
+                                </div>
+                                <div class="left">
+                                    <p class="left1">{{ $t('message.Joint1') }}</p>
+                                    <v-switch v-model="switch1 " @change="axis1Servo" class="right"></v-switch>
+                                </div>
+                                <div class="left">
+                                    <p class="left1">{{ $t('message.Joint2') }}</p>
+                                    <v-switch v-model="switch2 " @change="axis2Servo" class="right"></v-switch>
+                                </div>
+                                <div class="left">
+                                    <p class="left1">{{ $t('message.Joint3') }}</p>
+                                    <v-switch v-model="switch3 " @change="axis3Servo" class="right"></v-switch>
+                                </div>
+                                <div class="left">
+                                    <p class="left1">{{ $t('message.Joint4') }}</p>
+                                    <v-switch v-model="switch4 " @change="axis4Servo" class="right"></v-switch>
+                                </div>
+                                <div class="left">
+                                    <p class="left1">{{ $t('message.Joint5') }}</p>
+                                    <v-switch v-model="switch5 " @change="axis5Servo" class="right"></v-switch>
+                                </div>
+                                <div class="left">
+                                    <p class="left1">{{ $t('message.Joint6') }}</p>
+                                    <v-switch v-model="switch6 " @change="axis6Servo" class="right"></v-switch>
+                                </div>
+                                <div @click="bot" class="arrowdown"><img src="./../img/bot.png" width="50"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </v-app>
+    </div>
+
+    <script src="./../js/vue.js"></script>
+    <script src="./../js/vuetify.js"></script>
+    <script src="./../js/i18n/i18n.js"></script> <!-- vue i18n 多語系 -->
+    <script src="./../js/i18n/language.js"></script> <!-- 翻譯的多語系 -->
+
+    <script>
+
+        var text1;
+        const i18n = new VueI18n({
+            locale: 'English', // locale後方對應的就是語系名稱
+            messages,//整包翻譯
+        })
+        window.addEventListener("message", function (event) {
+            console.log(event.data);
+            if (!isNaN(parseInt(event.data))) {
+             return;
+            }
+            else {
+                if (event.data.lang === undefined) {
+                    vue.language = event.data;
+                } else {
+                    vue.language = event.data.lang;
+                }
+            }
+
+        })
+        let vue = new Vue({
+            i18n,
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: () => ({
+
+                language: "",
+                allswitch: false,
+                switch1: false,
+                switch2: false,
+                switch3: false,
+                switch4: false,
+                switch5: false,
+                switch6: false,
+
+            }),
+            // created: function()
+            // {
+            //     console.log("created");
+            //     // i18n.locale = this.language;
+            // },
+            // mounted() {
+            //     console.log("aftercreated");
+                
+            //     i18n.locale = this.language;
+            // },
+
+            watch:
+            {
+                language(language) {
+                    i18n.locale = this.language;
+                },
+            },
+            methods: {
+
+                allswitchs() {
+                    if (this.allswitch == false) {
+                        this.switch1 = false;
+                        this.switch2 = false;
+                        this.switch3 = false;
+                        this.switch4 = false;
+                        this.switch5 = false;
+                        this.switch6 = false;
+
+                        console.log('switchALL : ' + this.allswitch);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'allServoOff',
+                            args: {
+                                index: -1
+                            }
+                        }, '*');
+
+                    }
+                    if (this.allswitch == true) {
+                        this.switch1 = true;
+                        this.switch2 = true;
+                        this.switch3 = true;
+                        this.switch4 = true;
+                        this.switch5 = true;
+                        this.switch6 = true;
+
+                        console.log('switchALL : ' + this.allswitch);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'allServoOn',
+                            args: {
+                                index: -1
+                            }
+                        }, '*');
+                    }
+                },
+                axis1Servo() {
+                    if (this.switch1 == true) {
+                        console.log('switch1 : ' + this.switch1);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOn',
+                            args: {
+                                index: 0
+                            }
+
+                        }, '*');
+
+                    } else {
+                        console.log('switch1 : ' + this.switch1);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOff',
+                            args: {
+                                index: 0
+                            }
+                        }, '*');
+                    }
+
+                },
+                axis2Servo() {
+                    if (this.switch2 == true) {
+                        console.log('switch2 : ' + this.switch2);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOn',
+                            args: {
+                                index: 1
+                            }
+
+                        }, '*');
+                    } else {
+                        console.log('switch2 : ' + this.switch2);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOff',
+                            args: {
+                                index: 1
+                            }
+
+                        }, '*');
+                    }
+
+                },
+                axis3Servo() {
+                    if (this.switch3 == true) {
+                        console.log('switch3 : ' + this.switch3);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOn',
+                            args: {
+                                index: 2
+                            }
+                        }, '*');
+                    } else {
+                        console.log('switch3 : ' + this.switch3);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOff',
+                            args: {
+                                index: 2
+                            }
+
+                        }, '*');
+                    }
+                },
+                axis4Servo() {
+                    if (this.switch4 == true) {
+                        console.log('switch4 : ' + this.switch4);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOn',
+                            args: {
+                                index: 3
+                            }
+
+                        }, '*');
+                    } else {
+                        console.log('switch4 : ' + this.switch4);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOff',
+                            args: {
+                                index: 3
+                            }
+                        }, '*');
+                    }
+                },
+                axis5Servo() {
+                    if (this.switch5 == true) {
+                        console.log('switch5 : ' + this.switch5);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOn',
+                            args: {
+                                index: 4
+                            }
+                        }, '*');
+                    } else {
+                        console.log('switch5 : ' + this.switch5);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOff',
+                            args: {
+                                index: 4
+                            }
+                        }, '*');
+                    }
+                },
+                axis6Servo() {
+                    if (this.switch6 == true) {
+                        console.log('switch6 : ' + this.switch6);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOn',
+                            args: {
+                                index: 5
+                            }
+                        }, '*');
+                    } else {
+                        console.log('switch6 : ' + this.switch6);
+                        parent.postMessage({
+                            type: 'frontEnd',
+                            page: 'appServo',
+                            command: 'axisOff',
+                            args: {
+                                index: 5
+                            }
+                        }, '*');
+                    }
+                },
+                top() {
+                    console.log('top');
+                },
+                bot() {
+                    console.log('bot');
+                },
+                next: function () {
+                    console.log("next");
+                },
+                prev: function () {
+                    console.log("prev");
+                },
+            }
+        })
+
+
+        window.addEventListener('message', (e) => {
+
+            const message = e.data;
+
+
+
+            console.log(message);
+
+            switch (message.command) {
+                case 'servoState':
+                    let allState;
+                    switch (message.args.axis) {
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        case 5:
+                            break;
+                        case 6:
+                            vue.switch1 = message.args.state[0];
+                            vue.switch2 = message.args.state[1];
+                            vue.switch3 = message.args.state[2];
+                            vue.switch4 = message.args.state[3];
+                            vue.switch5 = message.args.state[4];
+                            vue.switch6 = message.args.state[5];
+                            allState = message.args.state.every((e) => {
+                                return e === true;
+                            });
+                            vue.allswitch = allState === true ? true : false;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
+    </script>
+</body>
+
+</html>
