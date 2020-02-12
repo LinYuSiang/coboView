@@ -284,7 +284,7 @@
                     </v-card>
                 </v-dialog>
             </div>
-            <div id="second_edit_right_name" style="display: none"> <!--右手編輯-->
+            <div id="second_edit_right_name" style="display: none">
                 <v-dialog persistent v-model="second_edit_dialog_name" class="v-dialog">
 
                     <v-card style=" padding-top: 25px;">
@@ -456,7 +456,7 @@
                 </v-dialog>
             </div>
 
-            <div id="second_edit_left_name" style="display: none"><!--左手編輯-->
+            <div id="second_edit_left_name" style="display: none">
                 <v-dialog persistent v-model="second_edit_dialog_nameL" class="v-dialog">
 
                     <v-card style=" padding-top: 25px;">
@@ -2333,7 +2333,7 @@
 
 
                                                         </table>
-                                                        <div style="margin-left: 5px;">
+                                                        <div style="margin-left: 56px;">
                                                             <label>
                                                                 <input type="checkbox" v-model="text_right"
                                                                     @change="disabled_text_right" class="checkbox">
@@ -2822,7 +2822,7 @@
                                                             style="font-size: 18px; margin-top: -20px;margin-left:300px ;">
                                                             Time out(s)</div>
                                                     </div>
-                                                    <div style="height: 250px;overflow-y: scroll;">
+                                                    <div style="height: 250px;overflow-y: scroll;overflow-x: hidden">
                                                         <table>
 
                                                             <tr v-for='(item,index) in reAction_user_di'
@@ -2865,7 +2865,7 @@
 
 
                                                         </table>
-                                                        <div style="margin-left: 5px;">
+                                                        <div style="margin-left: 56px;">
                                                             <label>
                                                                 <input type="checkbox" v-model="edit_text_right"
                                                                     @change="edit_disabled_text_right" class="checkbox">
@@ -2880,7 +2880,7 @@
                                                                 oninput="value=value.replace(/[^\d]/g,'')">
                                                             <span class="text">s</span>
                                                             <button id="edit_save_right_action_UserDI"
-                                                                style="margin-left:370px;  " class="btn_finsh"
+                                                                style="margin-left:319px;  " class="btn_finsh"
                                                                 @click="edit_save_right_action_UserDI">OK</button>
                                                         </div>
 
@@ -3413,7 +3413,7 @@
 
 
                                                         </table>
-                                                        <div style="margin-left: 5px;">
+                                                        <div style="margin-left: 56px;">
                                                             <label>
                                                                 <input type="checkbox" v-model="text_left"
                                                                     @change="disabled_text_left" class="checkbox">
@@ -3930,7 +3930,7 @@
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    <div style="margin-left: 5px;">
+                                                    <div style="margin-left: 56px;">
                                                         <label>
                                                             <input type="checkbox" v-model="edit_text_left"
                                                                 @change="edit_disabled_text_left" class="checkbox">
@@ -3945,7 +3945,7 @@
                                                             oninput="value=value.replace(/[^\d]/g,'')">
                                                         <span class="text">s</span>
                                                         <button id="edit_save_left_action_UserDI"
-                                                            style="margin-left:370px;  " class="btn_finsh"
+                                                            style="margin-left:319px;  " class="btn_finsh"
                                                             @click="edit_save_left_action_UserDI">OK</button>
                                                     </div>
 
@@ -5410,7 +5410,7 @@
                 RAction_modbus: [
                     {
                         id: 1,
-                        number: '1',
+                        number: '01',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5420,7 +5420,7 @@
                     },
                     {
                         id: 2,
-                        number: '2',
+                        number: '02',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5430,7 +5430,7 @@
                     },
                     {
                         id: 3,
-                        number: '3',
+                        number: '03',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5440,7 +5440,7 @@
                     },
                     {
                         id: 4,
-                        number: '4',
+                        number: '04',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5450,7 +5450,7 @@
                     },
                     {
                         id: 5,
-                        number: '5',
+                        number: '05',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5460,7 +5460,7 @@
                     },
                     {
                         id: 6,
-                        number: '6',
+                        number: '06',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5470,7 +5470,7 @@
                     },
                     {
                         id: 7,
-                        number: '7',
+                        number: '07',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5480,7 +5480,7 @@
                     },
                     {
                         id: 8,
-                        number: '8',
+                        number: '08',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5490,7 +5490,7 @@
                     },
                     {
                         id: 9,
-                        number: '9',
+                        number: '09',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5519,7 +5519,7 @@
                 reAction_modbus: [
                     {
                         id: 1,
-                        number: '1',
+                        number: '01',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5529,7 +5529,7 @@
                     },
                     {
                         id: 2,
-                        number: '2',
+                        number: '02',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5539,7 +5539,7 @@
                     },
                     {
                         id: 3,
-                        number: '3',
+                        number: '03',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5549,7 +5549,7 @@
                     },
                     {
                         id: 4,
-                        number: '4',
+                        number: '04',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5559,7 +5559,7 @@
                     },
                     {
                         id: 5,
-                        number: '5',
+                        number: '05',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5569,7 +5569,7 @@
                     },
                     {
                         id: 6,
-                        number: '6',
+                        number: '06',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5579,7 +5579,7 @@
                     },
                     {
                         id: 7,
-                        number: '7',
+                        number: '07',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5589,7 +5589,7 @@
                     },
                     {
                         id: 8,
-                        number: '8',
+                        number: '08',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5599,7 +5599,7 @@
                     },
                     {
                         id: 9,
-                        number: '9',
+                        number: '09',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5628,7 +5628,7 @@
                 leAction_modbus: [
                     {
                         id: 1,
-                        number: '1',
+                        number: '01',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5638,7 +5638,7 @@
                     },
                     {
                         id: 2,
-                        number: '2',
+                        number: '02',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5648,7 +5648,7 @@
                     },
                     {
                         id: 3,
-                        number: '3',
+                        number: '03',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5658,7 +5658,7 @@
                     },
                     {
                         id: 4,
-                        number: '4',
+                        number: '04',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5668,7 +5668,7 @@
                     },
                     {
                         id: 5,
-                        number: '5',
+                        number: '05',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5678,7 +5678,7 @@
                     },
                     {
                         id: 6,
-                        number: '6',
+                        number: '06',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5688,7 +5688,7 @@
                     },
                     {
                         id: 7,
-                        number: '7',
+                        number: '07',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5698,7 +5698,7 @@
                     },
                     {
                         id: 8,
-                        number: '8',
+                        number: '08',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5708,7 +5708,7 @@
                     },
                     {
                         id: 9,
-                        number: '9',
+                        number: '09',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5737,7 +5737,7 @@
                 LAction_modbus: [
                     {
                         id: 1,
-                        number: '1',
+                        number: '01',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5747,7 +5747,7 @@
                     },
                     {
                         id: 2,
-                        number: '2',
+                        number: '02',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5757,7 +5757,7 @@
                     },
                     {
                         id: 3,
-                        number: '3',
+                        number: '03',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5767,7 +5767,7 @@
                     },
                     {
                         id: 4,
-                        number: '4',
+                        number: '04',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5777,7 +5777,7 @@
                     },
                     {
                         id: 5,
-                        number: '5',
+                        number: '05',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5787,7 +5787,7 @@
                     },
                     {
                         id: 6,
-                        number: '6',
+                        number: '06',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5797,7 +5797,7 @@
                     },
                     {
                         id: 7,
-                        number: '7',
+                        number: '07',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5807,7 +5807,7 @@
                     },
                     {
                         id: 8,
-                        number: '8',
+                        number: '08',
                         ch_status: false,
                         address1: '',
                         address2: '',
@@ -5817,7 +5817,7 @@
                     },
                     {
                         id: 9,
-                        number: '9',
+                        number: '09',
                         ch_status: false,
                         address1: '',
                         address2: '',
