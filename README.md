@@ -9,4 +9,6 @@
 ![image](https://github.com/LinYuSiang/coboView/blob/master/pic/io.jpg)
 ## Monitor(basic) page
 ![image](https://github.com/LinYuSiang/coboView/blob/master/pic/basic.jpg)
+## second bar
+![image](https://github.com/LinYuSiang/coboView/blob/master/pic/secbar.jpg)
 
