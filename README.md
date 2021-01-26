@@ -11,4 +11,6 @@
 ![image](https://github.com/LinYuSiang/coboView/blob/master/pic/basic.jpg)
 ## second bar
 ![image](https://github.com/LinYuSiang/coboView/blob/master/pic/secbar.jpg)
-
+## language change
+![image](https://github.com/LinYuSiang/coboView/blob/master/pic/language.jpg)
+![image](https://github.com/LinYuSiang/coboView/blob/master/pic/language2.jpg)
